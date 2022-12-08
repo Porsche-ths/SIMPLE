@@ -2,8 +2,8 @@ package Skill;
 
 import java.util.ArrayList;
 
-import Character.Chara;
-import Character.Enemy;
+import chara.base.Chara;
+import chara.base.Enemy;
 import logic.GameLogic;
 
 public class DamageSkill extends Skill {

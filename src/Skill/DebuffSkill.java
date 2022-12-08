@@ -2,7 +2,7 @@ package Skill;
 
 import java.util.ArrayList;
 
-import Character.Chara;
+import chara.base.Chara;
 
 public class DebuffSkill extends Skill {
 

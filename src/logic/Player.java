@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
-import Character.Ally;
+import chara.base.Ally;
 
 public class Player {
 	private ArrayList<Ally> team;

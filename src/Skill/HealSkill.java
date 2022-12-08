@@ -2,7 +2,7 @@ package Skill;
 
 import java.util.ArrayList;
 
-import Character.Chara;
+import chara.base.Chara;
 import logic.GameLogic;
 
 public class HealSkill extends Skill {

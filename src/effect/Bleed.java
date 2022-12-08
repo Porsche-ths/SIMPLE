@@ -1,13 +1,15 @@
-package StatusEffect;
+package effect;
 
-import Character.Chara;
+import chara.base.Chara;
 
 public class Bleed extends StatusEffect {
 	private int damage;
+	private String description;
 
-	public Bleed(String effectName, int turnsLeft, int damage) {
+	public Bleed(int turnsLeft, int damage) {
 		super("Bleed", "Bleed", turnsLeft);
 		setDamage(damage);
+		setDescription("Takes " + damage + " damage. " + turnsLeft + "turns left.");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,9 +31,11 @@ public class Bleed extends StatusEffect {
 	}
 
 	@Override
-	public void triggerEffectAtRoundEnd() {
+	public void triggerEffectAtRoundEnd(Chara c) {
 		// TODO Auto-generated method stub
 		
 	}
 
+
+	
 }

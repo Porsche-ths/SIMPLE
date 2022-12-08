@@ -3,8 +3,8 @@ package logic;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-import Character.Chara;
 import Skill.Skill;
+import chara.base.Chara;
 import javafx.util.Pair;
 
 public class GameLogic {

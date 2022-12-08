@@ -1,11 +1,12 @@
-package StatusEffect;
+package effect;
 
-import Character.Chara;
+import chara.base.Chara;
 
 public abstract class StatusEffect {
 	protected int turnsLeft;
 	protected String effectName;
 	protected String effectType;
+	protected String description;
 	
 	public StatusEffect(String effectName, String effectType, int turnsLeft) {
 		setEffectName(effectName);
@@ -14,7 +15,7 @@ public abstract class StatusEffect {
 		
 	}
 	public  abstract void triggerEffectAtRoundStart(Chara c);
-	public  abstract void triggerEffectAtRoundEnd();
+	public  abstract void triggerEffectAtRoundEnd(Chara c);
 
 	public int turnsCount() {
 		this.turnsLeft -= 1;
@@ -38,6 +39,13 @@ public abstract class StatusEffect {
 	public void setEffectType(String effectType) {
 		this.effectType = effectType;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 	
 }
