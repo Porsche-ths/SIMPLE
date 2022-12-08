@@ -31,7 +31,7 @@ public abstract class Chara {
 
 	
 
-	public abstract void beginTurn();
+	public abstract void beginTurn(); // check status
 
 	public String getDetail() {
 
