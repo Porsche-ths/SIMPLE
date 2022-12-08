@@ -3,6 +3,7 @@ package Character;
 import java.util.ArrayList;
 
 import Skill.Skill;
+import StatusEffect.StatusEffect;
 
 public abstract class Chara {
 	private String name;
@@ -10,6 +11,7 @@ public abstract class Chara {
 	private int stunResist, deathBlowResist, bleedResist, decayResist, debuffResist;
 	private boolean isStunned;
 	private ArrayList<Skill> skills;
+	private ArrayList<StatusEffect> debuffs;
 	private logic.rank rank;
 
 	public Chara(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
