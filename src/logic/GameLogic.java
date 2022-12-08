@@ -41,21 +41,13 @@ public class GameLogic {
 		 * set this.q = new q
 		 * */
 		for (Chara ally: team) {
-			if (ally.isStunned()) {
-				ally.setStunned(false);
-			} else {
-				ally.setQueueNum(randomRange(1, 8) + ally.getSpd());
-				q.add(new Pair<Integer, Chara>(ally.getQueueNum(), ally));
-			}
+			ally.setQueueNum(randomRange(1, 8) + ally.getSpd());
+			q.add(new Pair<Integer, Chara>(ally.getQueueNum(), ally));
 		}
 		
 		for (Chara enemy: villains) {
-			if (enemy.isStunned()) {
-				enemy.setStunned(false);
-			} else {
-				enemy.setQueueNum(randomRange(1, 8) + enemy.getSpd());
-				q.add(new Pair<Integer, Chara>(enemy.getQueueNum(), enemy));
-			}
+			enemy.setQueueNum(randomRange(1, 8) + enemy.getSpd());
+			q.add(new Pair<Integer, Chara>(enemy.getQueueNum(), enemy));
 		}
 		
 	}
