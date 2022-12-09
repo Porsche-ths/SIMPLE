@@ -56,7 +56,7 @@ public class GameLogic {
 			if (character instanceof Ally) {
 				for (BaseSkill skill: character.getSkills()) {
 					skill.setValid();
-					if (skill.isValid()) { /* skillButton.isDisable */ }
+					if (!skill.isValid()) { /* skillButton.isDisable */ }
 				}
 			}
 			character.beginTurn();
