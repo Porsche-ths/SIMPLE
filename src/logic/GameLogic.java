@@ -10,11 +10,16 @@ import skill.base.BaseSkill;
 public class GameLogic {
 	
 	public static ArrayList<Chara> team;
-	public static ArrayList<Chara> villains;
+	public static ArrayList<Chara> enemies;
+	public static ArrayList<ArrayList<Chara>> villains;
 	public static PriorityQueue<Pair<Integer, Chara>> q;
 	
 	public static void newGame() {
 		// ? ? ? //
+	}
+	
+	public static void beginStage() {
+		
 	}
 	
 	public static void beginRound() {
@@ -45,7 +50,7 @@ public class GameLogic {
 			q.add(new Pair<Integer, Chara>(ally.getQueueNum(), ally));
 		}
 		
-		for (Chara enemy: villains) {
+		for (Chara enemy: enemies) {
 			enemy.setQueueNum(randomRange(1, 8) + enemy.getSpd());
 			q.add(new Pair<Integer, Chara>(enemy.getQueueNum(), enemy));
 		}
