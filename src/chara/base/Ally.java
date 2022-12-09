@@ -3,6 +3,7 @@ package chara.base;
 import java.util.ArrayList;
 
 import item.base.Equipable;
+import logic.GameLogic;
 import skill.base.BaseSkill;
 
 public class Ally extends Chara{
@@ -24,7 +25,38 @@ public class Ally extends Chara{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public void checkStatus() {
+		if (isAlive()) {
+			if (getHp() == 0) {
+				setAlive(false);
+			}
+		} else {
+			if (getHp() > 0) {
+				setAlive(true);
+			} else {
+				if (isDeathBlown()) {
+					GameLogic.team.remove(this);
+				} else {
+					setDeathBlowResist(getDeathBlowResist() - 16);
+				}
+			}
+			if (GameLogic.team.isEmpty()) GameLogic.setGameEnd(true);
+		}
+	}
+	
+	@Override
+	public void setHp(int hp) {
+		super.setHp(hp);
+		checkStatus();
+	}
+	
+	public boolean isDeathBlown() {
+		int chance = 100 - this.getDeathBlowResist();
+		return GameLogic.randomInt() < chance ? true : false;
+	}
+	
 	public String getClassName() {
 		return className;
 	}
@@ -39,6 +71,22 @@ public class Ally extends Chara{
 
 	public void setTargetPriority(int targetPriority) {
 		this.targetPriority = targetPriority;
+	}
+
+	public ArrayList<Equipable> getEquipmentSlots() {
+		return equipmentSlots;
+	}
+
+	public void setEquipmentSlots(ArrayList<Equipable> equipmentSlots) {
+		this.equipmentSlots = equipmentSlots;
+	}
+
+	public int getDeathBlowResist() {
+		return deathBlowResist;
+	}
+
+	public void setDeathBlowResist(int deathBlowResist) {
+		this.deathBlowResist = deathBlowResist;
 	}
 
 }
