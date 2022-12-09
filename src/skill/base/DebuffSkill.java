@@ -1,4 +1,4 @@
-package Skill;
+package skill.base;
 
 import java.util.ArrayList;
 

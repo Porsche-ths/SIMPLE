@@ -2,8 +2,8 @@ package chara.base;
 
 import java.util.ArrayList;
 
-import Skill.Skill;
 import effect.StatusEffect;
+import skill.base.Skill;
 
 public abstract class Chara {
 	private String name;
@@ -34,18 +34,20 @@ public abstract class Chara {
 
 	public abstract void beginTurn(); // check status
 	
-	public void atRoundStart() {
+	public void atTurnStart() {
 		ArrayList<StatusEffect> toBeRemoved = new ArrayList<StatusEffect>();
 
 		for(StatusEffect effect: statusEffects ) {
 			effect.triggerEffectAtRoundStart(this);
 			if(effect.getTurnsLeft() == 0) toBeRemoved.add(effect);
 		}
+		
 		for(StatusEffect effect:toBeRemoved) {
 			statusEffects.remove(effect);
 		}
 	}
-	public void atRoundEnd() {
+	
+	public void atTurnEnd() {
 		for(StatusEffect effect:statusEffects) {
 			effect.triggerEffectAtRoundEnd(this);
 			

@@ -3,14 +3,14 @@ package logic;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-import Skill.Skill;
 import chara.base.Chara;
 import javafx.util.Pair;
+import skill.base.Skill;
 
 public class GameLogic {
 	
-	private static ArrayList<Chara> team;
-	private static ArrayList<Chara> villains;
+	public static ArrayList<Chara> team;
+	public static ArrayList<Chara> villains;
 	public static PriorityQueue<Pair<Integer, Chara>> q;
 	
 	public static void newGame() {

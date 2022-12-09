@@ -2,7 +2,8 @@ package chara.base;
 
 import java.util.ArrayList;
 
-import Skill.Skill;
+import logic.GameLogic;
+import skill.base.Skill;
 
 public class Enemy extends Chara {
 
@@ -17,7 +18,6 @@ public class Enemy extends Chara {
 	@Override
 	public void beginTurn() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -2,8 +2,8 @@ package chara.base;
 
 import java.util.ArrayList;
 
-import Skill.Skill;
 import item.base.Equipable;
+import skill.base.Skill;
 
 public class Ally extends Chara{
 	private ArrayList<Equipable> equipmentSlots;
