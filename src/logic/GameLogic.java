@@ -65,4 +65,5 @@ public class GameLogic {
 		return (int) (randomInt()/d) + 1;
 	}
 	
+	
 }
