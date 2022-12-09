@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import chara.base.Chara;
 
-public abstract class Skill {
+public abstract class BaseSkill {
 	
 	protected String skillName;
 	protected final Chara user;
@@ -12,7 +12,7 @@ public abstract class Skill {
 	protected boolean isValid;
 	protected ArrayList<Chara> targets;
 	
-	public Skill(String skillName, Chara user, ArrayList<logic.rank> rank) {
+	public BaseSkill(String skillName, Chara user, ArrayList<logic.rank> rank) {
 		this.setSkillName(skillName);
 		this.user = user;
 		this.setRank(rank);

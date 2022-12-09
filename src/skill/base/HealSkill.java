@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import chara.base.Chara;
 import logic.GameLogic;
 
-public class HealSkill extends Skill {
+public class HealSkill extends BaseSkill {
 	
 	private int minHeal;
 	private int maxHeal;

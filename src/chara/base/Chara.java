@@ -3,14 +3,14 @@ package chara.base;
 import java.util.ArrayList;
 
 import effect.StatusEffect;
-import skill.base.Skill;
+import skill.base.BaseSkill;
 
 public abstract class Chara {
 	private String name;
 	private int maxHp, hp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, queueNum;
 	private int stunResist, bleedResist, decayResist, debuffResist;
 	private boolean isStunned;
-	private ArrayList<Skill> skills;
+	private ArrayList<BaseSkill> skills;
 	private ArrayList<StatusEffect> statusEffects;
 	private logic.rank rank;
 
@@ -157,11 +157,11 @@ public abstract class Chara {
 		this.isStunned = isStunned;
 	}
 
-	public ArrayList<Skill> getSkills() {
+	public ArrayList<BaseSkill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(ArrayList<Skill> skills) {
+	public void setSkills(ArrayList<BaseSkill> skills) {
 		this.skills = skills;
 	}
 

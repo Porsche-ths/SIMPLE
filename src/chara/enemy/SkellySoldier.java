@@ -12,7 +12,9 @@ public class SkellySoldier extends Enemy {
 	
 	@Override
 	public void beginTurn() {
+		atTurnStart();
 		
+		atTurnEnd();
 	}
 
 }

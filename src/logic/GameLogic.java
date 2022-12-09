@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 
 import chara.base.Chara;
 import javafx.util.Pair;
-import skill.base.Skill;
+import skill.base.BaseSkill;
 
 public class GameLogic {
 	
@@ -25,7 +25,7 @@ public class GameLogic {
 		generateQueue();
 		while(!q.isEmpty()) {
 			Chara character = q.poll().getValue();
-			for (Skill skill: character.getSkills()) {
+			for (BaseSkill skill: character.getSkills()) {
 				skill.setValid();
 				if (skill.isValid()) { /* skillButton.isDisable */ }
 			}

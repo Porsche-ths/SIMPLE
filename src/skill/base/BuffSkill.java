@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import chara.base.Chara;
 
-public class BuffSkill extends Skill {
+public class BuffSkill extends BaseSkill {
 
 	public BuffSkill(String skillName, Chara user, ArrayList<logic.rank> rank) {
 		super(skillName, user, rank);

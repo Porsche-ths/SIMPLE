@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import chara.base.Chara;
 
-public class DebuffSkill extends Skill {
+public class DebuffSkill extends BaseSkill {
 
 	public DebuffSkill(String skillName, Chara user, ArrayList<logic.rank> rank) {
 		super(skillName, user, rank);

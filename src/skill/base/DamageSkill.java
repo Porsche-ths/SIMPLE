@@ -6,7 +6,7 @@ import chara.base.Chara;
 import chara.base.Enemy;
 import logic.GameLogic;
 
-public class DamageSkill extends Skill {
+public class DamageSkill extends BaseSkill {
 
 	private int dmgMod;
 	private int acc;

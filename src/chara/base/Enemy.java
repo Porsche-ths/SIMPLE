@@ -3,7 +3,7 @@ package chara.base;
 import java.util.ArrayList;
 
 import logic.GameLogic;
-import skill.base.Skill;
+import skill.base.BaseSkill;
 
 public class Enemy extends Chara {
 
