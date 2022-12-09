@@ -8,6 +8,7 @@ import skill.base.BaseSkill;
 public class Ally extends Chara{
 	private ArrayList<Equipable> equipmentSlots;
 	private int deathBlowResist;
+	private String className;
 	public Ally(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
 			 int stunResist, int deathBlowResist, int bleedResist, int decayResist,
 			int debuffResist) {
