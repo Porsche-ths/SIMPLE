@@ -3,6 +3,7 @@ package chara.base;
 import java.util.ArrayList;
 
 import effect.StatusEffect;
+import logic.GameLogic;
 import skill.base.BaseSkill;
 
 public abstract class Chara {
@@ -13,6 +14,7 @@ public abstract class Chara {
 	private ArrayList<BaseSkill> skills;
 	private ArrayList<StatusEffect> statusEffects;
 	private logic.rank rank;
+	private boolean isAlive;
 
 	public Chara(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
 			 int stunResist, int bleedResist, int decayResist,
@@ -28,11 +30,12 @@ public abstract class Chara {
 		setMaxDmg(maxDmg);
 		setSpd(spd);
 		setStunned(false);
+		setAlive(true);
 	}
-
 	
-
-	public abstract void beginTurn(); // check status
+	public abstract void beginTurn();
+	
+	public abstract void checkStatus();
 	
 	public void atTurnStart() {
 		ArrayList<StatusEffect> toBeRemoved = new ArrayList<StatusEffect>();
@@ -216,4 +219,11 @@ public abstract class Chara {
 	public ArrayList<StatusEffect> getStatusEffect() {
 		return this.statusEffects;
 	}
+	public boolean isAlive() {
+		return isAlive;
+	}
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+	
 }

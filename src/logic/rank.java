@@ -5,5 +5,4 @@ public enum rank {
 	second,
 	third,
 	fourth,
-	bench
 }

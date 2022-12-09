@@ -20,4 +20,25 @@ public class Enemy extends Chara {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void checkStatus() {
+		if (isAlive()) {
+			if (getHp() == 0) {
+				setAlive(false);
+				super.setHp(10);
+			}
+		} else {
+			if (getHp() == 0) {
+				GameLogic.enemies.remove(this);
+				if (GameLogic.enemies.isEmpty()) GameLogic.setStageCleared(true);
+			}
+		}
+	}
+	
+	@Override
+	public void setHp(int hp) {
+		super.setHp(hp);
+		checkStatus();
+	}
+
 }
