@@ -12,7 +12,6 @@ public class BonySlash extends DamageSkill {
 		getRank().add(logic.rank.first);
 		getRank().add(logic.rank.second);
 		getRank().add(logic.rank.third);
-		// TODO Auto-generated constructor stub
 	}
 
 }
