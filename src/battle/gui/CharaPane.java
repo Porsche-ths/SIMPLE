@@ -31,7 +31,7 @@ public class CharaPane extends HBox {
 		charList.add("skellySample.png");
 		charList.add("skellySample.png");
 		charList.add("skellySample.png");
-		charList.add("skellyArchySample.png");
+		charList.add("bossSample.gif");
 		for(String c : charList) {
 			Image chara = new Image(c);
 			ImageView iv = new ImageView(chara);
