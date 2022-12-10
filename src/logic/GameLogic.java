@@ -107,6 +107,23 @@ public class GameLogic {
 	public static void setWin(boolean win) {
 		GameLogic.win = win;
 	}
+
+	public static ArrayList<Chara> getTeam() {
+		return team;
+	}
+
+	public static void setTeam(ArrayList<Chara> team) {
+		GameLogic.team = team;
+	}
+
+	public static ArrayList<ArrayList<Chara>> getVillains() {
+		return villains;
+	}
+
+	public static void setVillains(ArrayList<ArrayList<Chara>> villains) {
+		GameLogic.villains = villains;
+	}
+	
 	
 
 }

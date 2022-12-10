@@ -34,6 +34,15 @@ public class Main extends Application {
 		
 		
 	}
+	public static void switchToMainMenu() {
+		MainMenu mainMenu = new MainMenu();
+		scene = new Scene(mainMenu);
+		stage.setScene(scene);
+		
+		
+		
+		
+	}
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
