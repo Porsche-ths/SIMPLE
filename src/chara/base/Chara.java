@@ -1,12 +1,13 @@
 package chara.base;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import effect.StatusEffect;
 import logic.GameLogic;
 import skill.base.BaseSkill;
 
-public abstract class Chara {
+public abstract class Chara implements Comparator<Chara>{
 	private String name;
 	private int maxHp, hp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, queueNum;
 	private int stunResist, bleedResist, decayResist, debuffResist;
@@ -19,6 +20,7 @@ public abstract class Chara {
 	public Chara(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
 			 int stunResist, int bleedResist, int decayResist,
 			int debuffResist) {
+		setSkills(new ArrayList<BaseSkill>());
 		setName(name);
 		setMaxHp(maxHp);
 		setHp(maxHp);
@@ -224,6 +226,10 @@ public abstract class Chara {
 	}
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+	}
+	public int compare(Chara otherChara) {
+		return Integer.compare(getHp(), otherChara.getHp());
+		
 	}
 	
 }

@@ -1,52 +1,64 @@
 package app;
 
-
+import battle.gui.BattlePane;
+import battle.gui.CharaPane;
+import chara.ally.Crusader;
 import charaselect.gui.CharSelect;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import logic.GameLogic;
+import map.gui.Map;
+import sprites.CrusaderSprite;
 import startmenu.gui.MainMenu;
 
 public class Main extends Application {
-		private static  Stage stage;
-		private static  Scene scene;
-	
+	private static Stage stage;
+	private static Scene mainMenuScene, charSelectScene, mapMenuScene;
+	private static CharSelect charSelect;
+	private static MainMenu mainMenu;
+	private static Map mapMenu;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		MainMenu mainMenu = new MainMenu();
-		scene = new Scene(mainMenu);
+		mainMenu = new MainMenu();
+		charSelect = new CharSelect();
+		mapMenu = new Map();
+		mainMenuScene = new Scene(mainMenu);
+		charSelectScene = new Scene(charSelect);
+		mapMenuScene = new Scene(mapMenu);
 		stage = primaryStage;
-		
-		stage.setScene(scene);
-		
+		stage.setScene(mainMenuScene);
 		stage.show();
 
-		
 	}
-	
+
 	public static void switchToCharSelect() {
-		CharSelect charSelect = new CharSelect();
-		scene = new Scene(charSelect);
-		stage.setScene(scene);
-		
-		
-		
-		
+		stage.setScene(charSelectScene);
+
+
 	}
+
 	public static void switchToMainMenu() {
-		MainMenu mainMenu = new MainMenu();
-		scene = new Scene(mainMenu);
-		stage.setScene(scene);
-		
-		
-		
-		
+		stage.setScene(mainMenuScene);
+
 	}
+
+	public static void switchToMap() {
+		stage.setScene(mapMenuScene);
+
+	}
+	public static void switchToBattleStage() {
+		GameLogic.newGame();
+		Scene stageScene = new Scene(GameLogic.getCurrentStage().getBattlePane());
+		stage.setScene(stageScene);
+	}
+
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
-
 	
 
 }

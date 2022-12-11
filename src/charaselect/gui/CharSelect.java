@@ -10,6 +10,8 @@ import chara.ally.Ranger;
 import chara.ally.Rogue;
 import chara.base.Ally;
 import chara.base.Chara;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.Event;
@@ -17,6 +19,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -31,6 +35,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import logic.GameLogic;
 
 // TODO LIST: ADD SWITCH TO MAP
@@ -45,7 +50,7 @@ public class CharSelect extends StackPane {
 	//private StackPane selectedCrusader,selectedRanger,selectedPriest,selectedRogue;
 
 	public CharSelect() {
-		GameLogic.setTeam(new ArrayList<Chara>());
+		GameLogic.setTeam(new ArrayList<Ally>());
 		setPrefWidth(1400);
 		setPrefHeight(680);
 		setAlignment(Pos.CENTER);
@@ -74,6 +79,7 @@ public class CharSelect extends StackPane {
 		addResetButton();
 		addConfirmButton();
 		resetSelectedChara();
+//		=======================Test=================================
 
 		statBox.setVisible(false);
 
@@ -369,7 +375,7 @@ private void addConfirmButton() {
 							
 						});
 						try {
-							Thread.sleep(500);
+							Thread.sleep(250);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -380,6 +386,9 @@ private void addConfirmButton() {
 							public void run() {
 								// TODO Auto-generated method stub
 								confirmButton.setImage(inactivatedConfirm);
+								Main.switchToBattleStage();
+
+								//Main.switchToMap();
 
 							}
 							
@@ -408,5 +417,8 @@ private void addConfirmButton() {
 		confirmButton.setImage(inactivatedConfirm);
 		
 	}
+	
+	
+	
 	
 }

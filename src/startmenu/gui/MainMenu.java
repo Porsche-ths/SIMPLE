@@ -1,11 +1,15 @@
 package startmenu.gui;
 
 
+
 import app.Main;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -17,20 +21,25 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class MainMenu extends StackPane {
 	public MainMenu() {
 		setPrefWidth(1400);	
 		setPrefHeight(680);
 		setAlignment(Pos.CENTER);
-		Image bg = new Image("startMenu.png");
-		setBackground(new Background(new BackgroundFill(new ImagePattern(bg),CornerRadii.EMPTY, Insets.EMPTY)));
+		Image bg = new Image("startMenu.gif");
+		ImageView bgv = new ImageView(bg);
+		bgv.setFitWidth(1400);	
+		bgv.setFitHeight(680);
+		getChildren().add(bgv);
+		//setBackground(new Background(new BackgroundFill(new ImagePattern(bg),CornerRadii.EMPTY, Insets.EMPTY)));
 
 		
 		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 60);
 		StackPane startBorder = new StackPane();
 		startBorder.setMaxWidth(400);
-		startBorder.setMaxHeight(500);
+		startBorder.setMaxHeight(600);
 		//startBorder.setBackground(new Background(new BackgroundFill(Color.AQUA,CornerRadii.EMPTY,Insets.EMPTY)));
 		Image titleImg = new Image("titleText.png");
 		ImageView titleText = new ImageView(titleImg);
@@ -40,7 +49,6 @@ public class MainMenu extends StackPane {
 		startBorder.getChildren().add(startText);
 		startBorder.getChildren().add(titleText);
 		StackPane.setAlignment(startText,Pos.BOTTOM_CENTER);
-		StackPane.setAlignment(titleText,Pos.TOP_CENTER);
 		startText.setOnMouseClicked(new EventHandler <Event>() {
 
 			@Override
@@ -52,9 +60,9 @@ public class MainMenu extends StackPane {
 			}
 			
 		});
-
 		getChildren().add(startBorder);
 		
 		
 	}
+	
 }
