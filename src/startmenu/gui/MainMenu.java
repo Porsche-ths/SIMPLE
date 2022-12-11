@@ -27,15 +27,16 @@ public class MainMenu extends StackPane {
 		setBackground(new Background(new BackgroundFill(new ImagePattern(bg),CornerRadii.EMPTY, Insets.EMPTY)));
 
 		
-		
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 60);
 		StackPane startBorder = new StackPane();
 		startBorder.setMaxWidth(400);
 		startBorder.setMaxHeight(500);
 		//startBorder.setBackground(new Background(new BackgroundFill(Color.AQUA,CornerRadii.EMPTY,Insets.EMPTY)));
 		Image titleImg = new Image("titleText.png");
 		ImageView titleText = new ImageView(titleImg);
-		Image startImg = new Image("startText.png");
-		ImageView startText = new ImageView(startImg);
+		Text startText = new Text("START");
+		startText.setFill(Color.WHITE);
+		startText.setFont(font);
 		startBorder.getChildren().add(startText);
 		startBorder.getChildren().add(titleText);
 		StackPane.setAlignment(startText,Pos.BOTTOM_CENTER);

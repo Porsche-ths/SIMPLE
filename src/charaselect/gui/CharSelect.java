@@ -2,6 +2,7 @@ package charaselect.gui;
 
 import java.util.ArrayList;
 
+
 import app.Main;
 import chara.ally.Crusader;
 import chara.ally.Priest;
@@ -10,6 +11,7 @@ import chara.ally.Rogue;
 import chara.base.Ally;
 import chara.base.Chara;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -31,6 +33,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 
+// TODO LIST: ADD SWITCH TO MAP
+//			  ADD STAT
 public class CharSelect extends StackPane {
 	private HBox statBox;
 	private GridPane selectedCharaBox;
@@ -51,13 +55,28 @@ public class CharSelect extends StackPane {
 		setAlignment(text,Pos.TOP_CENTER);
 		Image bg = new Image("charSelectBG.png");
 		setBackground(new Background(new BackgroundFill(new ImagePattern(bg),CornerRadii.EMPTY, Insets.EMPTY)));
+
+		
 		addSelectedCharaBox();
 		addStatBox();
 		addSelectableCharaBox();
 		addOnMouseClicked();
-		addButtons();
-		//selectedCharaBox.setVisible(false);
+//		=======================Button Panel=======================
+		buttonPanel = new HBox();
+		getChildren().add(buttonPanel);
+		buttonPanel.setPadding(new Insets(0,0,50,0));
+		buttonPanel.setSpacing(50);;
+		buttonPanel.setMaxHeight(10);
+		buttonPanel.setMaxWidth(800);
+		buttonPanel.setAlignment(Pos.CENTER);
+		setAlignment(buttonPanel,Pos.BOTTOM_CENTER);
+		addBackButton();
+		addResetButton();
+		addConfirmButton();
+		resetSelectedChara();
+
 		statBox.setVisible(false);
+
 
 
 	}
@@ -118,7 +137,6 @@ public class CharSelect extends StackPane {
 		selectedCharaBox.setMaxHeight(400);
 		selectedCharaBox.setHgap(30);
 		selectedCharaBox.setAlignment(Pos.TOP_CENTER);
-		resetSelectedChara();
 		getChildren().add(selectedCharaBox);
 	}
 	private void addStatBox() {
@@ -201,11 +219,13 @@ public class CharSelect extends StackPane {
 			selectedCharaBox.add(box,i,0);
 		}
 		GameLogic.getTeam().clear();
+		disableConfirmButton();
 		
 	}
 	private void charaBoxHandler(String className,Ally a) {
 		int n = GameLogic.getTeam().size();
 		if(n<4) {
+			enableConfirmButton();
 			GameLogic.getTeam().add(a);
 			selectedCharaBox.add(createClassBox(className),n,0);
 			
@@ -220,11 +240,8 @@ public class CharSelect extends StackPane {
 		}
 		
 	}
-	private void addButtons() {
-		buttonPanel = new HBox();
-		buttonPanel.setMaxHeight(800);
-		buttonPanel.setMaxWidth(800);
-		buttonPanel.setAlignment(Pos.BOTTOM_CENTER);
+	private void addBackButton() {
+		
 		Image inactivatedBack = new Image("inactivatedBack.png");
 		Image activatedBack = new Image("activatedBack.png");
 		backButton = new ImageView(inactivatedBack);
@@ -233,21 +250,163 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				backButton.setImage(activatedBack);
-				try {
-					Thread.sleep(1000);
+				Thread t = new Thread(new Runnable() {
 
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Main.switchToMainMenu();
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								backButton.setImage(activatedBack);
+							}
+							
+						});
+						try {
+							Thread.sleep(250);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								Main.switchToMainMenu();
+							}
+							
+						});
+
+					}
+					
+				});
+				t.start();
 
 			}
 			
 		});
 		buttonPanel.getChildren().add(backButton);
-		getChildren().add(buttonPanel);
 		
 	}
+	private void addResetButton() {
+
+		
+		Image inactivatedReset = new Image("inactivatedReset.png");
+		Image activatedReset = new Image("activatedReset.png");
+		resetButton = new ImageView(inactivatedReset);
+		resetButton.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				// TODO Auto-generated method stub
+				Thread t = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								resetButton.setImage(activatedReset);
+							}
+							
+						});
+						try {
+							Thread.sleep(250);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								resetSelectedChara();
+								resetButton.setImage(inactivatedReset);
+
+							}
+							
+						});
+
+					}
+					
+				});
+				t.start();
+
+			}
+			
+		});
+		buttonPanel.getChildren().add(resetButton);
+		
+	}
+private void addConfirmButton() {
+		Image inactivatedConfirm = new Image("inactivatedConfirm.png");
+		Image activatedConfirm = new Image("activatedConfirm.png");
+		confirmButton = new ImageView(inactivatedConfirm);
+		confirmButton.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				// TODO Auto-generated method stub
+				Thread t = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								confirmButton.setImage(activatedConfirm);
+							}
+							
+						});
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								confirmButton.setImage(inactivatedConfirm);
+
+							}
+							
+						});
+
+					}
+					
+				});
+				t.start();
+
+			}
+			
+		});
+		buttonPanel.getChildren().add(confirmButton);
+		
+	}
+	private void disableConfirmButton() {
+		Image disabledConfirm = new Image("disabledConfirm.png");
+		confirmButton.setDisable(true);
+		confirmButton.setImage(disabledConfirm);
+		
+	}
+	private void enableConfirmButton() {
+		Image inactivatedConfirm = new Image("inactivatedConfirm.png");
+		confirmButton.setDisable(false);
+		confirmButton.setImage(inactivatedConfirm);
+		
+	}
+	
 }
