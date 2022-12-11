@@ -6,7 +6,7 @@ import logic.GameLogic;
 import skill.base.BaseSkill;
 
 public class Enemy extends Chara {
-
+	private String className;
 	public Enemy(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
 			 int stunResist, int bleedResist, int decayResist,
 			int debuffResist) {
@@ -40,5 +40,14 @@ public class Enemy extends Chara {
 		super.setHp(hp);
 		checkStatus();
 	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	
 
 }

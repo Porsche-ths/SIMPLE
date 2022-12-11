@@ -11,11 +11,11 @@ import skill.enemy.BonySlash;
 
 public class SkellySoldier extends Enemy {
 
-	public SkellySoldier(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg,
-			int spd, int stunResist, int bleedResist, int decayResist, int debuffResist) {
+	public SkellySoldier(String name) {
 		//super(name, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, stunResist, bleedResist, decayResist, debuffResist);
-		super("Skelly Soldier", 12, 25, 0, 0, 0, 2, 5, 1, 10, 300, 10, 15);
+		super(name, 12, 25, 0, 0, 0, 2, 5, 1, 10, 300, 10, 15);
 		getSkills().add(new BonySlash(this));
+		setClassName("skellySoldier");
 	}
 	
 	@Override
