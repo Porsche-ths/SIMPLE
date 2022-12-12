@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import item.base.Equipable;
 import logic.GameLogic;
 import logic.rank;
-import skill.base.BaseSkill;
 
 public class Ally extends Chara{
 	private ArrayList<Equipable> equipmentSlots;
@@ -39,6 +38,7 @@ public class Ally extends Chara{
 			} else {
 				if (isDeathBlown()) {
 					GameLogic.team.remove(this);
+					// clear charaPane -> addtocharaPane
 				} else {
 					setDeathBlowResist(getDeathBlowResist() - 16);
 				}
@@ -59,6 +59,7 @@ public class Ally extends Chara{
 					}
 					n++;
 				}
+				
 			}
 		}
 	}

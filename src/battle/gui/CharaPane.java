@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 import chara.base.Ally;
 import chara.base.Enemy;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import logic.GameLogic;
 
 
 public class CharaPane extends HBox {
@@ -56,6 +60,21 @@ public class CharaPane extends HBox {
 			ImageView iv = new ImageView(chara);
 			iv.setFitHeight(200);
 			iv.setFitWidth(160);
+			iv.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event arg0) {
+					// TODO Auto-generated method stub
+					GameLogic.currentSkill.getTargets().add(a);
+					GameLogic.currentSkill.cast();
+					for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
+						n.setDisable(true);
+					}
+					GameLogic.nextTurn();
+				}
+				
+			});
+			iv.setDisable(true);
 			getChildren().add(iv);
 		}
 		if(opponents.size() < 4) {

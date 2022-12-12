@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import logic.GameLogic;
 import skill.base.BaseSkill;
+import skill.base.TargetSelectable;
 
 public class BattlePane extends VBox{
 	private CharaPane charaPane;
@@ -81,15 +82,25 @@ public class BattlePane extends VBox{
 		if (GameLogic.currentChara instanceof Ally) {
 			int i = 0;
 			for (BaseSkill s: GameLogic.currentChara.getSkills()) {
-				StackPane skillBox = new StackPane();
-				skillBox.setMaxHeight(100);
-				skillBox.setMaxWidth(100);
+				StackPane skillButton = new StackPane();
+				skillButton.setMaxHeight(100);
+				skillButton.setMaxWidth(100);
 				Image skill = new Image(ClassLoader.getSystemResource(s.getSkillName() + ".png").toString());
 				ImageView skillSquare = new ImageView(skill);
 				skillSquare.setFitHeight(100);
 				skillSquare.setFitWidth(100);
-				skillBox.getChildren().add(skillSquare);
-				skillMenu.add(skillBox, i, 0); i ++;
+				skillButton.getChildren().add(skillSquare);
+				skillButton.setOnMouseClicked(new EventHandler<Event>() {
+
+					@Override
+					public void handle(Event arg0) {
+						// TODO Auto-generated method stub
+						GameLogic.currentSkill = s;
+						((TargetSelectable) s).selectTarget();
+					}
+
+				});
+				skillMenu.add(skillButton, i, 0); i++;
 			}
 		}
 		fightUI.setLeft(skillMenu);

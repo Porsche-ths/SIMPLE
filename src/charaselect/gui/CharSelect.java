@@ -262,6 +262,7 @@ public class CharSelect extends StackPane {
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
+								backButton.setImage(inactivatedBack);
 								Main.switchToMainMenu();
 							}
 							
@@ -398,8 +399,5 @@ private void addConfirmButton() {
 		confirmButton.setImage(inactivatedConfirm);
 		
 	}
-	
-	
-	
 	
 }

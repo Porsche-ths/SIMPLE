@@ -24,25 +24,31 @@ public class DamageSkill extends BaseSkill {
 	public void cast() {
 		// TODO Auto-generated method stub
 		for (Chara each: targets) {
+			System.out.println("Before: " + each.getHp());
 			if (each instanceof Ally) {
 				if (isHit(each)) {
 					int damageDeal = computeDamage(each);
 					((Ally) each).setHp(each.getHp() - damageDeal);
+					System.out.println(damageDeal);
 					// show damageDeal
 				} else {
-					String show = "Dodge" ;
+					String show = "Dodge";
 					// show Miss or Dodge
+					System.out.println(show);
 				}
 			} else {
 				if (isHit(each)) {
 					int damageDeal = computeDamage(each);
 					((Enemy) each).setHp(each.getHp() - damageDeal);
+					System.out.println(damageDeal);
 					// show damageDeal
 				} else {
 					String show = "Miss";
 					// show Miss or Dodge
+					System.out.println(show);
 				}
 			}
+			System.out.println("After: " + each.getHp());
 		}
 	}
 	

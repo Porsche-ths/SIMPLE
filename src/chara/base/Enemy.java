@@ -32,6 +32,7 @@ public class Enemy extends Chara {
 		} else {
 			if (getHp() == 0) {
 				GameLogic.enemies.remove(this);
+				// clear charaPane -> addtocharaPane
 				if (GameLogic.enemies.isEmpty()) GameLogic.setStageCleared(true);
 				else {
 					int n = 0;

@@ -1,10 +1,8 @@
 package chara.base;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import effect.StatusEffect;
-import logic.GameLogic;
 import skill.base.BaseSkill;
 
 public abstract class Chara {

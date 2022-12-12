@@ -10,8 +10,12 @@ import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;
 import chara.enemy.SkellySoldier;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import skill.base.BaseSkill;
+import javafx.scene.control.Alert.AlertType;
 
 public class GameLogic {
 	
@@ -26,6 +30,7 @@ public class GameLogic {
 	public static BattleStage currentStage;
 	public static Chara currentChara;
 	public static boolean isAction;
+	public static BaseSkill currentSkill;
 	
 	public static void newGame() {
 		isStageCleared = false;
@@ -37,12 +42,23 @@ public class GameLogic {
 	}
 	
 	public static void endGame() {
+		
+		Alert alert = new Alert(AlertType.INFORMATION, "Do you want to restart ?", ButtonType.YES, ButtonType.NO);
 		if (win) {
-			//Alert "You Win !"
+			alert.setTitle("Congratulations");
+			alert.setHeaderText("You win :)");
 		} else {
-			//Alert "You Lose . . ."
+			alert.setTitle("Sorry");
+			alert.setHeaderText("You lose :(");
 		}
-		//RESTART
+		alert.showAndWait();
+		
+		if (alert.getResult() == ButtonType.YES) {
+			team = new ArrayList<Ally>();
+			Main.switchToMainMenu();
+		} else if (alert.getResult() == ButtonType.NO) {
+			Platform.exit();
+		}
 	}
 	
 	public static void beginStage(int i) {
