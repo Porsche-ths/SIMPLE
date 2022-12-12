@@ -42,6 +42,7 @@ public class Main extends Application {
 	}
 
 	public static void switchToMainMenu() {
+		MainMenu.fadeTitleText();
 		stage.setScene(mainMenuScene);
 
 	}
