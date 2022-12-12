@@ -54,11 +54,11 @@ public class CharSelect extends StackPane {
 		setPrefWidth(1400);
 		setPrefHeight(680);
 		setAlignment(Pos.CENTER);
-		Image textImg = new Image("heroesSelectText.png");
+		Image textImg = new Image(ClassLoader.getSystemResource("heroesSelectText.png").toString());
 		ImageView text = new ImageView(textImg);
 		getChildren().add(text);
 		setAlignment(text,Pos.TOP_CENTER);
-		Image bg = new Image("charSelectBG.png");
+		Image bg = new Image(ClassLoader.getSystemResource("charSelectBG.png").toString());
 		setBackground(new Background(new BackgroundFill(new ImagePattern(bg),CornerRadii.EMPTY, Insets.EMPTY)));
 
 		
@@ -90,7 +90,7 @@ public class CharSelect extends StackPane {
 		crusaderBox = new StackPane();
 		crusaderBox.setMaxHeight(120);
 		crusaderBox.setMaxWidth(120);
-		Image crusader = new Image("crusaderBox.png");
+		Image crusader = new Image(ClassLoader.getSystemResource("crusaderBox.png").toString());
 		ImageView crusaderSquare = new ImageView(crusader);
 		crusaderSquare.setFitHeight(120);
 		crusaderSquare.setFitWidth(120);
@@ -100,7 +100,7 @@ public class CharSelect extends StackPane {
 		priestBox = new StackPane();
 		priestBox.setMaxHeight(120);
 		priestBox.setMaxWidth(120);
-		Image priest = new Image("priestBox.png");
+		Image priest = new Image(ClassLoader.getSystemResource("priestBox.png").toString());
 		ImageView priestSquare = new ImageView(priest);
 		priestSquare.setFitHeight(120);
 		priestSquare.setFitWidth(120);
@@ -110,7 +110,7 @@ public class CharSelect extends StackPane {
 		rangerBox = new StackPane();
 		rangerBox.setMaxHeight(120);
 		rangerBox.setMaxWidth(120);
-		Image ranger = new Image("rangerBox.png");
+		Image ranger = new Image(ClassLoader.getSystemResource("rangerBox.png").toString());
 		ImageView rangerSquare = new ImageView(ranger);
 		rangerSquare.setFitHeight(120);
 		rangerSquare.setFitWidth(120);
@@ -120,7 +120,7 @@ public class CharSelect extends StackPane {
 		rogueBox = new StackPane();
 		rogueBox.setMaxHeight(120);
 		rogueBox.setMaxWidth(120);
-		Image rogue = new Image("rogueBox.png");
+		Image rogue = new Image(ClassLoader.getSystemResource("rogueBox.png").toString());
 		ImageView rogueSquare = new ImageView(rogue);
 		rogueSquare.setFitHeight(120);
 		rogueSquare.setFitWidth(120);
@@ -145,7 +145,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("crusader",new Crusader(Integer.toString(4 - GameLogic.getTeam().size())));
+				charaBoxHandler("crusader",new Crusader(Integer.toString(GameLogic.getTeam().size()+1)));
 			}
 			
 		});
@@ -179,7 +179,7 @@ public class CharSelect extends StackPane {
 		StackPane classBox = new StackPane();
 		classBox.setMaxHeight(120);
 		classBox.setMaxWidth(120);
-		Image classImg = new Image(className + "Box.png");
+		Image classImg = new Image(ClassLoader.getSystemResource(className + "Box.png").toString());
 		ImageView classSquare = new ImageView(classImg);
 		classSquare.setFitHeight(120);
 		classSquare.setFitWidth(120);
@@ -191,7 +191,7 @@ public class CharSelect extends StackPane {
 			StackPane box = new StackPane();
 			box.setMaxHeight(120);
 			box.setMaxWidth(120);
-			Image charaBox = new Image("charaBox.png");
+			Image charaBox = new Image(ClassLoader.getSystemResource("charaBox.png").toString());
 			ImageView emptyBox = new ImageView(charaBox);
 			emptyBox.setFitHeight(120);
 			emptyBox.setFitWidth(120);
@@ -229,8 +229,8 @@ public class CharSelect extends StackPane {
 	}
 	private void addBackButton() {
 		
-		Image inactivatedBack = new Image("inactivatedBack.png");
-		Image activatedBack = new Image("activatedBack.png");
+		Image inactivatedBack = new Image(ClassLoader.getSystemResource("inactivatedBack.png").toString());
+		Image activatedBack = new Image(ClassLoader.getSystemResource("activatedBack.png").toString());
 		backButton = new ImageView(inactivatedBack);
 		backButton.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -282,8 +282,8 @@ public class CharSelect extends StackPane {
 	private void addResetButton() {
 
 		
-		Image inactivatedReset = new Image("inactivatedReset.png");
-		Image activatedReset = new Image("activatedReset.png");
+		Image inactivatedReset = new Image(ClassLoader.getSystemResource("inactivatedReset.png").toString());
+		Image activatedReset = new Image(ClassLoader.getSystemResource("activatedReset.png").toString());
 		resetButton = new ImageView(inactivatedReset);
 		resetButton.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -388,13 +388,13 @@ private void addConfirmButton() {
 		
 	}
 	private void disableConfirmButton() {
-		Image disabledConfirm = new Image("disabledConfirm.png");
+		Image disabledConfirm = new Image(ClassLoader.getSystemResource("disabledConfirm.png").toString());
 		confirmButton.setDisable(true);
 		confirmButton.setImage(disabledConfirm);
 		
 	}
 	private void enableConfirmButton() {
-		Image inactivatedConfirm = new Image("inactivatedConfirm.png");
+		Image inactivatedConfirm = new Image(ClassLoader.getSystemResource("inactivatedConfirm.png").toString());
 		confirmButton.setDisable(false);
 		confirmButton.setImage(inactivatedConfirm);
 		

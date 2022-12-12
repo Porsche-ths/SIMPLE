@@ -32,6 +32,7 @@ public class DamageSkill extends BaseSkill {
 					((Ally) each).setHp(each.getHp() - damageDeal);
 					System.out.println(damageDeal);
 					// show damageDeal
+					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,125);
 				} else {
 					String show = "Dodge";
 					// show Miss or Dodge

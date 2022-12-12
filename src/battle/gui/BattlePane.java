@@ -34,7 +34,7 @@ public class BattlePane extends VBox{
 		setPrefWidth(1400);	
 		setAlignment(Pos.BOTTOM_CENTER);
 		getChildren().add(this.charaPane);
-		Image ui = new Image("battleCommand.png");
+		Image ui = new Image(ClassLoader.getSystemResource("battleCommand.png").toString());
 		fightUI = new BorderPane();
 		fightUI.setPrefWidth(1400);	
 		fightUI.setPrefHeight(500);
