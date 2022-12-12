@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import item.base.Equipable;
 import logic.GameLogic;
+import logic.rank;
 import skill.base.BaseSkill;
 
 public class Ally extends Chara{
 	private ArrayList<Equipable> equipmentSlots;
 	private int deathBlowResist;
 	private String className;
-	private int targetPriority;
+	private int targetPriority, calculatedPriority;
 	public Ally(String name, String className, int targetPriority, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
 			 int stunResist, int deathBlowResist, int bleedResist, int decayResist,
 			int debuffResist) {
@@ -22,8 +23,8 @@ public class Ally extends Chara{
 
 	@Override
 	public void beginTurn() {
-		// TODO Auto-generated method stub
-		
+		atTurnStart();
+		GameLogic.getCurrentStage().getBattlePane().initializeSkillMenu();
 	}
 	
 	@Override
@@ -43,6 +44,22 @@ public class Ally extends Chara{
 				}
 			}
 			if (GameLogic.team.isEmpty()) GameLogic.setGameEnd(true);
+			else {
+				int n = 0;
+				for (Ally a: GameLogic.team) {
+					switch(n) {
+					case 0:
+						a.setRank(rank.first); break;
+					case 1:
+						a.setRank(rank.second); break;
+					case 2:
+						a.setRank(rank.third); break;
+					case 3:
+						a.setRank(rank.fourth); break;
+					}
+					n++;
+				}
+			}
 		}
 	}
 	
@@ -89,10 +106,12 @@ public class Ally extends Chara{
 		this.deathBlowResist = deathBlowResist;
 	}
 
-	@Override
-	public int compare(Chara o1, Chara o2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getCalculatedPriority() {
+		return calculatedPriority;
+	}
+
+	public void setCalculatedPriority(int calculatedPriority) {
+		this.calculatedPriority = calculatedPriority;
 	}
 
 }

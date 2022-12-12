@@ -1,15 +1,16 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import battle.gui.BattlePane;
+import app.Main;
 import battle.gui.BattleStage;
 import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;
 import chara.enemy.SkellySoldier;
-import javafx.util.Pair;
+import javafx.scene.Scene;
 import skill.base.BaseSkill;
 
 public class GameLogic {
@@ -17,19 +18,22 @@ public class GameLogic {
 	public static ArrayList<Ally> team;
 	public static ArrayList<Enemy> enemies;
 	public static ArrayList<ArrayList<Enemy>> villains;
-	public static PriorityQueue<Pair<Integer, Chara>> q;
+	public static PriorityQueue<Chara> q;
+	public static int stage;
 	private static boolean isGameEnd;
 	public static boolean win;
 	private static boolean isStageCleared;
 	public static BattleStage currentStage;
+	public static Chara currentChara;
+	public static boolean isAction;
 	
 	public static void newGame() {
+		isStageCleared = false;
 		isGameEnd = false;
+		win = false;
 		addEnemiesToVillains();
-		for (int i = 1; i <= 5 && !isGameEnd; i++) {
-
-			beginStage(i);
-		}
+		stage = 1;
+		beginStage(stage);
 	}
 	
 	public static void endGame() {
@@ -42,33 +46,35 @@ public class GameLogic {
 	}
 	
 	public static void beginStage(int i) {
+
 		enemies = villains.get(i-1);
 		currentStage = new BattleStage(i-1);
-		while(!isGameEnd && !isStageCleared) {
-			beginRound();
-		}
+		Scene stageScene = new Scene(GameLogic.getCurrentStage().getBattlePane());
+		Main.stage.setScene(stageScene);
+		generateQueue();
+		nextTurn();
 		
-		if (isStageCleared && i == 5) {
-			setWin(true);
-			setGameEnd(true);
-		}
 	}
 	
-	public static void beginRound() {
-		/*
-		 * Generate new queue
-		 * set skillButton.isDisable
-		 * */
-		generateQueue();
-		while(!isGameEnd && !isStageCleared && !q.isEmpty()) {
-			Chara character = q.poll().getValue();
-			if (character instanceof Ally) {
-				for (BaseSkill skill: character.getSkills()) {
-					skill.setValid();
-					if (!skill.isValid()) { /* skillButton.isDisable */ }
-				}
+	public static void nextTurn() {
+		
+		if (isGameEnd) {
+			endGame();
+		} else if (isStageCleared) {
+			if (stage == 5) {
+				setGameEnd(true);
+				setWin(true);
+				endGame();
+			} else {
+				isStageCleared = false;
+				stage++;
+				beginStage(stage);
 			}
-			character.beginTurn();
+		} else {
+			if (q.isEmpty()) generateQueue();
+			currentChara = q.poll();
+			System.out.println(currentChara.getName());
+			currentChara.beginTurn();
 		}
 		
 	}
@@ -79,15 +85,15 @@ public class GameLogic {
 		 * if !isStunned add to q
 		 * set this.q = new q
 		 * */
-		PriorityQueue<Pair<Integer, Chara>> q = new PriorityQueue<Pair<Integer, Chara>>();
+		PriorityQueue<Chara> q = new PriorityQueue<Chara>(8, new SpeedComparator());
 		for (Chara ally: team) {
-			ally.setQueueNum(randomRange(1, 8) + ally.getSpd());
-			q.add(new Pair<Integer, Chara>(ally.getQueueNum(), ally));
+			ally.setCalculatedSpd(randomRange(1, 8) + ally.getSpd());
+			q.add(ally);
 		}
 		
 		for (Chara enemy: enemies) {
-			enemy.setQueueNum(randomRange(1, 8) + enemy.getSpd());
-			q.add(new Pair<Integer, Chara>(enemy.getQueueNum(), enemy));
+			enemy.setCalculatedSpd(randomRange(1, 8) + enemy.getSpd());
+			q.add(enemy);
 		}
 		GameLogic.q = q;
 		
@@ -155,7 +161,15 @@ public class GameLogic {
 	public static void setCurrentStage(BattleStage currentStage) {
 		GameLogic.currentStage = currentStage;
 	}
-	
-	
 
+}
+
+class SpeedComparator implements Comparator<Chara>{
+    
+    @Override
+    public int compare(Chara c1, Chara c2) {
+        if (c1.getCalculatedSpd() < c2.getCalculatedSpd()) return 1;
+        if (c1.getCalculatedSpd() > c2.getCalculatedSpd()) return -1;
+        return 0;
+    }
 }

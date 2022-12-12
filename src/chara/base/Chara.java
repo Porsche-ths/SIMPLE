@@ -7,9 +7,9 @@ import effect.StatusEffect;
 import logic.GameLogic;
 import skill.base.BaseSkill;
 
-public abstract class Chara implements Comparator<Chara>{
+public abstract class Chara {
 	private String name;
-	private int maxHp, hp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, queueNum;
+	private int maxHp, hp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, calculatedSpd;
 	private int stunResist, bleedResist, decayResist, debuffResist;
 	private boolean isStunned;
 	private ArrayList<BaseSkill> skills;
@@ -20,6 +20,7 @@ public abstract class Chara implements Comparator<Chara>{
 	public Chara(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
 			 int stunResist, int bleedResist, int decayResist,
 			int debuffResist) {
+		setStatusEffects(new ArrayList<StatusEffect>());
 		setSkills(new ArrayList<BaseSkill>());
 		setName(name);
 		setMaxHp(maxHp);
@@ -178,12 +179,12 @@ public abstract class Chara implements Comparator<Chara>{
 		this.rank = rank;
 	}
 
-	public int getQueueNum() {
-		return this.queueNum;
+	public int getCalculatedSpd() {
+		return this.calculatedSpd;
 	}
 
-	public void setQueueNum(int queueNum) {
-		this.queueNum = queueNum;
+	public void setCalculatedSpd(int calculatedSpd) {
+		this.calculatedSpd = calculatedSpd;
 	}
 	public int getStunResist() {
 		return stunResist;
@@ -227,9 +228,11 @@ public abstract class Chara implements Comparator<Chara>{
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-	public int compare(Chara otherChara) {
-		return Integer.compare(getHp(), otherChara.getHp());
-		
+	public ArrayList<StatusEffect> getStatusEffects() {
+		return statusEffects;
+	}
+	public void setStatusEffects(ArrayList<StatusEffect> statusEffects) {
+		this.statusEffects = statusEffects;
 	}
 	
 }

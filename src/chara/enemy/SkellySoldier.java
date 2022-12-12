@@ -1,5 +1,6 @@
 package chara.enemy;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import chara.base.Ally;
@@ -21,18 +22,29 @@ public class SkellySoldier extends Enemy {
 	@Override
 	public void beginTurn() {
 		atTurnStart();
-		PriorityQueue<Pair<Integer, Chara>> targetQueue = null;
-		for (Chara hero: GameLogic.team) {
+		PriorityQueue<Ally> targetQueue = new PriorityQueue<Ally>(4, new TargetPriorityComparator());
+		for (Ally hero: GameLogic.team) {
 			if (hero.getRank() == logic.rank.first || hero.getRank() == logic.rank.second) {
 				int chance = ((hero.getMaxHp() - hero.getHp()) / hero.getMaxHp()) * 100;
-				chance += ((Ally) hero).getTargetPriority();
-				targetQueue.add(new Pair<Integer, Chara>(chance, hero));
+				hero.setCalculatedSpd(chance + ((Ally) hero).getTargetPriority());
+				targetQueue.add(hero);
 			}
 		}
-		Chara target = targetQueue.poll().getValue();
+		Chara target = targetQueue.poll();
 		getSkills().get(0).getTargets().add(target);
 		getSkills().get(0).cast();
 		atTurnEnd();
+		GameLogic.nextTurn();
 	}
 
+}
+
+class TargetPriorityComparator implements Comparator<Ally> {
+
+	@Override
+	public int compare(Ally a1, Ally a2) {
+		if (a1.getCalculatedPriority() < a1.getCalculatedPriority()) return 1;
+		if (a1.getCalculatedPriority() > a1.getCalculatedPriority()) return -1;
+		return 0;
+	}
 }

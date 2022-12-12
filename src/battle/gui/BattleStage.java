@@ -26,7 +26,6 @@ public class BattleStage  {
 	private CharaPane initializeCharaPane() {
 		CharaPane stageCharaPane = new CharaPane(GameLogic.getTeam(),GameLogic.getVillains().get(stageNumber));
 		return stageCharaPane;
-
 		
 	}
 	public int getStageNumber() {

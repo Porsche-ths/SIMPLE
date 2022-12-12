@@ -16,6 +16,7 @@ public abstract class BaseSkill {
 		this.setSkillName(skillName);
 		this.user = user;
 		this.setRank(rank);
+		this.setTargets(new ArrayList<Chara>());
 	}
 	
 	public abstract void cast();

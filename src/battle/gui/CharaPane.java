@@ -52,7 +52,6 @@ public class CharaPane extends HBox {
 		blankIdle.setFitWidth(140);
 		getChildren().add(blankIdle);
 		for(Enemy a : opponents) {
-			System.out.println(a.getClassName()+ "Idle.gif");
 			Image chara = new Image(a.getClassName() + "Idle.gif");
 			ImageView iv = new ImageView(chara);
 			iv.setFitHeight(200);

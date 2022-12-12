@@ -37,11 +37,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import logic.GameLogic;
+import logic.rank;
 
 // TODO LIST: ADD SWITCH TO MAP
 //			  ADD STAT
 public class CharSelect extends StackPane {
-	private HBox statBox;
 	private GridPane selectedCharaBox;
 	private HBox selectableCharaBox;
 	private StackPane crusaderBox,rangerBox,priestBox,rogueBox;
@@ -63,7 +63,6 @@ public class CharSelect extends StackPane {
 
 		
 		addSelectedCharaBox();
-		addStatBox();
 		addSelectableCharaBox();
 		addOnMouseClicked();
 //		=======================Button Panel=======================
@@ -80,10 +79,6 @@ public class CharSelect extends StackPane {
 		addConfirmButton();
 		resetSelectedChara();
 //		=======================Test=================================
-
-		statBox.setVisible(false);
-
-
 
 	}
 	private void addSelectableCharaBox() {
@@ -144,27 +139,6 @@ public class CharSelect extends StackPane {
 		selectedCharaBox.setHgap(30);
 		selectedCharaBox.setAlignment(Pos.TOP_CENTER);
 		getChildren().add(selectedCharaBox);
-	}
-	private void addStatBox() {
-		statBox = new HBox();
-		statBox.setMaxWidth(360);
-		statBox.setMaxHeight(450);
-		statBox.setSpacing(50);
-		statBox.setAlignment(Pos.CENTER);
-		VBox row1 = new VBox();
-		VBox row2 = new VBox();
-		row1.setMaxWidth(100);
-		row1.setMaxHeight(500);
-		row2.setMaxWidth(100);
-		row2.setMaxHeight(500);
-		Image statImg = new Image("statBox.png");
-		statBox.setBackground(new Background(new BackgroundFill(new ImagePattern(statImg),CornerRadii.EMPTY, Insets.EMPTY)));
-		row1.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY, Insets.EMPTY)));
-		row2.setBackground(new Background(new BackgroundFill(Color.WHITE,CornerRadii.EMPTY, Insets.EMPTY)));
-		statBox.getChildren().add(row1);
-		statBox.getChildren().add(row2);
-		getChildren().add(statBox);
-		setAlignment(statBox,Pos.BOTTOM_RIGHT);
 	}
 	private void addOnMouseClicked() {
 		crusaderBox.setOnMouseClicked(new EventHandler <Event>() {
@@ -232,13 +206,20 @@ public class CharSelect extends StackPane {
 		int n = GameLogic.getTeam().size();
 		if(n<4) {
 			enableConfirmButton();
+			
+			switch(n) {
+			case 0:
+				a.setRank(rank.first); break;
+			case 1:
+				a.setRank(rank.second); break;
+			case 2:
+				a.setRank(rank.third); break;
+			case 3:
+				a.setRank(rank.fourth); break;
+			}
+			
 			GameLogic.getTeam().add(a);
 			selectedCharaBox.add(createClassBox(className),n,0);
-			
-			
-			for(int i = 0;i<n+1;i++) {
-				System.out.println(GameLogic.getTeam().get(i).getName());
-			}
 			
 			}
 		else {

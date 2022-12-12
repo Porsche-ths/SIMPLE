@@ -1,8 +1,10 @@
 package chara.base;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import logic.GameLogic;
+import logic.rank;
 import skill.base.BaseSkill;
 
 public class Enemy extends Chara {
@@ -31,6 +33,22 @@ public class Enemy extends Chara {
 			if (getHp() == 0) {
 				GameLogic.enemies.remove(this);
 				if (GameLogic.enemies.isEmpty()) GameLogic.setStageCleared(true);
+				else {
+					int n = 0;
+					for (Enemy e: GameLogic.enemies) {
+						switch(n) {
+						case 0:
+							e.setRank(rank.first); break;
+						case 1:
+							e.setRank(rank.second); break;
+						case 2:
+							e.setRank(rank.third); break;
+						case 3:
+							e.setRank(rank.fourth); break;
+						}
+						n++;
+					}
+				}
 			}
 		}
 	}
@@ -48,12 +66,5 @@ public class Enemy extends Chara {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-
-	@Override
-	public int compare(Chara o1, Chara o2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
-
 }

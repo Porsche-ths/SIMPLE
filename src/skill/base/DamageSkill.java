@@ -2,6 +2,7 @@ package skill.base;
 
 import java.util.ArrayList;
 
+import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;
 import logic.GameLogic;
@@ -23,13 +24,24 @@ public class DamageSkill extends BaseSkill {
 	public void cast() {
 		// TODO Auto-generated method stub
 		for (Chara each: targets) {
-			if (isHit(each)) {
-				int damageDeal = computeDamage(each);
-				each.setHp(each.getHp() - damageDeal);
-				// show damageDeal
+			if (each instanceof Ally) {
+				if (isHit(each)) {
+					int damageDeal = computeDamage(each);
+					((Ally) each).setHp(each.getHp() - damageDeal);
+					// show damageDeal
+				} else {
+					String show = "Dodge" ;
+					// show Miss or Dodge
+				}
 			} else {
-				String show = each instanceof Enemy ? "Miss" : "Dodge" ;
-				// show Miss or Dodge
+				if (isHit(each)) {
+					int damageDeal = computeDamage(each);
+					((Enemy) each).setHp(each.getHp() - damageDeal);
+					// show damageDeal
+				} else {
+					String show = "Miss";
+					// show Miss or Dodge
+				}
 			}
 		}
 	}

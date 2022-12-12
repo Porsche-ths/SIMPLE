@@ -14,7 +14,7 @@ import sprites.CrusaderSprite;
 import startmenu.gui.MainMenu;
 
 public class Main extends Application {
-	private static Stage stage;
+	public static Stage stage;
 	private static Scene mainMenuScene, charSelectScene, mapMenuScene;
 	private static CharSelect charSelect;
 	private static MainMenu mainMenu;
@@ -52,8 +52,6 @@ public class Main extends Application {
 	}
 	public static void switchToBattleStage() {
 		GameLogic.newGame();
-		Scene stageScene = new Scene(GameLogic.getCurrentStage().getBattlePane());
-		stage.setScene(stageScene);
 	}
 
 	public static void main(String[] args) {
