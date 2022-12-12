@@ -48,6 +48,12 @@ public class Enemy extends Chara {
 	public void setClassName(String className) {
 		this.className = className;
 	}
+
+	@Override
+	public int compare(Chara o1, Chara o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }
