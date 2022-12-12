@@ -89,4 +89,10 @@ public class Ally extends Chara{
 		this.deathBlowResist = deathBlowResist;
 	}
 
+	@Override
+	public int compare(Chara o1, Chara o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
