@@ -11,7 +11,6 @@ public class BonySlash extends DamageSkill {
 		super("Bony Slash", ss, new ArrayList<logic.rank>(), 0, 50, 2);
 		getRank().add(logic.rank.first);
 		getRank().add(logic.rank.second);
-		getRank().add(logic.rank.third);
 	}
 
 }

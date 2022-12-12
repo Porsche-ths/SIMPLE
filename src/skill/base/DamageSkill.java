@@ -9,7 +9,7 @@ import logic.GameLogic;
 
 public class DamageSkill extends BaseSkill {
 
-	private int dmgMod;
+	private int dmgMod; //percent to multiply
 	private int acc;
 	private int critMod;
 	
@@ -24,6 +24,7 @@ public class DamageSkill extends BaseSkill {
 	public void cast() {
 		// TODO Auto-generated method stub
 		for (Chara each: targets) {
+			System.out.println("Target Name : " + each.getName());
 			System.out.println("Before: " + each.getHp());
 			if (each instanceof Ally) {
 				if (isHit(each)) {
@@ -50,6 +51,7 @@ public class DamageSkill extends BaseSkill {
 			}
 			System.out.println("After: " + each.getHp());
 		}
+		targets.clear();
 	}
 	
 	private boolean isHit(Chara target) {
@@ -63,7 +65,8 @@ public class DamageSkill extends BaseSkill {
 	}
 	
 	private int computeDamage(Chara target) {
-		int damage = GameLogic.randomRange(user.getMinDmg(), user.getMaxDmg()) * (1 + dmgMod/100);
+		float damage = (float) (GameLogic.randomRange(user.getMinDmg(), user.getMaxDmg()) * (1 + (((float)dmgMod)/100)));
+		System.out.println("Damage : " + damage);
 		return (int) (isCrit() ? (damage * 1.5) : damage);
 	}
 

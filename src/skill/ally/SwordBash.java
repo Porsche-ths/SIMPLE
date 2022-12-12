@@ -11,7 +11,7 @@ import skill.base.TargetSelectable;
 public class SwordBash extends DamageSkill implements TargetSelectable {
 
 	public SwordBash(Chara user) {
-		super("SWORDBASH", user, new ArrayList<logic.rank>(), -50, 90, 0);
+		super("SWORDBASH", user, new ArrayList<logic.rank>(), -50, 90, 100);
 		getRank().add(logic.rank.first);
 		getRank().add(logic.rank.second);
 		// TODO Auto-generated constructor stub
@@ -20,8 +20,9 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 	@Override
 	public void selectTarget() {
 		// TODO Auto-generated method stub
+		getTargets().clear();
 		for (Enemy e: GameLogic.enemies) {
-			if (getRank().contains(e.getRank())) {
+			if (e.getRank().equals(logic.rank.first) || e.getRank().equals(logic.rank.second)) {
 				GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.enemies.indexOf(e) + 5).setDisable(false);
 			}
 		}

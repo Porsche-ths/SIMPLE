@@ -145,7 +145,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("crusader",new Crusader(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("crusader",new Crusader(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -153,7 +153,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("priest",new Priest(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("priest",new Priest(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -161,7 +161,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("ranger",new Ranger(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("ranger",new Ranger(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -169,7 +169,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("rogue",new Rogue(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("rogue",new Rogue(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -208,13 +208,13 @@ public class CharSelect extends StackPane {
 			enableConfirmButton();
 			
 			switch(n) {
-			case 0:
-				a.setRank(rank.first); break;
-			case 1:
-				a.setRank(rank.second); break;
-			case 2:
-				a.setRank(rank.third); break;
 			case 3:
+				a.setRank(rank.first); break;
+			case 2:
+				a.setRank(rank.second); break;
+			case 1:
+				a.setRank(rank.third); break;
+			case 0:
 				a.setRank(rank.fourth); break;
 			}
 			

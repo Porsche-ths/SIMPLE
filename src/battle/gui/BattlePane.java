@@ -95,6 +95,7 @@ public class BattlePane extends VBox{
 					@Override
 					public void handle(Event arg0) {
 						// TODO Auto-generated method stub
+						
 						GameLogic.currentSkill = s;
 						((TargetSelectable) s).selectTarget();
 					}

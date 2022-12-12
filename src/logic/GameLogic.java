@@ -89,7 +89,8 @@ public class GameLogic {
 		} else {
 			if (q.isEmpty()) generateQueue();
 			currentChara = q.poll();
-			System.out.println(currentChara.getName());
+			System.out.println("-----------------------------------------\n");
+			System.out.println("Current Turn : " + currentChara.getName());
 			currentChara.beginTurn();
 		}
 		
@@ -124,14 +125,25 @@ public class GameLogic {
 	
 	public static int randomRange(int a, int b) {
 		//random int from a to b *include both a and b*
-		int d = 100/(a - b + 1);
-		return (int) (randomInt()/d) + 1;
+		int d = (b - a + 1);
+		return (int) (Math.random() * d) + a;
 	}
+	
 	private static void addEnemiesToVillains() {
 		villains = new ArrayList<ArrayList<Enemy>>();
 		ArrayList<Enemy> stageOne = new ArrayList<Enemy>();
-		stageOne.add(new SkellySoldier("Skelly1"));
-		stageOne.add(new SkellySoldier("Skelly2"));
+		SkellySoldier s1 = new SkellySoldier("Skelly1");
+		s1.setRank(rank.first);
+		SkellySoldier s2 = new SkellySoldier("Skelly2");
+		s2.setRank(rank.second);
+		SkellySoldier s3 = new SkellySoldier("Skelly3");
+		s3.setRank(rank.third);
+		SkellySoldier s4 = new SkellySoldier("Skelly4");
+		s4.setRank(rank.fourth);
+		stageOne.add(s1);
+		stageOne.add(s2);
+		stageOne.add(s3);
+		stageOne.add(s4);
 		
 		ArrayList<Enemy> stageTwo = new ArrayList<Enemy>();
 		stageTwo.add(new SkellySoldier("Skelly1"));
