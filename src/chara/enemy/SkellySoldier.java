@@ -13,7 +13,6 @@ import skill.enemy.BonySlash;
 public class SkellySoldier extends Enemy {
 
 	public SkellySoldier(String name) {
-		//super(name, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, stunResist, bleedResist, decayResist, debuffResist);
 		super(name, 12, 25, 0, 0, 0, 2, 5, 1, 10, 300, 10, 15);
 		getSkills().add(new BonySlash(this));
 		setClassName("skellySoldier");
@@ -22,18 +21,21 @@ public class SkellySoldier extends Enemy {
 	@Override
 	public void beginTurn() {
 		atTurnStart();
-		PriorityQueue<Ally> targetQueue = new PriorityQueue<Ally>(4, new TargetPriorityComparator());
-		for (Ally hero: GameLogic.team) {
-			if (hero.getRank().equals(logic.rank.first) || hero.getRank().equals(logic.rank.second)) {
-
-				int chance = ((hero.getMaxHp() - hero.getHp()) / hero.getMaxHp()) * 100;
-				hero.setCalculatedSpd(chance + ((Ally) hero).getTargetPriority());
-				targetQueue.add(hero);
+		BonySlash bonySlash = (BonySlash) getSkills().get(0);
+		bonySlash.setValid();
+		if (bonySlash.isValid()) {
+			PriorityQueue<Ally> targetQueue = new PriorityQueue<Ally>(2, new TargetPriorityComparator());
+			for (Ally hero: GameLogic.team) {
+				if (hero.getRank().equals(logic.rank.first) || hero.getRank().equals(logic.rank.second)) {
+					int chance = ((hero.getMaxHp() - hero.getHp()) / hero.getMaxHp()) * 100;
+					hero.setCalculatedSpd(chance + ((Ally) hero).getTargetPriority());
+					targetQueue.add(hero);
+				}
 			}
+			Chara target = targetQueue.poll();
+			getSkills().get(0).getTargets().add(target);
+			getSkills().get(0).cast();
 		}
-		Chara target = targetQueue.poll();
-		getSkills().get(0).getTargets().add(target);
-		getSkills().get(0).cast();
 		atTurnEnd();
 		GameLogic.nextTurn();
 	}

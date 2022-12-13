@@ -4,5 +4,5 @@ public enum rank {
 	first,
 	second,
 	third,
-	fourth,
+	fourth
 }

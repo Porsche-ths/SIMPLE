@@ -21,9 +21,14 @@ public class HealSkill extends BaseSkill {
 	public void cast() {
 		// TODO Auto-generated method stub
 		for (Chara each: targets) {
+			System.out.println("Before : " + each.getHp());
 			int healAmount = computeHealAmount(each);
+			System.out.println("Heal Amount : " + healAmount);
 			each.setHp(each.getHp() + healAmount);
+			System.out.println("After : " + each.getHp());
+			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 		}
+		targets.clear();
 	}
 	
 	private boolean isCrit() {

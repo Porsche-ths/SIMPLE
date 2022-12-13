@@ -54,11 +54,11 @@ public class CharSelect extends StackPane {
 		setPrefWidth(1400);
 		setPrefHeight(680);
 		setAlignment(Pos.CENTER);
-		Image textImg = new Image("heroesSelectText.png");
+		Image textImg = new Image(ClassLoader.getSystemResource("heroesSelectText.png").toString());
 		ImageView text = new ImageView(textImg);
 		getChildren().add(text);
 		setAlignment(text,Pos.TOP_CENTER);
-		Image bg = new Image("charSelectBG.png");
+		Image bg = new Image(ClassLoader.getSystemResource("charSelectBG.png").toString());
 		setBackground(new Background(new BackgroundFill(new ImagePattern(bg),CornerRadii.EMPTY, Insets.EMPTY)));
 
 		
@@ -145,7 +145,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("crusader",new Crusader(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("crusader",new Crusader(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -153,7 +153,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("priest",new Priest(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("priest",new Priest(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -161,7 +161,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("ranger",new Ranger(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("ranger",new Ranger(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -169,7 +169,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("rogue",new Rogue(Integer.toString(GameLogic.getTeam().size())));
+				charaBoxHandler("rogue",new Rogue(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -179,7 +179,7 @@ public class CharSelect extends StackPane {
 		StackPane classBox = new StackPane();
 		classBox.setMaxHeight(120);
 		classBox.setMaxWidth(120);
-		Image classImg = new Image(className + "Box.png");
+		Image classImg = new Image(ClassLoader.getSystemResource(className + "Box.png").toString());
 		ImageView classSquare = new ImageView(classImg);
 		classSquare.setFitHeight(120);
 		classSquare.setFitWidth(120);
@@ -191,7 +191,7 @@ public class CharSelect extends StackPane {
 			StackPane box = new StackPane();
 			box.setMaxHeight(120);
 			box.setMaxWidth(120);
-			Image charaBox = new Image("charaBox.png");
+			Image charaBox = new Image(ClassLoader.getSystemResource("charaBox.png").toString());
 			ImageView emptyBox = new ImageView(charaBox);
 			emptyBox.setFitHeight(120);
 			emptyBox.setFitWidth(120);
@@ -206,21 +206,8 @@ public class CharSelect extends StackPane {
 		int n = GameLogic.getTeam().size();
 		if(n<4) {
 			enableConfirmButton();
-			
-			switch(n) {
-			case 0:
-				a.setRank(rank.first); break;
-			case 1:
-				a.setRank(rank.second); break;
-			case 2:
-				a.setRank(rank.third); break;
-			case 3:
-				a.setRank(rank.fourth); break;
-			}
-			
 			GameLogic.getTeam().add(a);
 			selectedCharaBox.add(createClassBox(className),n,0);
-			
 			}
 		else {
 			resetSelectedChara();
@@ -229,8 +216,8 @@ public class CharSelect extends StackPane {
 	}
 	private void addBackButton() {
 		
-		Image inactivatedBack = new Image("inactivatedBack.png");
-		Image activatedBack = new Image("activatedBack.png");
+		Image inactivatedBack = new Image(ClassLoader.getSystemResource("inactivatedBack.png").toString());
+		Image activatedBack = new Image(ClassLoader.getSystemResource("activatedBack.png").toString());
 		backButton = new ImageView(inactivatedBack);
 		backButton.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -282,8 +269,8 @@ public class CharSelect extends StackPane {
 	private void addResetButton() {
 
 		
-		Image inactivatedReset = new Image("inactivatedReset.png");
-		Image activatedReset = new Image("activatedReset.png");
+		Image inactivatedReset = new Image(ClassLoader.getSystemResource("inactivatedReset.png").toString());
+		Image activatedReset = new Image(ClassLoader.getSystemResource("activatedReset.png").toString());
 		resetButton = new ImageView(inactivatedReset);
 		resetButton.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -333,9 +320,16 @@ public class CharSelect extends StackPane {
 		buttonPanel.getChildren().add(resetButton);
 		
 	}
-private void addConfirmButton() {
+	
+	private void addConfirmButton() {
+	
+		// fix image
+		
 		Image inactivatedConfirm = new Image("inactivatedConfirm.png");
 		Image activatedConfirm = new Image("activatedConfirm.png");
+		
+		// fix image
+		
 		confirmButton = new ImageView(inactivatedConfirm);
 		confirmButton.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -368,6 +362,26 @@ private void addConfirmButton() {
 							public void run() {
 								// TODO Auto-generated method stub
 								confirmButton.setImage(inactivatedConfirm);
+								switch(GameLogic.getTeam().size()) {
+								case 4:
+									GameLogic.getTeam().get(0).setRank(rank.fourth); 
+									GameLogic.getTeam().get(1).setRank(rank.third); 
+									GameLogic.getTeam().get(2).setRank(rank.second); 
+									GameLogic.getTeam().get(3).setRank(rank.first); 
+									break;
+								case 3:
+									GameLogic.getTeam().get(0).setRank(rank.third); 
+									GameLogic.getTeam().get(1).setRank(rank.second); 
+									GameLogic.getTeam().get(2).setRank(rank.first); 
+									 break;
+								case 2:
+									GameLogic.getTeam().get(0).setRank(rank.second); 
+									GameLogic.getTeam().get(1).setRank(rank.first); 
+
+									break;
+								case 1:
+									GameLogic.getTeam().get(0).setRank(rank.first); break;
+								}
 								Main.switchToBattleStage();
 
 								//Main.switchToMap();
@@ -388,13 +402,13 @@ private void addConfirmButton() {
 		
 	}
 	private void disableConfirmButton() {
-		Image disabledConfirm = new Image("disabledConfirm.png");
+		Image disabledConfirm = new Image(ClassLoader.getSystemResource("disabledConfirm.png").toString());
 		confirmButton.setDisable(true);
 		confirmButton.setImage(disabledConfirm);
 		
 	}
 	private void enableConfirmButton() {
-		Image inactivatedConfirm = new Image("inactivatedConfirm.png");
+		Image inactivatedConfirm = new Image(ClassLoader.getSystemResource("inactivatedConfirm.png").toString());
 		confirmButton.setDisable(false);
 		confirmButton.setImage(inactivatedConfirm);
 		

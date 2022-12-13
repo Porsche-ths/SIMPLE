@@ -16,14 +16,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import logic.GameLogic;
-import logic.rank;
 import sprites.IdleSprite;
 
 
@@ -63,6 +60,25 @@ public class CharaPane extends HBox {
 			charaBox.setMaxWidth(150);
 			charaBox.getChildren().add(hp);
 			charaBox.setAlignment(Pos.CENTER);
+			
+			charaBox.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event arg0) {
+					// TODO Auto-generated method stub
+					GameLogic.currentSkill.getTargets().add(a);
+					//GameLogic.currentSkill.playAnimation();
+
+					GameLogic.currentSkill.cast();
+					for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
+						n.setDisable(true);
+					}
+					GameLogic.nextTurn();
+				}
+				
+			});
+			charaBox.setDisable(true);
+			
 			getChildren().add(charaBox);
 		}
 		Image blank = new Image("blank.png");
@@ -77,7 +93,7 @@ public class CharaPane extends HBox {
 				 idle = new IdleSprite(a.getClassName());
 			}
 			else {
-				idle = new CorpseSprite(a.getClassName());
+				idle = new IdleSprite(a.getClassName());
 			}
 			StackPane hp = initializeHpBar(100, a);
 			
@@ -87,7 +103,6 @@ public class CharaPane extends HBox {
 			charaBox.getChildren().add(hp);
 			charaBox.setAlignment(Pos.CENTER);
 
-			
 			charaBox.setOnMouseClicked(new EventHandler<Event>() {
 
 				@Override
@@ -105,6 +120,7 @@ public class CharaPane extends HBox {
 				
 			});
 			charaBox.setDisable(true);
+			
 			getChildren().add(charaBox);
 		}
 		if(opponents.size() < 4) {
@@ -146,11 +162,7 @@ public class CharaPane extends HBox {
 		VBox v = (VBox)(getChildren().get(n));
 		StackPane s = (StackPane)(v.getChildren().get(1));
 		Rectangle r = (Rectangle)(s.getChildren().get(0));
-		System.out.println((((double)c.getHp())/(double)(c.getMaxHp()))*(defaultWidth) + c.getName() + " " + n );
 		r.setWidth((((double)c.getHp())/(double)(c.getMaxHp()))*defaultWidth);
-		for(Ally a : team){
-			System.out.println(a.getName());
-		}
 
 	}
 

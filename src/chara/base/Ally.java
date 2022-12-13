@@ -38,29 +38,31 @@ public class Ally extends Chara{
 			} else {
 				if (isDeathBlown()) {
 					GameLogic.team.remove(this);
-					// clear charaPane -> addtocharaPane
+					if (GameLogic.team.isEmpty()) {
+						GameLogic.setGameEnd(true);
+					} else {
+						GameLogic.getCurrentStage().getStageCharaPane().getChildren().clear();
+						GameLogic.getCurrentStage().getStageCharaPane().addCharToPane();
+						int n = GameLogic.team.size() - 1;
+						for (Ally a: GameLogic.team) {
+							switch(n) {
+							case 0:
+								a.setRank(rank.first); break;
+							case 1:
+								a.setRank(rank.second); break;
+							case 2:
+								a.setRank(rank.third); break;
+							case 3:
+								a.setRank(rank.fourth); break;
+							}
+							n--;
+						}
+					}
 				} else {
 					setDeathBlowResist(getDeathBlowResist() - 16);
 				}
 			}
-			if (GameLogic.team.isEmpty()) GameLogic.setGameEnd(true);
-			else {
-				int n = 0;
-				for (Ally a: GameLogic.team) {
-					switch(n) {
-					case 0:
-						a.setRank(rank.first); break;
-					case 1:
-						a.setRank(rank.second); break;
-					case 2:
-						a.setRank(rank.third); break;
-					case 3:
-						a.setRank(rank.fourth); break;
-					}
-					n++;
-				}
-				
-			}
+			
 		}
 	}
 	

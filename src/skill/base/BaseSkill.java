@@ -7,7 +7,7 @@ import chara.base.Chara;
 public abstract class BaseSkill {
 	
 	protected String skillName;
-	protected final Chara user;
+	protected Chara user;
 	protected ArrayList<logic.rank> rank;
 	protected boolean isValid;
 	protected ArrayList<Chara> targets;
@@ -26,7 +26,11 @@ public abstract class BaseSkill {
 	}
 	
 	public void setValid() {
-		this.isValid = this.getRank().contains(user.getRank());
+		boolean result = false;
+		for (logic.rank r: this.getRank()) {
+			if (r.equals(user.getRank())) { result = true; break; }
+		}
+		this.isValid = result;
 	}
 
 	public String getSkillName() {
@@ -51,6 +55,10 @@ public abstract class BaseSkill {
 
 	public void setTargets(ArrayList<Chara> targets) {
 		this.targets = targets;
+	}
+
+	public Chara getUser() {
+		return user;
 	}
 
 	public abstract void playAnimation();

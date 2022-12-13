@@ -90,17 +90,21 @@ public class BattlePane extends VBox{
 				skillSquare.setFitHeight(100);
 				skillSquare.setFitWidth(100);
 				skillButton.getChildren().add(skillSquare);
-				skillButton.setOnMouseClicked(new EventHandler<Event>() {
-
-					@Override
-					public void handle(Event arg0) {
-						// TODO Auto-generated method stub
-						
-						GameLogic.currentSkill = s;
-						((TargetSelectable) s).selectTarget();
-					}
-
-				});
+				s.setValid();
+				System.out.println("Skill is Vaild ? : " + s.isValid());
+				if (s.isValid()) {
+					skillButton.setOnMouseClicked(new EventHandler<Event>() {
+	
+						@Override
+						public void handle(Event arg0) {
+							// TODO Auto-generated method stub
+							
+							GameLogic.currentSkill = s;
+							((TargetSelectable) s).selectTarget();
+						}
+	
+					});
+				}
 				skillMenu.add(skillButton, i, 0); i++;
 			}
 		}

@@ -25,7 +25,7 @@ public class DamageSkill extends BaseSkill {
 		// TODO Auto-generated method stub
 		for (Chara each: targets) {
 			System.out.println("Target Name : " + each.getName());
-			System.out.println("Before: " + each.getHp());
+			System.out.println("Target Before: " + each.getHp());
 			if (each instanceof Ally) {
 				if (isHit(each)) {
 					int damageDeal = computeDamage(each);
@@ -51,22 +51,22 @@ public class DamageSkill extends BaseSkill {
 					System.out.println(show);
 				}
 			}
-			System.out.println("After: " + each.getHp());
+			System.out.println("Target After: " + each.getHp());
 		}
 		targets.clear();
 	}
 	
-	private boolean isHit(Chara target) {
+	protected boolean isHit(Chara target) {
 		int finalAcc = user.getAccMod() + getAcc() - target.getDodge();
 		return GameLogic.randomInt() < finalAcc ? true : false;
 	}
 	
-	private boolean isCrit() {
+	protected boolean isCrit() {
 		int finalCrit = user.getCrit() + getCritMod();
 		return GameLogic.randomInt() < finalCrit ? true : false;
 	}
 	
-	private int computeDamage(Chara target) {
+	protected int computeDamage(Chara target) {
 		float damage = (float) (GameLogic.randomRange(user.getMinDmg(), user.getMaxDmg()) * (1 + (((float)dmgMod)/100)));
 		System.out.println("Damage : " + damage);
 		return (int) (isCrit() ? (damage * 1.5) : damage);

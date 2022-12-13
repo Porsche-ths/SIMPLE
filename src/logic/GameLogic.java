@@ -9,6 +9,9 @@ import battle.gui.BattleStage;
 import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;
+import chara.enemy.Executioner;
+import chara.enemy.Hemomancer;
+import chara.enemy.SkellyArcher;
 import chara.enemy.SkellySoldier;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -132,17 +135,21 @@ public class GameLogic {
 	private static void addEnemiesToVillains() {
 		villains = new ArrayList<ArrayList<Enemy>>();
 		ArrayList<Enemy> stageOne = new ArrayList<Enemy>();
-		SkellySoldier s1 = new SkellySoldier("Skelly1");
-		s1.setRank(rank.first);
+//		SkellySoldier s1 = new SkellySoldier("Skelly1");
+//		s1.setRank(rank.first);
 		SkellySoldier s2 = new SkellySoldier("Skelly2");
 		s2.setRank(rank.second);
-		SkellySoldier s3 = new SkellySoldier("Skelly3");
-		s3.setRank(rank.third);
-		SkellySoldier s4 = new SkellySoldier("Skelly4");
+//		SkellyArcher s3 = new SkellyArcher("Skelly3");
+//		s3.setRank(rank.third);
+		Executioner e1 = new Executioner("Executioner1");
+		e1.setRank(rank.first);
+		Hemomancer h3 = new Hemomancer("Hemomancer1");
+		h3.setRank(rank.third);
+		SkellyArcher s4 = new SkellyArcher("Skelly4");
 		s4.setRank(rank.fourth);
-		stageOne.add(s1);
+		stageOne.add(e1);
 		stageOne.add(s2);
-		stageOne.add(s3);
+		stageOne.add(h3);
 		stageOne.add(s4);
 		
 		ArrayList<Enemy> stageTwo = new ArrayList<Enemy>();

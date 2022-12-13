@@ -35,11 +35,11 @@ public class Enemy extends Chara {
 		} else {
 			if (getHp() == 0) {
 				GameLogic.enemies.remove(this);
-				// clear charaPane -> addtocharaPane
-				GameLogic.getCurrentStage().getStageCharaPane().getChildren().clear();
-				GameLogic.getCurrentStage().getStageCharaPane().addCharToPane();
-				if (GameLogic.enemies.isEmpty()) GameLogic.setStageCleared(true);
-				else {
+				if (GameLogic.enemies.isEmpty()) {
+					GameLogic.setStageCleared(true); 
+				} else {
+					GameLogic.getCurrentStage().getStageCharaPane().getChildren().clear();
+					GameLogic.getCurrentStage().getStageCharaPane().addCharToPane();
 					int n = 0;
 					for (Enemy e: GameLogic.enemies) {
 						switch(n) {

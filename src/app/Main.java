@@ -1,16 +1,11 @@
 package app;
 
-import battle.gui.BattlePane;
-import battle.gui.CharaPane;
-import chara.ally.Crusader;
 import charaselect.gui.CharSelect;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import logic.GameLogic;
 import map.gui.Map;
-import sprites.CrusaderSprite;
 import startmenu.gui.MainMenu;
 
 public class Main extends Application {
@@ -32,25 +27,21 @@ public class Main extends Application {
 		stage = primaryStage;
 		stage.setScene(mainMenuScene);
 		stage.show();
-
 	}
 
 	public static void switchToCharSelect() {
 		stage.setScene(charSelectScene);
-
-
 	}
 
 	public static void switchToMainMenu() {
 		MainMenu.fadeTitleText();
 		stage.setScene(mainMenuScene);
-
 	}
 
 	public static void switchToMap() {
 		stage.setScene(mapMenuScene);
-
 	}
+	
 	public static void switchToBattleStage() {
 		GameLogic.newGame();
 	}
