@@ -43,6 +43,7 @@ public class DamageSkill extends BaseSkill {
 					int damageDeal = computeDamage(each);
 					((Enemy) each).setHp(each.getHp() - damageDeal);
 					System.out.println(damageDeal);
+					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 					// show damageDeal
 				} else {
 					String show = "Miss";
@@ -93,6 +94,12 @@ public class DamageSkill extends BaseSkill {
 
 	public void setCritMod(int critMod) {
 		this.critMod = critMod;
+	}
+
+	@Override
+	public void playAnimation() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

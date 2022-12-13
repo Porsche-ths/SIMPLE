@@ -28,6 +28,9 @@ public class Enemy extends Chara {
 			if (getHp() == 0) {
 				setAlive(false);
 				super.setHp(10);
+				setDodge(0);
+				setProt(0);
+				setMaxHp(10);
 			}
 		} else {
 			if (getHp() == 0) {

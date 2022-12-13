@@ -28,6 +28,9 @@ public class IdleSprite extends ImageView{
 			setFitHeight(200);
 			setFitWidth(125);
 		}
-		
+		if(name.equals("skellySoldier")) {
+			setFitHeight(180);
+			setFitWidth(140);
+		}
 	}
 }

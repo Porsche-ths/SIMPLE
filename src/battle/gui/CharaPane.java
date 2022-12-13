@@ -71,16 +71,31 @@ public class CharaPane extends HBox {
 		blankIdle.setFitWidth(140);
 		getChildren().add(blankIdle);
 		for(Enemy a : opponents) {
-			Image chara = new Image(a.getClassName() + "Idle.gif");
-			ImageView iv = new ImageView(chara);
-			iv.setFitHeight(180);
-			iv.setFitWidth(140);
-			iv.setOnMouseClicked(new EventHandler<Event>() {
+			VBox charaBox = new VBox();
+			ImageView idle = new ImageView();
+			if(a.isAlive()) {
+				 idle = new IdleSprite(a.getClassName());
+			}
+			else {
+				idle = new CorpseSprite(a.getClassName());
+			}
+			StackPane hp = initializeHpBar(100, a);
+			
+			charaBox.getChildren().add(idle);
+			charaBox.setMaxHeight(200);
+			charaBox.setMaxWidth(150);
+			charaBox.getChildren().add(hp);
+			charaBox.setAlignment(Pos.CENTER);
+
+			
+			charaBox.setOnMouseClicked(new EventHandler<Event>() {
 
 				@Override
 				public void handle(Event arg0) {
 					// TODO Auto-generated method stub
 					GameLogic.currentSkill.getTargets().add(a);
+					GameLogic.currentSkill.playAnimation();
+
 					GameLogic.currentSkill.cast();
 					for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
 						n.setDisable(true);
@@ -89,8 +104,8 @@ public class CharaPane extends HBox {
 				}
 				
 			});
-			iv.setDisable(true);
-			getChildren().add(iv);
+			charaBox.setDisable(true);
+			getChildren().add(charaBox);
 		}
 		if(opponents.size() < 4) {
 			for(int i = 0; i < 4-team.size();i++) {

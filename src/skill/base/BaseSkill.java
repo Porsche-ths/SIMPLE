@@ -52,5 +52,7 @@ public abstract class BaseSkill {
 	public void setTargets(ArrayList<Chara> targets) {
 		this.targets = targets;
 	}
+
+	public abstract void playAnimation();
 	
 }

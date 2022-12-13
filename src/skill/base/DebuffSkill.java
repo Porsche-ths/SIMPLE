@@ -17,4 +17,10 @@ public class DebuffSkill extends BaseSkill {
 		
 	}
 
+	@Override
+	public void playAnimation() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

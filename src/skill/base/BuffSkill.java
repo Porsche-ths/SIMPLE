@@ -17,4 +17,10 @@ public class BuffSkill extends BaseSkill {
 		
 	}
 
+	@Override
+	public void playAnimation() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

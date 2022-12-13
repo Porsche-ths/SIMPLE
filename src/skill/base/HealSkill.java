@@ -51,4 +51,10 @@ public class HealSkill extends BaseSkill {
 		this.maxHeal = maxHeal;
 	}
 
+	@Override
+	public void playAnimation() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
