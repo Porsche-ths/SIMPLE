@@ -13,8 +13,28 @@ public class AttackedSprite extends ImageView {
 	private void setSizeByName(String name) {
 		// TODO Auto-generated method stub
 		if(name.equals("skellySoldier")) {
-			setFitHeight(200);
-			setFitWidth(180);
+			setFitHeight(180);
+			setFitWidth(130);
+		}
+		if(name.equals("Crusader")) {
+			setFitHeight(180);
+			setFitWidth(130);
+		}
+		if(name.equals("Priest")) {
+			setFitHeight(180);
+			setFitWidth(130);
+		}
+		if(name.equals("Rogue")) {
+			setFitHeight(180);
+			setFitWidth(100);
+		}
+		if(name.equals("hemomancer")) {
+			setFitHeight(300);
+			setFitWidth(320);
+		}
+		if(name.equals("executioner")) {
+			setFitHeight(220);
+			setFitWidth(280);
 		}
 		
 		

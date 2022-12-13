@@ -117,7 +117,6 @@ public class CharaPane extends HBox {
 						n.setDisable(true);
 					}
 					GameLogic.currentChara.atTurnEnd();
-					GameLogic.nextTurn();
 				}
 				
 			});

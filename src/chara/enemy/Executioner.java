@@ -35,12 +35,13 @@ public class Executioner extends Enemy {
 				if (!targetQueue.isEmpty()) {
 					Chara target = targetQueue.poll();
 					getSkills().get(0).getTargets().add(target);
+					getSkills().get(0).playAnimation();
+
 					getSkills().get(0).cast();
 				}
 			}
 		}
 		atTurnEnd();
-		GameLogic.nextTurn();
 	}
 	
 }

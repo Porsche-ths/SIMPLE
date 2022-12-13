@@ -3,13 +3,63 @@ package skill.enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import battle.gui.CharaPane;
+import chara.base.Ally;
 import chara.base.Chara;
+import javafx.animation.AnimationTimer;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import logic.GameLogic;
 import skill.base.DamageSkill;
+import sprites.AttackedSprite;
 
 public class BonyShot extends DamageSkill {
 
 	public BonyShot(Chara user) {
 		super("BONYSHOT", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.third, logic.rank.fourth)), 0, 0, 0);
+	}
+	@Override
+	public void playAnimation() {
+		for(Chara e : targets) {
+			HBox animation = new HBox();
+			animation.setPrefWidth(1400);
+			animation.setPrefHeight(740);
+			animation.setAlignment(Pos.CENTER);
+			animation.setPadding(new Insets(200,0,50,0));
+			Image img = new Image(ClassLoader.getSystemResource("skellyArcherAttack.gif").toString());
+			ImageView iv = new ImageView(img);
+			animation.setSpacing(100);
+			iv.setFitHeight(220);
+			iv.setFitWidth(180);
+			animation.getChildren().add(new AttackedSprite(((Ally)(e)).getClassName()));
+			animation.getChildren().add(iv);
+			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
+			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
+			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
+			
+
+			AnimationTimer timer = new AnimationTimer() {
+				int time = 0;
+				@Override
+				public void handle(long arg0) {
+					// TODO Auto-generated method stub
+					time += 1;
+					if(time == 75) {
+					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
+					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
+					}
+					if(time == 100) {
+						GameLogic.nextTurn();
+					}
+				};
+			
+			};
+			timer.start();
+			
+		}
 	}
 	
 }

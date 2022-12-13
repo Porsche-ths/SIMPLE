@@ -44,7 +44,7 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 			animation.setPadding(new Insets(200,0,50,0));
 			Image img = new Image(ClassLoader.getSystemResource("crusaderSkill1.gif").toString());
 			ImageView iv = new ImageView(img);
-			animation.setSpacing(-100);
+			animation.setSpacing(-80);
 			iv.setFitHeight(250);
 			iv.setFitWidth(250);
 			animation.getChildren().add(iv);
@@ -58,9 +58,11 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 				public void handle(long arg0) {
 					// TODO Auto-generated method stub
 					time += 1;
-					if(time == 50) {
+					if(time == 75) {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
+					GameLogic.nextTurn();
+
 					}
 				};
 			
