@@ -16,7 +16,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import logic.GameLogic;
 import skill.base.BaseSkill;
@@ -81,6 +80,7 @@ public class BattlePane extends VBox{
 		skillMenu.setPrefWidth(700);
 		if (GameLogic.currentChara instanceof Ally) {
 			int i = 0;
+			boolean playable = false;
 			for (BaseSkill s: GameLogic.currentChara.getSkills()) {
 				StackPane skillButton = new StackPane();
 				skillButton.setMaxHeight(100);
@@ -93,6 +93,7 @@ public class BattlePane extends VBox{
 				s.setValid();
 				System.out.println("Skill is Vaild ? : " + s.isValid());
 				if (s.isValid()) {
+					playable = true;
 					skillButton.setOnMouseClicked(new EventHandler<Event>() {
 	
 						@Override
@@ -106,6 +107,10 @@ public class BattlePane extends VBox{
 					});
 				}
 				skillMenu.add(skillButton, i, 0); i++;
+			}
+			if (!playable) {
+				GameLogic.currentChara.atTurnEnd();
+				GameLogic.nextTurn();
 			}
 		}
 		fightUI.setLeft(skillMenu);

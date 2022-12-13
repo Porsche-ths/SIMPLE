@@ -10,10 +10,10 @@ import startmenu.gui.MainMenu;
 
 public class Main extends Application {
 	public static Stage stage;
-	private static Scene mainMenuScene, charSelectScene, mapMenuScene;
-	private static CharSelect charSelect;
-	private static MainMenu mainMenu;
-	private static Map mapMenu;
+	public static Scene mainMenuScene, charSelectScene, mapMenuScene;
+	public static CharSelect charSelect;
+	public static MainMenu mainMenu;
+	public static Map mapMenu;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

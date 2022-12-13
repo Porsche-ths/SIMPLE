@@ -186,7 +186,7 @@ public class CharSelect extends StackPane {
 		classBox.getChildren().add(classSquare);
 		return classBox;
 	}
-	private void resetSelectedChara() {
+	public void resetSelectedChara() {
 		for(int i = 0;i<4;i++) {
 			StackPane box = new StackPane();
 			box.setMaxHeight(120);

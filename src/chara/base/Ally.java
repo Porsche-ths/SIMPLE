@@ -23,7 +23,11 @@ public class Ally extends Chara{
 	@Override
 	public void beginTurn() {
 		atTurnStart();
-		if (!this.isAlive()) return;
+		if (!this.isAlive()) {
+			atTurnEnd();
+			GameLogic.nextTurn();
+			return;
+		}
 		GameLogic.getCurrentStage().getBattlePane().initializeSkillMenu();
 	}
 	

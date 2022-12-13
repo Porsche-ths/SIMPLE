@@ -19,21 +19,24 @@ public class SkellyArcher extends Enemy {
 	@Override
 	public void beginTurn() {
 		atTurnStart();
-		if (!this.isAlive()) return;
-		BonyShot bonyShot = (BonyShot) getSkills().get(0);
-		bonyShot.setValid();
-		if (bonyShot.isValid()) {
-			PriorityQueue<Ally> targetQueue = new PriorityQueue<Ally>(3, new TargetPriorityComparator());
-			for (Ally hero: GameLogic.team) {
-				if (hero.getRank().equals(logic.rank.second) || hero.getRank().equals(logic.rank.third) || hero.getRank().equals(logic.rank.fourth)) {
-					int chance = ((hero.getMaxHp() - hero.getHp()) / hero.getMaxHp()) * 100;
-					hero.setCalculatedSpd(chance + ((Ally) hero).getTargetPriority());
-					targetQueue.add(hero);
+		if (this.isAlive()) {
+			BonyShot bonyShot = (BonyShot) getSkills().get(0);
+			bonyShot.setValid();
+			if (bonyShot.isValid()) {
+				PriorityQueue<Ally> targetQueue = new PriorityQueue<Ally>(3, new TargetPriorityComparator());
+				for (Ally hero: GameLogic.team) {
+					if (hero.getRank().equals(logic.rank.second) || hero.getRank().equals(logic.rank.third) || hero.getRank().equals(logic.rank.fourth)) {
+						int chance = ((hero.getMaxHp() - hero.getHp()) / hero.getMaxHp()) * 100;
+						hero.setCalculatedSpd(chance + ((Ally) hero).getTargetPriority());
+						targetQueue.add(hero);
+					}
+				}
+				if (!targetQueue.isEmpty()) {
+					Chara target = targetQueue.poll();
+					getSkills().get(0).getTargets().add(target);
+					getSkills().get(0).cast();
 				}
 			}
-			Chara target = targetQueue.poll();
-			getSkills().get(0).getTargets().add(target);
-			getSkills().get(0).cast();
 		}
 		atTurnEnd();
 		GameLogic.nextTurn();

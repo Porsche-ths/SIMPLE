@@ -149,23 +149,24 @@ public class CharaPane extends HBox {
 		return hpBar;
 	}
 	public void updateHpBar(Chara c, double defaultWidth) {
-		int n = 0;
-
-		switch(c.getRank()) {
-		case first:
-			n = c instanceof Ally? 3:5; break;
-		case second:
-			n = c instanceof Ally? 2:6; break;
-		case third:
-			n = c instanceof Ally? 1:7; break;
-		case fourth:
-			n = c instanceof Ally? 0:8; break;
+		if (c.getHp() != 0) {
+			int n = 0;
+	
+			switch(c.getRank()) {
+			case first:
+				n = c instanceof Ally? 3:5; break;
+			case second:
+				n = c instanceof Ally? 2:6; break;
+			case third:
+				n = c instanceof Ally? 1:7; break;
+			case fourth:
+				n = c instanceof Ally? 0:8; break;
+			}
+			VBox v = (VBox)(getChildren().get(n));
+			StackPane s = (StackPane)(v.getChildren().get(1));
+			Rectangle r = (Rectangle)(s.getChildren().get(0));
+			r.setWidth((((double)c.getHp())/(double)(c.getMaxHp()))*defaultWidth);
 		}
-		VBox v = (VBox)(getChildren().get(n));
-		StackPane s = (StackPane)(v.getChildren().get(1));
-		Rectangle r = (Rectangle)(s.getChildren().get(0));
-		r.setWidth((((double)c.getHp())/(double)(c.getMaxHp()))*defaultWidth);
-
 	}
 
 }

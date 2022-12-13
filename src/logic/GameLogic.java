@@ -58,6 +58,7 @@ public class GameLogic {
 		
 		if (alert.getResult() == ButtonType.YES) {
 			team = new ArrayList<Ally>();
+			Main.charSelect.resetSelectedChara();
 			Main.switchToMainMenu();
 		} else if (alert.getResult() == ButtonType.NO) {
 			Platform.exit();
@@ -135,17 +136,17 @@ public class GameLogic {
 	private static void addEnemiesToVillains() {
 		villains = new ArrayList<ArrayList<Enemy>>();
 		ArrayList<Enemy> stageOne = new ArrayList<Enemy>();
-//		SkellySoldier s1 = new SkellySoldier("Skelly1");
+//		SkellySoldier s1 = new SkellySoldier("Soldier1");
 //		s1.setRank(rank.first);
-		SkellySoldier s2 = new SkellySoldier("Skelly2");
+		SkellySoldier s2 = new SkellySoldier("Soldier2");
 		s2.setRank(rank.second);
-//		SkellyArcher s3 = new SkellyArcher("Skelly3");
+//		SkellyArcher s3 = new SkellyArcher("Archer3");
 //		s3.setRank(rank.third);
 		Executioner e1 = new Executioner("Executioner1");
 		e1.setRank(rank.first);
-		Hemomancer h3 = new Hemomancer("Hemomancer1");
+		Hemomancer h3 = new Hemomancer("Hemomancer3");
 		h3.setRank(rank.third);
-		SkellyArcher s4 = new SkellyArcher("Skelly4");
+		SkellyArcher s4 = new SkellyArcher("Archer4");
 		s4.setRank(rank.fourth);
 		stageOne.add(e1);
 		stageOne.add(s2);
