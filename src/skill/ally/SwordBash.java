@@ -62,7 +62,6 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
 					GameLogic.nextTurn();
-
 					}
 				};
 			

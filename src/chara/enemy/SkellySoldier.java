@@ -37,8 +37,14 @@ public class SkellySoldier extends Enemy {
 					getSkills().get(0).getTargets().add(target);
 					getSkills().get(0).playAnimation();
 					getSkills().get(0).cast();
+				} else {
+					GameLogic.nextTurn();
 				}
+			} else {
+				GameLogic.nextTurn();
 			}
+		} else {
+			GameLogic.nextTurn();
 		}
 		atTurnEnd();
 	}

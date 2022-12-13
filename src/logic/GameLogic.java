@@ -47,7 +47,7 @@ public class GameLogic {
 		
 		Alert alert = new Alert(AlertType.INFORMATION, "Do you want to restart ?", ButtonType.YES, ButtonType.NO);
 		if (win) {
-			alert.setTitle("Congratulations");
+			alert.setTitle("Congratulations !");
 			alert.setHeaderText("You win :)");
 		} else {
 			alert.setTitle("Sorry");
@@ -59,7 +59,7 @@ public class GameLogic {
 			team = new ArrayList<Ally>();
 			Main.charSelect.resetSelectedChara();
 			Main.switchToMainMenu();
-		} else if (alert.getResult() == ButtonType.NO) {
+		} else {
 			Platform.exit();
 		}
 	}
@@ -69,6 +69,12 @@ public class GameLogic {
 		enemies = villains.get(i-1);
 		currentStage = new BattleStage(i-1);
 		Scene stageScene = new Scene(GameLogic.getCurrentStage().getBattlePane());
+		for (Ally each: team) {
+			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
+		}
+		for (Enemy each: enemies) {
+			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
+		}
 		Main.stage.setScene(stageScene);
 		generateQueue();
 		nextTurn();
@@ -87,6 +93,9 @@ public class GameLogic {
 			} else {
 				isStageCleared = false;
 				stage++;
+				System.out.println("=============================================");
+				System.out.println("Begin Stage " + stage);
+				System.out.println("=============================================");
 				beginStage(stage);
 			}
 		} else {
@@ -139,16 +148,29 @@ public class GameLogic {
 		s1.setRank(rank.first);
 		SkellySoldier s2 = new SkellySoldier("Soldier2");
 		s2.setRank(rank.second);
+		SkellySoldier s5 = new SkellySoldier("Soldier5");
+		s5.setRank(rank.third);
 		stageOne.add(s1);
 		stageOne.add(s2);
+		stageOne.add(s5);
 
 		
 		ArrayList<Enemy> stageTwo = new ArrayList<Enemy>();
-		stageTwo.add(new SkellySoldier("Skelly1"));
-		stageTwo.add(new SkellySoldier("Skelly2"));
-
+		SkellySoldier s3 = new SkellySoldier("Soldier3");
+		s3.setRank(rank.first);
+		SkellySoldier s4 = new SkellySoldier("Soldier4");
+		s4.setRank(rank.second);
+		SkellyArcher a1 = new SkellyArcher("Archer1");
+		a1.setRank(rank.third);
+		SkellyArcher a2 = new SkellyArcher("Archer2");
+		a2.setRank(rank.fourth);
+		stageTwo.add(s3);
+		stageTwo.add(s4);
+		stageTwo.add(a1);
+		stageTwo.add(a2);
 
 		villains.add(stageOne);
+		villains.add(stageTwo);
 	}
 	
 

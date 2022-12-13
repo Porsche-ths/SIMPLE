@@ -37,12 +37,6 @@ public class Enemy extends Chara {
 				} else {
 					GameLogic.getCurrentStage().getStageCharaPane().getChildren().clear();
 					GameLogic.getCurrentStage().getStageCharaPane().addCharToPane();
-					for(Chara a :GameLogic.team) {
-						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(a, 100);
-					}
-					for(Chara e :GameLogic.team) {
-						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
-					}
 					int n = 0;
 					for (Enemy e: GameLogic.enemies) {
 						switch(n) {
@@ -56,6 +50,9 @@ public class Enemy extends Chara {
 							e.setRank(rank.fourth); break;
 						}
 						n++;
+					}
+					for(Chara e :GameLogic.enemies) {
+						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
 					}
 				}
 			}

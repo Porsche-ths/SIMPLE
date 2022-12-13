@@ -59,9 +59,10 @@ public class HolySmite extends DamageSkill implements TargetSelectable {
 				public void handle(long arg0) {
 					// TODO Auto-generated method stub
 					time += 1;
-					if(time == 50) {
+					if(time == 75) {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
+					GameLogic.nextTurn();
 					}
 				};
 			

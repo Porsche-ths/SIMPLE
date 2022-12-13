@@ -22,7 +22,7 @@ public class Main extends Application {
 		charSelect = new CharSelect();
 		mapMenu = new Map();
 		mainMenuScene = new Scene(mainMenu);
-		charSelectScene = new Scene(charSelect);
+		charSelectScene = new Scene(charSelect);	
 		mapMenuScene = new Scene(mapMenu);
 		stage = primaryStage;
 		stage.setScene(mainMenuScene);

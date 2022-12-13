@@ -63,6 +63,9 @@ public class Ally extends Chara{
 							}
 							n--;
 						}
+						for (Ally each: GameLogic.team) {
+							GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
+						}
 					}
 				} else {
 					setDeathBlowResist(getDeathBlowResist() - 16);
