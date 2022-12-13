@@ -27,8 +27,10 @@ public abstract class BaseSkill {
 	
 	public void setValid() {
 		boolean result = false;
-		for (logic.rank r: this.getRank()) {
-			if (r.equals(user.getRank())) { result = true; break; }
+		if (user.isAlive()) {
+			for (logic.rank r: this.getRank()) {
+				if (r.equals(user.getRank())) { result = true; break; }
+			}	
 		}
 		this.isValid = result;
 	}

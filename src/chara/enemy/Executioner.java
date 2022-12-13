@@ -19,6 +19,7 @@ public class Executioner extends Enemy {
 	@Override
 	public void beginTurn() {
 		atTurnStart();
+		if (!this.isAlive()) return;
 		SonicBlow sonicBlow = (SonicBlow) getSkills().get(0);
 		sonicBlow.setValid();
 		if (sonicBlow.isValid()) {

@@ -21,6 +21,7 @@ public class SkellySoldier extends Enemy {
 	@Override
 	public void beginTurn() {
 		atTurnStart();
+		if (!this.isAlive()) return;
 		BonySlash bonySlash = (BonySlash) getSkills().get(0);
 		bonySlash.setValid();
 		if (bonySlash.isValid()) {

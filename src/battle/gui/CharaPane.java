@@ -73,6 +73,7 @@ public class CharaPane extends HBox {
 					for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
 						n.setDisable(true);
 					}
+					GameLogic.currentChara.atTurnEnd();
 					GameLogic.nextTurn();
 				}
 				
@@ -115,6 +116,7 @@ public class CharaPane extends HBox {
 					for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
 						n.setDisable(true);
 					}
+					GameLogic.currentChara.atTurnEnd();
 					GameLogic.nextTurn();
 				}
 				

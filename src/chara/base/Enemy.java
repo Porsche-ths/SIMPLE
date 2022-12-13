@@ -1,11 +1,7 @@
 package chara.base;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-
 import logic.GameLogic;
 import logic.rank;
-import skill.base.BaseSkill;
 
 public class Enemy extends Chara {
 	private String className;
@@ -35,8 +31,9 @@ public class Enemy extends Chara {
 		} else {
 			if (getHp() == 0) {
 				GameLogic.enemies.remove(this);
+				if (GameLogic.q.contains(this)) { GameLogic.q.remove(this); }
 				if (GameLogic.enemies.isEmpty()) {
-					GameLogic.setStageCleared(true); 
+					GameLogic.setStageCleared(true);
 				} else {
 					GameLogic.getCurrentStage().getStageCharaPane().getChildren().clear();
 					GameLogic.getCurrentStage().getStageCharaPane().addCharToPane();

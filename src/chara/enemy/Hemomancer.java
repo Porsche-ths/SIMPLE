@@ -19,6 +19,7 @@ public class Hemomancer extends Enemy {
 	@Override
 	public void beginTurn() {
 		atTurnStart();
+		if (!this.isAlive()) return;
 		RavenousFeast ravenousFeast = (RavenousFeast) getSkills().get(0);
 		ravenousFeast.setValid();
 		if (ravenousFeast.isValid()) {

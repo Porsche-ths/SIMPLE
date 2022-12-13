@@ -23,6 +23,7 @@ public class Ally extends Chara{
 	@Override
 	public void beginTurn() {
 		atTurnStart();
+		if (!this.isAlive()) return;
 		GameLogic.getCurrentStage().getBattlePane().initializeSkillMenu();
 	}
 	
@@ -38,6 +39,7 @@ public class Ally extends Chara{
 			} else {
 				if (isDeathBlown()) {
 					GameLogic.team.remove(this);
+					if (GameLogic.q.contains(this)) { GameLogic.q.remove(this); }
 					if (GameLogic.team.isEmpty()) {
 						GameLogic.setGameEnd(true);
 					} else {
