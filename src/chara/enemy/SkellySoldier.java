@@ -25,6 +25,7 @@ public class SkellySoldier extends Enemy {
 		PriorityQueue<Ally> targetQueue = new PriorityQueue<Ally>(4, new TargetPriorityComparator());
 		for (Ally hero: GameLogic.team) {
 			if (hero.getRank().equals(logic.rank.first) || hero.getRank().equals(logic.rank.second)) {
+
 				int chance = ((hero.getMaxHp() - hero.getHp()) / hero.getMaxHp()) * 100;
 				hero.setCalculatedSpd(chance + ((Ally) hero).getTargetPriority());
 				targetQueue.add(hero);

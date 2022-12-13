@@ -145,7 +145,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("crusader",new Crusader(Integer.toString(GameLogic.getTeam().size()+1)));
+				charaBoxHandler("crusader",new Crusader(Integer.toString(4- GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -153,7 +153,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("priest",new Priest(Integer.toString(4 - GameLogic.getTeam().size())));
+				charaBoxHandler("priest",new Priest(Integer.toString(4-GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -161,7 +161,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("ranger",new Ranger(Integer.toString(4 - GameLogic.getTeam().size())));
+				charaBoxHandler("ranger",new Ranger(Integer.toString(4- GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -169,7 +169,7 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				charaBoxHandler("rogue",new Rogue(Integer.toString(4 - GameLogic.getTeam().size())));
+				charaBoxHandler("rogue",new Rogue(Integer.toString(4-GameLogic.getTeam().size())));
 			}
 			
 		});
@@ -207,16 +207,7 @@ public class CharSelect extends StackPane {
 		if(n<4) {
 			enableConfirmButton();
 			
-			switch(n) {
-			case 3:
-				a.setRank(rank.first); break;
-			case 2:
-				a.setRank(rank.second); break;
-			case 1:
-				a.setRank(rank.third); break;
-			case 0:
-				a.setRank(rank.fourth); break;
-			}
+			
 			
 			GameLogic.getTeam().add(a);
 			selectedCharaBox.add(createClassBox(className),n,0);
@@ -368,6 +359,27 @@ private void addConfirmButton() {
 							public void run() {
 								// TODO Auto-generated method stub
 								confirmButton.setImage(inactivatedConfirm);
+									switch(GameLogic.getTeam().size()) {
+									case 4:
+										GameLogic.getTeam().get(0).setRank(rank.fourth); 
+										GameLogic.getTeam().get(1).setRank(rank.third); 
+										GameLogic.getTeam().get(2).setRank(rank.second); 
+										GameLogic.getTeam().get(3).setRank(rank.first); 
+										break;
+									case 3:
+										GameLogic.getTeam().get(0).setRank(rank.third); 
+										GameLogic.getTeam().get(1).setRank(rank.second); 
+										GameLogic.getTeam().get(2).setRank(rank.first); 
+										 break;
+									case 2:
+										GameLogic.getTeam().get(0).setRank(rank.second); 
+										GameLogic.getTeam().get(1).setRank(rank.first); 
+
+										break;
+									case 1:
+										GameLogic.getTeam().get(0).setRank(rank.first); break;
+									}
+								
 								Main.switchToBattleStage();
 
 								//Main.switchToMap();

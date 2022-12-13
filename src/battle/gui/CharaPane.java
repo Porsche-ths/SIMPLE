@@ -24,6 +24,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import logic.GameLogic;
 import logic.rank;
+import sprites.IdleSprite;
 
 
 public class CharaPane extends HBox {
@@ -41,7 +42,7 @@ public class CharaPane extends HBox {
 		addCharToPane();
 		
 	}
-	private void addCharToPane() {
+	public void addCharToPane() {
 		if(team.size() < 4) {
 			for(int i = 0; i < 4-team.size();i++) {
 				Image blank = new Image("blank.png");
@@ -53,18 +54,13 @@ public class CharaPane extends HBox {
 			}
 		}
 		for(Ally a : team) {
-			Image chara = new Image(a.getClassName() + "Idle.gif");
-			ImageView iv = new ImageView(chara);
+			ImageView idle = new IdleSprite(a.getClassName());
 			VBox charaBox = new VBox();
 			StackPane hp = initializeHpBar(100, a);
-			iv.setFitHeight(200);
-			iv.setFitWidth(125);
-			//Crusader
-			//iv.setFitHeight(200);
-			//iv.setFitWidth(100);
-			charaBox.getChildren().add(iv);
-			charaBox.setPrefHeight(200);
-			charaBox.setPrefWidth(125);
+			
+			charaBox.getChildren().add(idle);
+			charaBox.setMaxHeight(200);
+			charaBox.setMaxWidth(150);
 			charaBox.getChildren().add(hp);
 			charaBox.setAlignment(Pos.CENTER);
 			getChildren().add(charaBox);
@@ -110,12 +106,12 @@ public class CharaPane extends HBox {
 	}
 	public StackPane initializeHpBar(int width,Chara c) {
 		StackPane hpBar = new StackPane();
-		Rectangle maxHp = new Rectangle(0,0,width,20);
-		Rectangle hp = new Rectangle(0,0,(c.getHp()/c.getMaxHp()*(width-2)),15);
-		maxHp.setFill(Color.WHITE);
+		Rectangle hp = new Rectangle(0,0,(c.getHp()/c.getMaxHp()*(width)),10);
+		hpBar.setBackground(new Background(new BackgroundFill(Color.WHITE,CornerRadii.EMPTY,Insets.EMPTY)));
+		hpBar.setMaxWidth(width);
+		hpBar.setMaxHeight(15);
 		hp.setFill(Color.GREEN);
 		hpBar.setAlignment(Pos.CENTER_LEFT);
-		hpBar.getChildren().add(maxHp);
 		hpBar.getChildren().add(hp);
 		return hpBar;
 	}
@@ -134,7 +130,7 @@ public class CharaPane extends HBox {
 		}
 		VBox v = (VBox)(getChildren().get(n));
 		StackPane s = (StackPane)(v.getChildren().get(1));
-		Rectangle r = (Rectangle)(s.getChildren().get(1));
+		Rectangle r = (Rectangle)(s.getChildren().get(0));
 		System.out.println((((double)c.getHp())/(double)(c.getMaxHp()))*(defaultWidth) + c.getName() + " " + n );
 		r.setWidth((((double)c.getHp())/(double)(c.getMaxHp()))*defaultWidth);
 		for(Ally a : team){
