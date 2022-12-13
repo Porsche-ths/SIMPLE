@@ -67,14 +67,13 @@ public class CharaPane extends HBox {
 				public void handle(Event arg0) {
 					// TODO Auto-generated method stub
 					GameLogic.currentSkill.getTargets().add(a);
-					//GameLogic.currentSkill.playAnimation();
+					GameLogic.currentSkill.playAnimation();
 
 					GameLogic.currentSkill.cast();
 					for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
 						n.setDisable(true);
 					}
 					GameLogic.currentChara.atTurnEnd();
-					GameLogic.nextTurn();
 				}
 				
 			});

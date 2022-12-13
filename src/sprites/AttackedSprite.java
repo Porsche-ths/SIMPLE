@@ -36,6 +36,10 @@ public class AttackedSprite extends ImageView {
 			setFitHeight(220);
 			setFitWidth(280);
 		}
+		if(name.equals("Ranger")) {
+			setFitHeight(180);
+			setFitWidth(130);
+		}
 		
 		
 	}
