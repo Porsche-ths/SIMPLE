@@ -32,5 +32,18 @@ public class IdleSprite extends ImageView{
 			setFitHeight(180);
 			setFitWidth(140);
 		}
+		if(name.equals("skellyArcher")) {
+			setFitHeight(180);
+			setFitWidth(120);
+		}
+		if(name.equals("hemomancer")) {
+			setFitHeight(220);
+			setFitWidth(140);
+		}
+		if(name.equals("executioner")) {
+			setFitHeight(200);
+			setFitWidth(180);
+		}
+		
 	}
 }
