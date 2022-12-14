@@ -2,7 +2,6 @@ package battle.gui;
 
 import java.util.ArrayList;
 
-import audio.Audio;
 import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;

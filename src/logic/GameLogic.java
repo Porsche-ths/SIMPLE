@@ -274,7 +274,22 @@ public class GameLogic {
 		villains.add(stageFive);
 	}
 	
+	public static StackPane createStageTrans(int i) {
+		
+    	StackPane s = new StackPane();
+    	s.setPrefWidth(1400);
+    	s.setPrefHeight(680);
+    	s.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 80);
+		s.setAlignment(Pos.CENTER);
+		Text t = new Text("STAGE " + i);
+		t.setFill(Color.WHITE);
+		t.setFont(font);
+		s.getChildren().add(t);
 
+    	return s;
+    }
+	
 	public static void setGameEnd(boolean isGameEnd) {
 		GameLogic.isGameEnd = isGameEnd;
 	}
@@ -310,20 +325,6 @@ public class GameLogic {
 	public static void setCurrentStage(BattleStage currentStage) {
 		GameLogic.currentStage = currentStage;
 	}
-	public static StackPane createStageTrans(int i) {
-    	StackPane s = new StackPane();
-    	s.setPrefWidth(1400);
-    	s.setPrefHeight(680);
-    	s.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
-		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 80);
-		s.setAlignment(Pos.CENTER);
-		Text t = new Text("STAGE " + i);
-		t.setFill(Color.WHITE);
-		t.setFont(font);
-		s.getChildren().add(t);
-
-    	return s;
-    }
 
 }
 

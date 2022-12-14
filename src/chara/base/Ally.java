@@ -71,7 +71,6 @@ public class Ally extends Chara{
 					setDeathBlowResist(getDeathBlowResist() - 16);
 				}
 			}
-			
 		}
 	}
 	
@@ -84,14 +83,6 @@ public class Ally extends Chara{
 	public boolean isDeathBlown() {
 		int chance = 100 - this.getDeathBlowResist();
 		return GameLogic.randomInt() < chance ? true : false;
-	}
-	
-	public String getClassName() {
-		return className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
 	}
 
 	public int getTargetPriority() {

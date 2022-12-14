@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 import skill.base.HealSkill;
 import skill.base.TargetSelectable;
