@@ -3,6 +3,7 @@ package skill.ally;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import audio.Audio;
 import battle.gui.CharaPane;
 import chara.base.Chara;
 import chara.base.Enemy;
@@ -74,6 +75,8 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 		GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 		GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 		GameLogic.currentStage.getBattlePane().showBattleText("ROGUE used DAGGERS PLAY!");
+		Audio.rogueSkill1.stop();
+		Audio.rogueSkill1.play();
 
 		AnimationTimer timer = new AnimationTimer() {
 			int time = 0;

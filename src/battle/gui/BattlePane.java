@@ -1,7 +1,7 @@
 package battle.gui;
 
+import audio.Audio;
 import chara.base.Ally;
-
 import javafx.animation.AnimationTimer;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -102,7 +102,8 @@ public class BattlePane extends VBox{
 						@Override
 						public void handle(Event arg0) {
 							// TODO Auto-generated method stub
-							
+							Audio.click.stop();
+							Audio.click.play();
 							GameLogic.currentSkill = s;
 							((TargetSelectable) s).selectTarget();
 							Image img = new Image(ClassLoader.getSystemResource("selected" +s.getSkillName() + ".png").toString());
@@ -133,6 +134,8 @@ public class BattlePane extends VBox{
 						@Override
 						public void handle(Event arg0) {
 							// TODO Auto-generated method stub
+							Audio.click.stop();
+							Audio.click.play();
 							showBattleText("Skill not available at this rank!");
 							disableSkillMenu();
 							AnimationTimer timer = new AnimationTimer() {

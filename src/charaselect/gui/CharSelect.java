@@ -3,6 +3,7 @@ package charaselect.gui;
 import java.util.ArrayList;
 
 import app.Main;
+import audio.Audio;
 import chara.ally.Crusader;
 import chara.ally.Priest;
 import chara.ally.Ranger;
@@ -189,8 +190,8 @@ public class CharSelect extends StackPane {
 		
 	}
 	private void charaBoxHandler(String className,Ally a) {
-		AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
-		click.play();
+		Audio.click.stop();
+		Audio.click.play();
 		int n = GameLogic.getTeam().size();
 		if(n<4) {
 			enableConfirmButton();
@@ -203,7 +204,6 @@ public class CharSelect extends StackPane {
 		
 	}
 	private void addBackButton() {
-		
 		Image inactivatedBack = new Image(ClassLoader.getSystemResource("inactivatedBack.png").toString());
 		Image activatedBack = new Image(ClassLoader.getSystemResource("activatedBack.png").toString());
 		backButton = new ImageView(inactivatedBack);
@@ -211,8 +211,8 @@ public class CharSelect extends StackPane {
 
 			@Override
 			public void handle(Event arg0) {
-				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
-				click.play();
+				Audio.click.stop();
+				Audio.click.play();
 				// TODO Auto-generated method stub
 				Thread t = new Thread(new Runnable() {
 
@@ -266,8 +266,8 @@ public class CharSelect extends StackPane {
 
 			@Override
 			public void handle(Event arg0) {
-				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
-				click.play();
+				Audio.click.stop();
+				Audio.click.play();
 				// TODO Auto-generated method stub
 				Thread t = new Thread(new Runnable() {
 
@@ -328,8 +328,8 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
-				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
-				click.play();
+				Audio.click.stop();
+				Audio.click.play();
 				Thread t = new Thread(new Runnable() {
 
 					@Override

@@ -3,6 +3,7 @@ package skill.ally;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import audio.Audio;
 import battle.gui.CharaPane;
 import chara.base.Chara;
 import chara.base.Enemy;
@@ -60,6 +61,8 @@ public class StabInTheFace extends DamageSkill implements TargetSelectable {
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 			GameLogic.currentStage.getBattlePane().showBattleText("ROGUE used STAB IN THE FACE!");
+			Audio.rogueSkill2.stop();
+			Audio.rogueSkill2.play();
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 				@Override

@@ -27,6 +27,12 @@ public class Ally extends Chara{
 		if (isAlive()) {
 			if (getHp() == 0) {
 				setAlive(false);
+				for (Ally each: GameLogic.team) {
+					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
+				}
+				for(Chara e :GameLogic.enemies) {
+					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
+				}
 			}
 		} else {
 			if (getHp() > 0) {

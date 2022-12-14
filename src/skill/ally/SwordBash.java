@@ -3,6 +3,7 @@ package skill.ally;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import audio.Audio;
 import battle.gui.CharaPane;
 import chara.base.Chara;
 import chara.base.Enemy;
@@ -60,11 +61,12 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 			} else {
 				animation.getChildren().add(new AttackedSprite(((Enemy) (e)).getClassName()));
 			}
-			//animation.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 			GameLogic.currentStage.getBattlePane().showBattleText("CRUSADER used SWORD BASH!");
+			Audio.attack.stop();
+			Audio.attack.play();
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 

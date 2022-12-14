@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import app.Main;
+import audio.Audio;
 import battle.gui.BattleStage;
 import chara.base.Ally;
 import chara.base.Chara;
@@ -16,16 +17,17 @@ import chara.enemy.SkellyArcher;
 import chara.enemy.SkellySoldier;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -55,30 +57,75 @@ public class GameLogic {
 	}
 	
 	public static void endGame() {
+
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 60);
+		Font font2 = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 80);
+		VBox screen = new VBox();
+    	screen.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+
+		screen.setAlignment(Pos.CENTER);
+		HBox button = new HBox();
+		Text restart = new Text("RESTART");
+		restart.setFill(Color.WHITE);
+		restart.setFont(font);
+		Text quit = new Text("QUIT");
+		quit.setFont(font);
+		quit.setFill(Color.WHITE);
+		button.setAlignment(Pos.CENTER);
+		screen.setSpacing(100);
+		screen.setPrefHeight(680);
+		screen.setPrefWidth(1400);
+		button.getChildren().add(restart);
+		button.getChildren().add(quit);
+		button.setSpacing(100);
+
 		
-		Alert alert = new Alert(AlertType.INFORMATION, "Do you want to restart ?", ButtonType.YES, ButtonType.NO);
+		Scene scene = new Scene(screen);
+		restart.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				// TODO Auto-generated method stub
+				team = new ArrayList<Ally>();
+				Main.charSelect.resetSelectedChara();
+				Main.switchToMainMenu();
+			}
+			
+		});
+		quit.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				// TODO Auto-generated method stub
+				Platform.exit();
+			}
+			
+		});
 		if (win) {
-			alert.setTitle("Congratulations !");
-			alert.setHeaderText("You win :)");
+			Text text = new Text("YOU WIN!!");
+			text.setFont(font2);
+			text.setFill(Color.WHITE);
+			screen.getChildren().add(text);
+			screen.getChildren().add(button);
+
 		} else {
-			alert.setTitle("Sorry");
-			alert.setHeaderText("You lose :(");
+			Text text = new Text("GIT GUD");
+			text.setFont(font2);
+			text.setFill(Color.WHITE);
+			screen.getChildren().add(text);
+			screen.getChildren().add(button);
 		}
-		alert.showAndWait();
-		
-		if (alert.getResult() == ButtonType.YES) {
-			team = new ArrayList<Ally>();
-			Main.charSelect.resetSelectedChara();
-			Main.switchToMainMenu();
-		} else {
-			Platform.exit();
-		}
+		Main.stage.setScene(scene);
 	}
 	
 	public static void beginStage(int i) {
 		StackPane trans = createStageTrans(i);
 		Scene root = new Scene(trans);
 		Main.stage.setScene(root);
+		if(i != 1) {
+			Audio.stageClear.stop();
+			Audio.stageClear.play();
+		}
 		AnimationTimer timer = new AnimationTimer() {
 			int time = 0;
 			@Override

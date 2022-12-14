@@ -1,7 +1,7 @@
 package startmenu.gui;
 
 import app.Main;
-
+import audio.Audio;
 import javafx.animation.AnimationTimer;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -52,8 +51,8 @@ public class MainMenu extends StackPane {
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
 				Main.switchToCharSelect();
-				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
-				click.play();
+				Audio.click.stop();
+				Audio.click.play();
 
 			}
 

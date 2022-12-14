@@ -2,6 +2,7 @@ package battle.gui;
 
 import java.util.ArrayList;
 
+import audio.Audio;
 import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;
@@ -66,6 +67,7 @@ public class CharaPane extends HBox {
 
 				@Override
 				public void handle(Event arg0) {
+					
 					GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
 					disableCharaBox();
 					GameLogic.currentSkill.getTargets().add(a);
@@ -111,6 +113,7 @@ public class CharaPane extends HBox {
 
 				@Override
 				public void handle(Event arg0) {
+					
 					GameLogic.currentSkill.getTargets().add(a);
 					GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
 					disableCharaBox();

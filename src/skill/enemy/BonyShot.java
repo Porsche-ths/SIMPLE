@@ -3,6 +3,7 @@ package skill.enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import audio.Audio;
 import battle.gui.CharaPane;
 import chara.base.Ally;
 import chara.base.Chara;
@@ -40,6 +41,8 @@ public class BonyShot extends DamageSkill {
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 			GameLogic.currentStage.getBattlePane().showBattleText("SKELLY ARCHER used BONY SHOT!");
+			Audio.attack.stop();
+			Audio.attack.play();
 
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;

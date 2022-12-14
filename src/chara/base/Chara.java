@@ -31,16 +31,6 @@ public abstract class Chara {
 	
 	public abstract void checkStatus();
 
-	public String getDetail() {
-
-		return "Name            : " + this.getName() + "\nHP              : " + this.getHp() + "/" + this.getMaxHp()
-				+ "\nAccuracy        : " + this.getAccMod() + "\nDodge           : " + this.getDodge()
-				+ "\nCritical Chance : " + this.getCrit() + "\nProtection      : " + this.getProt()
-				+ "\nDamage          : " + this.getMinDmg() + " - " + this.getMaxDmg() + "\nSpeed           : "
-				+ this.getSpd();
-
-	}
-
 	public String getName() {
 		return name;
 	}

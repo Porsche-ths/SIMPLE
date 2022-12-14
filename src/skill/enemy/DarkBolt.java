@@ -3,6 +3,7 @@ package skill.enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import audio.Audio;
 import battle.gui.CharaPane;
 import chara.base.Ally;
 import chara.base.Chara;
@@ -47,6 +48,8 @@ public class DarkBolt extends DamageSkill {
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 			GameLogic.currentStage.getBattlePane().showBattleText("DARK LORD used DARK BOLT!");
+			Audio.darkLord.stop();
+			Audio.darkLord.play();
 
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;

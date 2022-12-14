@@ -3,6 +3,7 @@ package skill.ally;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import audio.Audio;
 import battle.gui.CharaPane;
 import chara.base.Ally;
 import chara.base.Chara;
@@ -63,8 +64,8 @@ public class DivineGrace extends HealSkill implements TargetSelectable {
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 			GameLogic.currentStage.getBattlePane().showBattleText("PRIEST used DIVINE GRACE");
-			AudioClip healSound = new AudioClip(ClassLoader.getSystemResource("priestHealing.mp3").toString());
-			healSound.play();
+			Audio.heal.stop();
+			Audio.heal.play();
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 
