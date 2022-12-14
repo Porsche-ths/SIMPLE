@@ -144,33 +144,54 @@ public class GameLogic {
 	private static void addEnemiesToVillains() {
 		villains = new ArrayList<ArrayList<Enemy>>();
 		ArrayList<Enemy> stageOne = new ArrayList<Enemy>();
-		SkellySoldier s1 = new SkellySoldier("Soldier1");
-		s1.setRank(rank.first);
-		SkellySoldier s2 = new SkellySoldier("Soldier2");
-		s2.setRank(rank.second);
-		SkellySoldier s5 = new SkellySoldier("Soldier5");
-		s5.setRank(rank.third);
-		stageOne.add(s1);
-		stageOne.add(s2);
-		stageOne.add(s5);
+		SkellySoldier s11 = new SkellySoldier("Soldier11");
+		s11.setRank(rank.first);
+		SkellySoldier s12 = new SkellySoldier("Soldier12");
+		s12.setRank(rank.second);
+		stageOne.add(s11);
+		stageOne.add(s12);
 
 		
 		ArrayList<Enemy> stageTwo = new ArrayList<Enemy>();
-		SkellySoldier s3 = new SkellySoldier("Soldier3");
-		s3.setRank(rank.first);
-		SkellySoldier s4 = new SkellySoldier("Soldier4");
-		s4.setRank(rank.second);
-		SkellyArcher a1 = new SkellyArcher("Archer1");
-		a1.setRank(rank.third);
-		SkellyArcher a2 = new SkellyArcher("Archer2");
-		a2.setRank(rank.fourth);
-		stageTwo.add(s3);
-		stageTwo.add(s4);
-		stageTwo.add(a1);
-		stageTwo.add(a2);
+		SkellySoldier s21 = new SkellySoldier("Soldier21");
+		s21.setRank(rank.first);
+		SkellySoldier s22 = new SkellySoldier("Soldier22");
+		s22.setRank(rank.second);
+		SkellyArcher a21 = new SkellyArcher("Archer21");
+		a21.setRank(rank.third);
+		SkellyArcher a22 = new SkellyArcher("Archer22");
+		a22.setRank(rank.fourth);
+		stageTwo.add(s21);
+		stageTwo.add(s22);
+		stageTwo.add(a21);
+		stageTwo.add(a22);
+		
+		ArrayList<Enemy> stageThree = new ArrayList<Enemy>();
+		Executioner e31 = new Executioner("Executioner31");
+		e31.setRank(rank.first);
+		Hemomancer h31 = new Hemomancer("Hemomancer31");
+		h31.setRank(rank.second);
+		stageThree.add(e31);
+		stageThree.add(h31);
+		
+		ArrayList<Enemy> stageFour = new ArrayList<Enemy>();
+		Executioner e41 = new Executioner("Executioner41");
+		e41.setRank(rank.first);
+		Hemomancer h41 = new Hemomancer("Hemomancer41");
+		h41.setRank(rank.second);
+		SkellyArcher a41 = new SkellyArcher("Archer41");
+		a41.setRank(rank.third);
+		SkellyArcher a42 = new SkellyArcher("Archer42");
+		a42.setRank(rank.fourth);
+		stageFour.add(e41);
+		stageFour.add(h41);
+		stageFour.add(a41);
+		stageFour.add(a42);
 
 		villains.add(stageOne);
 		villains.add(stageTwo);
+		villains.add(stageThree);
+		villains.add(stageFour);
 	}
 	
 

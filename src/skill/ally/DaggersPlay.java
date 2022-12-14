@@ -9,6 +9,7 @@ import chara.base.Enemy;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -26,6 +27,9 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 	@Override
 	public void selectTarget() {
 		// TODO Auto-generated method stub
+		for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
+			n.setDisable(true);
+		}
 		for (Enemy e: GameLogic.enemies) {
 			if (e.getRank().equals(logic.rank.second) || e.getRank().equals(logic.rank.third)) {
 				GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.enemies.indexOf(e) + 5).setDisable(false);
@@ -57,9 +61,11 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 		iv.setFitWidth(170);
 		animation.getChildren().add(iv);
 		animation.setSpacing(200);
-		for(Chara e : targets) {
+		for(Chara e : GameLogic.enemies) {
+			if (e.getRank().equals(logic.rank.second) || e.getRank().equals(logic.rank.third)) {
 			System.out.println("name = " +e.getName());
 			animation.getChildren().add(new AttackedSprite(((Enemy)(e)).getClassName()));
+			}
 		}
 		CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 		GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());

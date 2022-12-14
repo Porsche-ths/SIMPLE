@@ -10,6 +10,7 @@ import chara.base.Enemy;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -28,7 +29,10 @@ public class DivineGrace extends HealSkill implements TargetSelectable {
 	@Override
 	public void selectTarget() {
 		// TODO Auto-generated method stub
-		for (Ally a : GameLogic.team) {
+		for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
+			n.setDisable(true);
+		}
+		for (Ally a: GameLogic.team) {
 			GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.team.indexOf(a)).setDisable(false);
 		}
 	}

@@ -51,6 +51,9 @@ public class Enemy extends Chara {
 						}
 						n++;
 					}
+					for(Chara e :GameLogic.team) {
+						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
+					}
 					for(Chara e :GameLogic.enemies) {
 						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
 					}
