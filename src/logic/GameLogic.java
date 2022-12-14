@@ -20,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -29,7 +30,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import skill.base.BaseSkill;
-import javafx.scene.control.Alert.AlertType;
 
 public class GameLogic {
 	
@@ -100,10 +100,8 @@ public class GameLogic {
 					nextTurn();
 				}
 			}
-			
 		};
 		timer.start();
-		
 		
 	}
 	
@@ -142,11 +140,7 @@ public class GameLogic {
 	}
 	
 	public static  void generateQueue() {
-		/*
-		 * random queue in each turn by calculating chara.spd
-		 * if !isStunned add to q
-		 * set this.q = new q
-		 * */
+		
 		PriorityQueue<Chara> q = new PriorityQueue<Chara>(8, new SpeedComparator());
 		for (Chara ally: team) {
 			ally.setCalculatedSpd(randomRange(1, 8) + ally.getSpd());

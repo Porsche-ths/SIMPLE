@@ -11,14 +11,12 @@ import skill.enemy.RavenousFeast;
 public class Hemomancer extends Enemy {
 
 	public Hemomancer(String name) {
-		super(name, 20, 0, 23, 10, 0, 4, 7, 6, 55, 70, 70, 70);
+		super(name, "hemomancer", 20, 0, 23, 10, 0, 4, 7, 6);
 		getSkills().add(new RavenousFeast(this));
-		setClassName("hemomancer");
 	}
 
 	@Override
 	public void beginTurn() {
-		atTurnStart();
 		if (this.isAlive()) {
 			RavenousFeast ravenousFeast = (RavenousFeast) getSkills().get(0);
 			ravenousFeast.setValid();
@@ -82,7 +80,6 @@ public class Hemomancer extends Enemy {
 		} else {
 			GameLogic.nextTurn();
 		}
-		atTurnEnd();
 	}
 	
 }

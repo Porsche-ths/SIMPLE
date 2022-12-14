@@ -11,14 +11,12 @@ import skill.enemy.BonySlash;
 public class SkellySoldier extends Enemy {
 
 	public SkellySoldier(String name) {
-		super(name, 12, 25, 0, 0, 0, 2, 5, 1, 10, 300, 10, 15);
+		super(name, "skellySoldier", 12, 25, 0, 0, 0, 2, 5, 1);
 		getSkills().add(new BonySlash(this));
-		setClassName("skellySoldier");
 	}
 	
 	@Override
 	public void beginTurn() {
-		atTurnStart();
 		if (this.isAlive()) {
 			BonySlash bonySlash = (BonySlash) getSkills().get(0);
 			bonySlash.setValid();
@@ -88,7 +86,6 @@ public class SkellySoldier extends Enemy {
 		} else {
 			GameLogic.nextTurn();
 		}
-		atTurnEnd();
 	}
 
 }

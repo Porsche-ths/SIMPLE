@@ -11,14 +11,12 @@ import skill.enemy.SonicBlow;
 public class Executioner extends Enemy {
 
 	public Executioner(String name) {
-		super(name, 22, 82, 10, 5, 25, 3, 5, 1, 50, 80, 50, 15);
+		super(name, "executioner", 22, 82, 10, 5, 25, 7, 8, 1);
 		getSkills().add(new SonicBlow(this));
-		setClassName("executioner");
 	}
 
 	@Override
 	public void beginTurn() {
-		atTurnStart();
 		if (this.isAlive()) {
 			SonicBlow sonicBlow = (SonicBlow) getSkills().get(0);
 			sonicBlow.setValid();
@@ -88,7 +86,6 @@ public class Executioner extends Enemy {
 		} else {
 			GameLogic.nextTurn();
 		}
-		atTurnEnd();
 	}
 	
 }

@@ -2,25 +2,19 @@ package chara.base;
 
 import java.util.ArrayList;
 
-import effect.StatusEffect;
 import skill.base.BaseSkill;
 
 public abstract class Chara {
-	private String name;
-	private int maxHp, hp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, calculatedSpd;
-	private int stunResist, bleedResist, decayResist, debuffResist;
-	private boolean isStunned;
-	private ArrayList<BaseSkill> skills;
-	private ArrayList<StatusEffect> statusEffects;
-	private logic.rank rank;
-	private boolean isAlive;
+	protected String name, className;
+	protected int maxHp, hp, accMod, dodge, crit, prot, minDmg, maxDmg, spd, calculatedSpd;
+	protected ArrayList<BaseSkill> skills;
+	protected logic.rank rank;
+	protected boolean isAlive;
 
-	public Chara(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
-			 int stunResist, int bleedResist, int decayResist,
-			int debuffResist) {
-		setStatusEffects(new ArrayList<StatusEffect>());
+	public Chara(String name, String className, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd) {
 		setSkills(new ArrayList<BaseSkill>());
 		setName(name);
+		setClassName(className);
 		setMaxHp(maxHp);
 		setHp(maxHp);
 		setAccMod(accMod);
@@ -30,34 +24,12 @@ public abstract class Chara {
 		setMinDmg(minDmg);
 		setMaxDmg(maxDmg);
 		setSpd(spd);
-		setStunned(false);
 		setAlive(true);
 	}
 	
 	public abstract void beginTurn();
 	
 	public abstract void checkStatus();
-	
-	public void atTurnStart() {
-		ArrayList<StatusEffect> toBeRemoved = new ArrayList<StatusEffect>();
-
-		for(StatusEffect effect: statusEffects ) {
-			effect.triggerEffectAtRoundStart(this);
-			if(effect.getTurnsLeft() == 0) toBeRemoved.add(effect);
-		}
-		
-		for(StatusEffect effect:toBeRemoved) {
-			statusEffects.remove(effect);
-		}
-	}
-	
-	public void atTurnEnd() {
-		for(StatusEffect effect:statusEffects) {
-			effect.triggerEffectAtRoundEnd(this);
-			
-		}
-		
-	}
 
 	public String getDetail() {
 
@@ -75,6 +47,14 @@ public abstract class Chara {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	public int getMaxHp() {
@@ -153,14 +133,6 @@ public abstract class Chara {
 		this.spd = spd;
 	}
 
-	public boolean isStunned() {
-		return isStunned;
-	}
-
-	public void setStunned(boolean isStunned) {
-		this.isStunned = isStunned;
-	}
-
 	public ArrayList<BaseSkill> getSkills() {
 		return skills;
 	}
@@ -184,53 +156,13 @@ public abstract class Chara {
 	public void setCalculatedSpd(int calculatedSpd) {
 		this.calculatedSpd = calculatedSpd;
 	}
-	public int getStunResist() {
-		return stunResist;
-	}
-
-	public void setStunResist(int stunResist) {
-		this.stunResist = stunResist;
-	}
-
 	
-
-	public int getBleedResist() {
-		return bleedResist;
-	}
-
-	public void setBleedResist(int bleedResist) {
-		this.bleedResist = bleedResist;
-	}
-
-	public int getDecayResist() {
-		return decayResist;
-	}
-
-	public void setDecayResist(int decayResist) {
-		this.decayResist = decayResist;
-	}
-
-	public int getDebuffResist() {
-		return debuffResist;
-	}
-
-	public void setDebuffResist(int debuffResist) {
-		this.debuffResist = debuffResist;
-	}
-	public ArrayList<StatusEffect> getStatusEffect() {
-		return this.statusEffects;
-	}
 	public boolean isAlive() {
 		return isAlive;
 	}
+	
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
-	}
-	public ArrayList<StatusEffect> getStatusEffects() {
-		return statusEffects;
-	}
-	public void setStatusEffects(ArrayList<StatusEffect> statusEffects) {
-		this.statusEffects = statusEffects;
 	}
 	
 }

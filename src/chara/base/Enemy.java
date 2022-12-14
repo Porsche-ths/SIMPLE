@@ -1,22 +1,15 @@
 package chara.base;
 
 import logic.GameLogic;
-import logic.rank;
 
 public class Enemy extends Chara {
-	private String className;
-	public Enemy(String name, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
-			 int stunResist, int bleedResist, int decayResist,
-			int debuffResist) {
-		super(name, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd,  stunResist, bleedResist,
-				decayResist, debuffResist);
-		// TODO Auto-generated constructor stub
+	
+	public Enemy(String name, String className, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd) {
+		super(name, className, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd);
 	}
 
 	@Override
-	public void beginTurn() {
-		// TODO Auto-generated method stub
-	}
+	public void beginTurn() {}
 
 	@Override
 	public void checkStatus() {
@@ -59,13 +52,13 @@ public class Enemy extends Chara {
 					for (Enemy e: GameLogic.enemies) {
 						switch(n) {
 						case 0:
-							e.setRank(rank.first); break;
+							e.setRank(logic.rank.first); break;
 						case 1:
-							e.setRank(rank.second); break;
+							e.setRank(logic.rank.second); break;
 						case 2:
-							e.setRank(rank.third); break;
+							e.setRank(logic.rank.third); break;
 						case 3:
-							e.setRank(rank.fourth); break;
+							e.setRank(logic.rank.fourth); break;
 						}
 						n++;
 					}

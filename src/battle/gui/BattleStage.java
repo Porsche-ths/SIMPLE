@@ -1,8 +1,5 @@
 package battle.gui;
 
-import java.util.ArrayList;
-
-import chara.base.Enemy;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -21,12 +18,10 @@ public class BattleStage  {
 		stageCharaPane = initializeCharaPane();
 		battlePane = new BattlePane(stageCharaPane);
 		battlePane.setBackground(new Background(new BackgroundFill(new ImagePattern(bg), CornerRadii.EMPTY,Insets.EMPTY)));
-		// TODO Auto-generated constructor stub
 	}
 	private CharaPane initializeCharaPane() {
 		CharaPane stageCharaPane = new CharaPane(GameLogic.getTeam(),GameLogic.getVillains().get(stageNumber));
 		return stageCharaPane;
-		
 	}
 	public int getStageNumber() {
 		return stageNumber;

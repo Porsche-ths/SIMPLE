@@ -1,8 +1,7 @@
 package battle.gui;
 
-
-
 import chara.base.Ally;
+
 import javafx.animation.AnimationTimer;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -166,7 +165,6 @@ public class BattlePane extends VBox{
 				skillMenu.add(skillButton, i, 0); i++;
 			}
 			if (!playable) {
-				GameLogic.currentChara.atTurnEnd();
 				GameLogic.nextTurn();
 			}
 		}

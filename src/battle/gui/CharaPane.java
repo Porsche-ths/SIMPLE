@@ -66,14 +66,11 @@ public class CharaPane extends HBox {
 
 				@Override
 				public void handle(Event arg0) {
-					// TODO Auto-generated method stub
 					GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
 					disableCharaBox();
-
 					GameLogic.currentSkill.getTargets().add(a);
 					GameLogic.currentSkill.playAnimation();
 					GameLogic.currentSkill.cast();
-					GameLogic.currentChara.atTurnEnd();
 					charaBox.setDisable(true);
 
 				}
@@ -114,14 +111,11 @@ public class CharaPane extends HBox {
 
 				@Override
 				public void handle(Event arg0) {
-					// TODO Auto-generated method stub
 					GameLogic.currentSkill.getTargets().add(a);
 					GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
 					disableCharaBox();
 					GameLogic.currentSkill.playAnimation();
 					GameLogic.currentSkill.cast();
-					GameLogic.currentChara.atTurnEnd();
-
 				}
 				
 			});

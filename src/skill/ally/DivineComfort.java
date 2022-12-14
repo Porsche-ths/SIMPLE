@@ -6,7 +6,6 @@ import java.util.Arrays;
 import battle.gui.CharaPane;
 import chara.base.Ally;
 import chara.base.Chara;
-import chara.base.Enemy;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,7 +18,6 @@ import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 import skill.base.HealSkill;
 import skill.base.TargetSelectable;
-import sprites.AttackedSprite;
 import sprites.IdleSprite;
 
 public class DivineComfort extends HealSkill implements TargetSelectable {

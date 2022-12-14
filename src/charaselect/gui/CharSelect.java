@@ -2,25 +2,17 @@ package charaselect.gui;
 
 import java.util.ArrayList;
 
-
 import app.Main;
 import chara.ally.Crusader;
 import chara.ally.Priest;
 import chara.ally.Ranger;
 import chara.ally.Rogue;
 import chara.base.Ally;
-import chara.base.Chara;
-import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -28,21 +20,14 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 import logic.GameLogic;
 import logic.rank;
 
-// TODO LIST: ADD SWITCH TO MAP
-//			  ADD STAT
 public class CharSelect extends StackPane {
+	
 	private GridPane selectedCharaBox;
 	private HBox selectableCharaBox;
 	private StackPane crusaderBox,rangerBox,priestBox,rogueBox;

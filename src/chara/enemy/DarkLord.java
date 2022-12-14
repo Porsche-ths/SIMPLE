@@ -11,14 +11,12 @@ import skill.enemy.DarkBolt;
 public class DarkLord extends Enemy {
 
 	public DarkLord(String name) {
-		super(name, 80, 85, 8, 8, 0, 6, 8, 7, 100, 80, 80, 100);
+		super(name, "darkLord", 80, 85, 8, 8, 0, 6, 8, 7);
 		getSkills().add(new DarkBolt(this));
-		setClassName("darkLord");
 	}
 	
 	@Override
 	public void beginTurn() {
-		atTurnStart();
 		int size = GameLogic.team.size();
 		
 		if (size != 0) {
@@ -72,7 +70,6 @@ public class DarkLord extends Enemy {
 		} else {
 			GameLogic.nextTurn();
 		}
-		atTurnEnd();
 	}
 
 }

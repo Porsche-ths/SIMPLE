@@ -1,31 +1,21 @@
 package chara.base;
 
-import java.util.ArrayList;
-
-import item.base.Equipable;
 import logic.GameLogic;
-import logic.rank;
 
 public class Ally extends Chara{
-	private ArrayList<Equipable> equipmentSlots;
+	
 	private int deathBlowResist;
-	private String className;
-	private int targetPriority, calculatedPriority;
-	public Ally(String name, String className, int targetPriority, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd,
-			 int stunResist, int deathBlowResist, int bleedResist, int decayResist,
-			int debuffResist) {
-		super(name, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd,  stunResist, bleedResist, decayResist, debuffResist);
-		this.setClassName(className);
+	private int targetPriority;
+	
+	public Ally(String name, String className, int targetPriority, int maxHp, int accMod, int dodge, int crit, int prot, int minDmg, int maxDmg, int spd) {
+		super(name, className, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd);
 		this.setTargetPriority(targetPriority);
-		this.setDeathBlowResist(deathBlowResist);
-		// TODO Auto-generated constructor stub
+		this.setDeathBlowResist(67);
 	}
 
 	@Override
 	public void beginTurn() {
-		atTurnStart();
 		if (!this.isAlive()) {
-			atTurnEnd();
 			GameLogic.nextTurn();
 			return;
 		}
@@ -54,13 +44,13 @@ public class Ally extends Chara{
 						for (Ally a: GameLogic.team) {
 							switch(n) {
 							case 0:
-								a.setRank(rank.first); break;
+								a.setRank(logic.rank.first); break;
 							case 1:
-								a.setRank(rank.second); break;
+								a.setRank(logic.rank.second); break;
 							case 2:
-								a.setRank(rank.third); break;
+								a.setRank(logic.rank.third); break;
 							case 3:
-								a.setRank(rank.fourth); break;
+								a.setRank(logic.rank.fourth); break;
 							}
 							n--;
 						}
@@ -105,29 +95,13 @@ public class Ally extends Chara{
 	public void setTargetPriority(int targetPriority) {
 		this.targetPriority = targetPriority;
 	}
-
-	public ArrayList<Equipable> getEquipmentSlots() {
-		return equipmentSlots;
-	}
-
-	public void setEquipmentSlots(ArrayList<Equipable> equipmentSlots) {
-		this.equipmentSlots = equipmentSlots;
-	}
-
+	
 	public int getDeathBlowResist() {
 		return deathBlowResist;
 	}
 
 	public void setDeathBlowResist(int deathBlowResist) {
 		this.deathBlowResist = deathBlowResist;
-	}
-
-	public int getCalculatedPriority() {
-		return calculatedPriority;
-	}
-
-	public void setCalculatedPriority(int calculatedPriority) {
-		this.calculatedPriority = calculatedPriority;
 	}
 
 }

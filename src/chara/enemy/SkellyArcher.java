@@ -11,14 +11,12 @@ import skill.enemy.BonyShot;
 public class SkellyArcher extends Enemy {
 
 	public SkellyArcher(String name) {
-		super(name, 15, 82, 5, 12, 0, 3, 7, 5, 10, 200, 10, 15);
+		super(name, "skellyArcher", 15, 82, 5, 12, 0, 3, 7, 5);
 		getSkills().add(new BonyShot(this));
-		setClassName("skellyArcher");
 	}
 	
 	@Override
 	public void beginTurn() {
-		atTurnStart();
 		if (this.isAlive()) {
 			BonyShot bonyShot = (BonyShot) getSkills().get(0);
 			bonyShot.setValid();
@@ -89,7 +87,6 @@ public class SkellyArcher extends Enemy {
 		} else {
 			GameLogic.nextTurn();
 		}
-		atTurnEnd();
 	}
 
 }
