@@ -35,6 +35,16 @@ public class Enemy extends Chara {
 				for(Chara e :GameLogic.enemies) {
 					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
 				}
+				boolean allDead = true;
+				for (Enemy e: GameLogic.enemies) {
+					if (e.isAlive()) {
+						allDead = false;
+						break;
+					}
+				}
+				if (allDead) {
+					GameLogic.setStageCleared(true);
+				}
 			}
 		} else {
 			if (getHp() == 0) {

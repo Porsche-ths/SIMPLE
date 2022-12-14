@@ -65,7 +65,7 @@ public class Hemomancer extends Enemy {
 					int check = 0;
 					for (int i = 0; i < size; i++) {
 						check += targetList.get(i).getValue();
-						if (result < check) {
+						if (result <= check) {
 							getSkills().get(0).getTargets().add(targetList.get(i).getKey());
 							break;
 						}

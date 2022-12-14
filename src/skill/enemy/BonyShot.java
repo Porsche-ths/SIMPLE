@@ -53,6 +53,10 @@ public class BonyShot extends DamageSkill {
 					}
 					if(time == 100) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.currentStage.getBattlePane().showBattleText(getResult());
+					}
+					if(time == 175) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.nextTurn();
 					}
 				};
