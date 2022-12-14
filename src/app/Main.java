@@ -11,7 +11,7 @@ import startmenu.gui.MainMenu;
 
 public class Main extends Application {
 	public static Stage stage;
-	public static Scene mainMenuScene, charSelectScene, mapMenuScene;
+	public static Scene mainMenuScene, charSelectScene;
 	public static CharSelect charSelect;
 	public static MainMenu mainMenu;
 
