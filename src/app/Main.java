@@ -2,8 +2,10 @@ package app;
 
 import chara.base.Ally;
 import charaselect.gui.CharSelect;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import logic.GameLogic;
 import map.gui.Map;
@@ -19,6 +21,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
+		AudioClip music = new AudioClip(ClassLoader.getSystemResource("soundtrack.mp3").toString());
+		music.setCycleCount(Timeline.INDEFINITE);
+		music.play();
 		mainMenu = new MainMenu();
 		charSelect = new CharSelect();
 		mainMenuScene = new Scene(mainMenu);

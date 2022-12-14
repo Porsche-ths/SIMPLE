@@ -39,7 +39,7 @@ public class BonyShot extends DamageSkill {
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
-			GameLogic.currentStage.getBattlePane().showBattleText("SKELLY ARCHER USED BONY SHOT!");
+			GameLogic.currentStage.getBattlePane().showBattleText("SKELLY ARCHER used BONY SHOT!");
 
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;

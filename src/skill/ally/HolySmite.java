@@ -67,7 +67,7 @@ public class HolySmite extends DamageSkill implements TargetSelectable {
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
-			GameLogic.currentStage.getBattlePane().showBattleText("CRUSADER USED HOLY SMITE!");
+			GameLogic.currentStage.getBattlePane().showBattleText("CRUSADER used HOLY SMITE!");
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 				@Override

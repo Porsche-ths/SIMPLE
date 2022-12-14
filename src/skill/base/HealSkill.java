@@ -28,10 +28,10 @@ public class HealSkill extends BaseSkill {
 			System.out.println("Heal Amount : " + healAmount);
 			each.setHp(each.getHp() + healAmount);
 			if(targets.size() > 1) {
-				result +="It healed " + healAmount + " HP!,";
+				result +="Restore " + healAmount + " HP!,";
 			}
 			else {
-				result += "It healed " + healAmount + " HP!";
+				result += "Restore " + healAmount + " HP!";
 			}
 			System.out.println("After : " + each.getHp());
 			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);

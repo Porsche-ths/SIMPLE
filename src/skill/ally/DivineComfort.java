@@ -14,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 import skill.base.HealSkill;
 import skill.base.TargetSelectable;
@@ -49,6 +51,7 @@ public class DivineComfort extends HealSkill implements TargetSelectable {
 	public void playAnimation() {
 		// TODO Auto-generated method stub
 		HBox animation = new HBox();
+		
 		animation.setPrefWidth(1400);
 		animation.setPrefHeight(740);
 		animation.setAlignment(Pos.CENTER);
@@ -61,14 +64,20 @@ public class DivineComfort extends HealSkill implements TargetSelectable {
 		animation.setSpacing(100);
 		for(Chara e : GameLogic.team) {
 			if (e != getUser()) {
-				animation.getChildren().add(new IdleSprite(((Ally) (e)).getClassName()));
+				StackPane healBox = new StackPane();
+				healBox.setAlignment(Pos.CENTER);
+				healBox.getChildren().add(new IdleSprite(((Ally) (e)).getClassName()));
+				healBox.getChildren().add(new ImageView(new Image(ClassLoader.getSystemResource("healing.gif").toString())));
+				animation.getChildren().add(healBox);
+
 			}
 		}
 		CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 		GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 		GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 		GameLogic.currentStage.getBattlePane().showBattleText("PRIEST used DIVINE COMFORT!");
-
+		AudioClip healSound = new AudioClip(ClassLoader.getSystemResource("priestHealing.mp3").toString());
+		healSound.play();
 
 		AnimationTimer timer = new AnimationTimer() {
 			int time = 0;

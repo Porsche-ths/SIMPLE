@@ -31,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
@@ -203,6 +204,8 @@ public class CharSelect extends StackPane {
 		
 	}
 	private void charaBoxHandler(String className,Ally a) {
+		AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
+		click.play();
 		int n = GameLogic.getTeam().size();
 		if(n<4) {
 			enableConfirmButton();
@@ -223,6 +226,8 @@ public class CharSelect extends StackPane {
 
 			@Override
 			public void handle(Event arg0) {
+				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
+				click.play();
 				// TODO Auto-generated method stub
 				Thread t = new Thread(new Runnable() {
 
@@ -276,6 +281,8 @@ public class CharSelect extends StackPane {
 
 			@Override
 			public void handle(Event arg0) {
+				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
+				click.play();
 				// TODO Auto-generated method stub
 				Thread t = new Thread(new Runnable() {
 
@@ -336,6 +343,8 @@ public class CharSelect extends StackPane {
 			@Override
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
+				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
+				click.play();
 				Thread t = new Thread(new Runnable() {
 
 					@Override

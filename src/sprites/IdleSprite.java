@@ -44,6 +44,10 @@ public class IdleSprite extends ImageView{
 			setFitHeight(200);
 			setFitWidth(180);
 		}
+		if(name.equals("darkLord")){
+			setFitHeight(300);
+			setFitWidth(250);
+		}
 		
 	}
 }

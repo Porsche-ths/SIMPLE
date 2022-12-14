@@ -43,6 +43,10 @@ public class CorpseSprite extends ImageView {
 				setFitHeight(150);
 				setFitWidth(170);
 			}
+			if(name.equals("darkLord")){
+				setFitHeight(250);
+				setFitWidth(180);
+			}
 			
 			
 		}

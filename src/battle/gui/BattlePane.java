@@ -3,6 +3,7 @@ package battle.gui;
 
 
 import chara.base.Ally;
+import javafx.animation.AnimationTimer;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -108,6 +109,41 @@ public class BattlePane extends VBox{
 						}
 	
 					});
+				}
+				else {
+					skillButton.setOpacity(0.5);
+					skillButton.setOnMouseClicked(new EventHandler<Event>() {
+						@Override
+						public void handle(Event arg0) {
+							// TODO Auto-generated method stub
+							showBattleText("Skill not available at this rank!");
+							disableSkillMenu();
+							AnimationTimer timer = new AnimationTimer() {
+								int time = 0;
+
+								@Override
+								public void handle(long arg0) {
+									// TODO Auto-generated method stub
+									time += 1;
+									if(time < 100) {
+										textMenu.setOpacity(textMenu.getOpacity() - 0.01);
+
+									}
+
+									if(time == 100) {
+										enableSkillMenu();
+										removeBattleText();
+										textMenu.setOpacity(1);
+									}
+									
+								}
+								
+							};
+							timer.start();
+						}
+	
+					});
+					
 				}
 				skillMenu.add(skillButton, i, 0); i++;
 			}

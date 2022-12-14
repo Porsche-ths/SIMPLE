@@ -9,6 +9,7 @@ import battle.gui.BattleStage;
 import chara.base.Ally;
 import chara.base.Chara;
 import chara.base.Enemy;
+import chara.enemy.DarkLord;
 import chara.enemy.Executioner;
 import chara.enemy.Hemomancer;
 import chara.enemy.SkellyArcher;
@@ -219,11 +220,17 @@ public class GameLogic {
 		stageFour.add(h41);
 		stageFour.add(a41);
 		stageFour.add(a42);
+		ArrayList<Enemy> stageFive = new ArrayList<Enemy>();
+		DarkLord boss = new DarkLord("DarkLord");
+		boss.setRank(rank.first);
+		stageFive.add(boss);
+
 
 		villains.add(stageOne);
 		villains.add(stageTwo);
 		villains.add(stageThree);
 		villains.add(stageFour);
+		villains.add(stageFive);
 	}
 	
 

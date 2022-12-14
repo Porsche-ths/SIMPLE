@@ -13,7 +13,7 @@ public class DamageSkill extends BaseSkill {
 	private int acc;
 	private int critMod;
 	private int damageDeal;
-	private String result;
+	protected String result;
 	
 	public DamageSkill(String skillName, Chara user, ArrayList<logic.rank> rank, int dmgMod, int acc, int critMod) {
 		super(skillName, user, rank);

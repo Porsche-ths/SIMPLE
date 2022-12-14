@@ -17,6 +17,7 @@ import logic.GameLogic;
 import skill.base.DamageSkill;
 import skill.base.TargetSelectable;
 import sprites.AttackedSprite;
+import sprites.CorpseSprite;
 
 public class KeenShot extends DamageSkill implements TargetSelectable{
 
@@ -51,7 +52,11 @@ public class KeenShot extends DamageSkill implements TargetSelectable{
 			iv.setFitHeight(220);
 			iv.setFitWidth(150);
 			animation.getChildren().add(iv);
-			animation.getChildren().add(new AttackedSprite(((Enemy)(e)).getClassName()));
+			if (!((Enemy) (e)).isAlive()) {
+				animation.getChildren().add(new CorpseSprite(((Enemy) (e)).getClassName()));
+			} else {
+				animation.getChildren().add(new AttackedSprite(((Enemy) (e)).getClassName()));
+			}
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);

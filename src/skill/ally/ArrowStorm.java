@@ -17,6 +17,7 @@ import logic.GameLogic;
 import skill.base.DamageSkill;
 import skill.base.TargetSelectable;
 import sprites.AttackedSprite;
+import sprites.CorpseSprite;
 
 public class ArrowStorm extends DamageSkill implements TargetSelectable {
 
@@ -58,8 +59,11 @@ public class ArrowStorm extends DamageSkill implements TargetSelectable {
 		animation.getChildren().add(iv);
 		animation.setSpacing(100);
 		for(Chara e : GameLogic.enemies) {
-			System.out.println("name = " +e.getName());
-			animation.getChildren().add(new AttackedSprite(((Enemy)(e)).getClassName()));
+			if (!((Enemy) (e)).isAlive()) {
+				animation.getChildren().add(new CorpseSprite(((Enemy) (e)).getClassName()));
+			} else {
+				animation.getChildren().add(new AttackedSprite(((Enemy) (e)).getClassName()));
+			}
 		}
 		CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 		GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());

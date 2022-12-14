@@ -17,7 +17,7 @@ import skill.base.DamageSkill;
 import sprites.AttackedSprite;
 
 public class RavenousFeast extends DamageSkill {
-
+	private String healResult;
 	public RavenousFeast(Chara user) {
 		super("RAVENOUSFEAST", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.first, logic.rank.second, 
 				logic.rank.third, logic.rank.fourth)), 0, 80, 5);
@@ -25,6 +25,7 @@ public class RavenousFeast extends DamageSkill {
 	
 	@Override
 	public void cast() {
+		healResult = "";
 		for (Chara each: targets) {
 			System.out.println("Target Name : " + each.getName());
 			System.out.println("Target Before: " + each.getHp());
@@ -33,9 +34,11 @@ public class RavenousFeast extends DamageSkill {
 				int damageDeal = computeDamage(each);
 				((Ally) each).setHp(each.getHp() - damageDeal);
 				System.out.println("Damage : " + damageDeal);
+				result = "It dealt "+ damageDeal + " damage!";
 				// show damageDeal
 				
 				int selfHeal = (int) (damageDeal * 0.5);
+				healResult = "Also restore " + selfHeal + "HP!";
 				user.setHp(user.getHp() + selfHeal);
 				System.out.println("Self Heal : " + selfHeal);
 				System.out.println("Self HP : " + user.getHp());
@@ -47,6 +50,7 @@ public class RavenousFeast extends DamageSkill {
 			} else {
 				String show = "Dodge";
 				// show Dodge
+				result = "You dodged!";
 				System.out.println(show);
 			}
 			System.out.println("Target After: " + each.getHp());
@@ -71,7 +75,7 @@ public class RavenousFeast extends DamageSkill {
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
-			GameLogic.currentStage.getBattlePane().showBattleText("HEMOMANCER USED RAVENOUS FEAST!");
+			GameLogic.currentStage.getBattlePane().showBattleText("HEMOMANCER used RAVENOUS FEAST!");
 
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
@@ -85,9 +89,17 @@ public class RavenousFeast extends DamageSkill {
 					}
 					if(time == 100) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
-						GameLogic.currentStage.getBattlePane().showBattleText(getResult());
+						GameLogic.currentStage.getBattlePane().showBattleText(result);
 					}
-					if(time == 175) {
+					if(time == 175 && !healResult.equals("")) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.currentStage.getBattlePane().showBattleText(healResult);
+					}
+					if(time == 250 && !healResult.equals("")) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.nextTurn();
+					}
+					if(time == 175 && healResult.equals("")) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.nextTurn();
 					}

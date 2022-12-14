@@ -15,6 +15,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
@@ -60,6 +61,8 @@ public class MainMenu extends StackPane {
 			public void handle(Event arg0) {
 				// TODO Auto-generated method stub
 				Main.switchToCharSelect();
+				AudioClip click = new AudioClip(ClassLoader.getSystemResource("button.mp3").toString());
+				click.play();
 
 			}
 
