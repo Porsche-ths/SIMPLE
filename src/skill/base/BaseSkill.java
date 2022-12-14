@@ -21,6 +21,8 @@ public abstract class BaseSkill {
 	
 	public abstract void cast();
 	
+	public abstract void playAnimation();
+	
 	public boolean isValid() {
 		return this.isValid;
 	}
@@ -62,7 +64,5 @@ public abstract class BaseSkill {
 	public Chara getUser() {
 		return user;
 	}
-
-	public abstract void playAnimation();
 	
 }

@@ -24,6 +24,7 @@ public class DarkBolt extends DamageSkill {
 		super("DARKBOLT", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.first, logic.rank.second, 
 				logic.rank.third, logic.rank.fourth)), 0, 85, 0);
 	}
+	
 	@Override
 	public void playAnimation() {
 		for(Chara e : targets) {

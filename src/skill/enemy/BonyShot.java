@@ -22,6 +22,7 @@ public class BonyShot extends DamageSkill {
 	public BonyShot(Chara user) {
 		super("BONYSHOT", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.third, logic.rank.fourth)), 0, 0, 0);
 	}
+	
 	@Override
 	public void playAnimation() {
 		for(Chara e : targets) {

@@ -65,10 +65,8 @@ public class HealSkill extends BaseSkill {
 	}
 
 	@Override
-	public void playAnimation() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void playAnimation() {}
+	
 	public String getResult() {
 		return result;
 	}

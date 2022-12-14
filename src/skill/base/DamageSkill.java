@@ -51,11 +51,9 @@ public class DamageSkill extends BaseSkill {
 					System.out.println(damageDeal);
 					if(targets.size() > 1) {
 						result += "It dealt " + damageDeal + " damage!,";
-
 					}
 					else {
 						result = "It dealt " + damageDeal + " damage!";
-
 					}
 					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 					// show damageDeal
@@ -64,12 +62,9 @@ public class DamageSkill extends BaseSkill {
 					// show Miss or Dodge
 					if(targets.size() > 1) {
 						result += "It missed!,";
-
 					}
 					else {
 						result = "It missed!";
-;
-
 					}
 					System.out.println(show);
 				}
@@ -120,10 +115,8 @@ public class DamageSkill extends BaseSkill {
 	}
 
 	@Override
-	public void playAnimation() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void playAnimation() {}
+	
 	public String getResult() {
 		return result;
 	}

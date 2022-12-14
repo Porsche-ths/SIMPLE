@@ -18,7 +18,9 @@ import skill.base.DamageSkill;
 import sprites.AttackedSprite;
 
 public class RavenousFeast extends DamageSkill {
+	
 	private String healResult;
+	
 	public RavenousFeast(Chara user) {
 		super("RAVENOUSFEAST", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.first, logic.rank.second, 
 				logic.rank.third, logic.rank.fourth)), 0, 80, 5);
