@@ -40,7 +40,10 @@ public class AttackedSprite extends ImageView {
 			setFitHeight(180);
 			setFitWidth(130);
 		}
-		
+		if(name.equals("skellyArcher")) {
+			setFitHeight(200);
+			setFitWidth(130);
+		}
 		
 	}
 }

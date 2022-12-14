@@ -13,10 +13,20 @@ import chara.enemy.Executioner;
 import chara.enemy.Hemomancer;
 import chara.enemy.SkellyArcher;
 import chara.enemy.SkellySoldier;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import skill.base.BaseSkill;
 import javafx.scene.control.Alert.AlertType;
 
@@ -65,19 +75,34 @@ public class GameLogic {
 	}
 	
 	public static void beginStage(int i) {
-
-		enemies = villains.get(i-1);
-		currentStage = new BattleStage(i-1);
-		Scene stageScene = new Scene(GameLogic.getCurrentStage().getBattlePane());
-		for (Ally each: team) {
-			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
-		}
-		for (Enemy each: enemies) {
-			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
-		}
-		Main.stage.setScene(stageScene);
-		generateQueue();
-		nextTurn();
+		StackPane trans = createStageTrans(i);
+		Scene root = new Scene(trans);
+		Main.stage.setScene(root);
+		AnimationTimer timer = new AnimationTimer() {
+			int time = 0;
+			@Override
+			public void handle(long arg0) {
+				// TODO Auto-generated method stub
+				time += 1;
+				if(time == 100) {
+					enemies = villains.get(i-1);
+					currentStage = new BattleStage(i-1);
+					Scene stageScene = new Scene(GameLogic.getCurrentStage().getBattlePane());
+					for (Ally each: team) {
+						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
+					}
+					for (Enemy each: enemies) {
+						GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
+					}
+					Main.stage.setScene(stageScene);
+					generateQueue();
+					nextTurn();
+				}
+			}
+			
+		};
+		timer.start();
+		
 		
 	}
 	
@@ -101,6 +126,13 @@ public class GameLogic {
 		} else {
 			if (q.isEmpty()) generateQueue();
 			currentChara = q.poll();
+			if(currentChara instanceof Ally) {
+				GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
+			}
+			else {
+				GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
+
+			}
 			System.out.println("-----------------------------------------\n");
 			System.out.println("Current Turn : " + currentChara.getName());
 			currentChara.beginTurn();
@@ -230,6 +262,20 @@ public class GameLogic {
 	public static void setCurrentStage(BattleStage currentStage) {
 		GameLogic.currentStage = currentStage;
 	}
+	public static StackPane createStageTrans(int i) {
+    	StackPane s = new StackPane();
+    	s.setPrefWidth(1400);
+    	s.setPrefHeight(680);
+    	s.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 80);
+		s.setAlignment(Pos.CENTER);
+		Text t = new Text("STAGE " + i);
+		t.setFill(Color.WHITE);
+		t.setFont(font);
+		s.getChildren().add(t);
+
+    	return s;
+    }
 
 }
 
@@ -241,4 +287,5 @@ class SpeedComparator implements Comparator<Chara>{
         if (c1.getCalculatedSpd() > c2.getCalculatedSpd()) return -1;
         return 0;
     }
+    
 }

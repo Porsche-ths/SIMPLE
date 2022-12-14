@@ -9,6 +9,7 @@ public class HealSkill extends BaseSkill {
 	
 	private int minHeal;
 	private int maxHeal;
+	private String result;
 
 	public HealSkill(String skillName, Chara user, ArrayList<logic.rank> rank, int minHeal, int maxHeal) {
 		super(skillName, user, rank);
@@ -20,11 +21,18 @@ public class HealSkill extends BaseSkill {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
+		result = "";
 		for (Chara each: targets) {
 			System.out.println("Before : " + each.getHp());
 			int healAmount = computeHealAmount(each);
 			System.out.println("Heal Amount : " + healAmount);
 			each.setHp(each.getHp() + healAmount);
+			if(targets.size() > 1) {
+				result +="It healed " + healAmount + " HP!,";
+			}
+			else {
+				result += "It healed " + healAmount + " HP!";
+			}
 			System.out.println("After : " + each.getHp());
 			GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 		}
@@ -60,6 +68,9 @@ public class HealSkill extends BaseSkill {
 	public void playAnimation() {
 		// TODO Auto-generated method stub
 		
+	}
+	public String getResult() {
+		return result;
 	}
 
 }

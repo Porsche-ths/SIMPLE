@@ -12,6 +12,8 @@ public class DamageSkill extends BaseSkill {
 	private int dmgMod; //percent to multiply
 	private int acc;
 	private int critMod;
+	private int damageDeal;
+	private String result;
 	
 	public DamageSkill(String skillName, Chara user, ArrayList<logic.rank> rank, int dmgMod, int acc, int critMod) {
 		super(skillName, user, rank);
@@ -23,33 +25,52 @@ public class DamageSkill extends BaseSkill {
 	@Override
 	public void cast() {
 		// TODO Auto-generated method stub
+		result = "";
 		for (Chara each: targets) {
 			System.out.println("Target Name : " + each.getName());
 			System.out.println("Target Before: " + each.getHp());
 			if (each instanceof Ally) {
 				if (isHit(each)) {
-					int damageDeal = computeDamage(each);
+					damageDeal = computeDamage(each);
 					((Ally) each).setHp(each.getHp() - damageDeal);
-					System.out.println(damageDeal);
 					// show damageDeal
+					result = "It dealt " + damageDeal + " damage!";
 					if(each.getHp()!=0) {
 					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 					}
 				} else {
 					String show = "Dodge";
 					// show Miss or Dodge
+					result = "You dodged!";
 					System.out.println(show);
 				}
 			} else {
 				if (isHit(each)) {
-					int damageDeal = computeDamage(each);
+					damageDeal = computeDamage(each);
 					((Enemy) each).setHp(each.getHp() - damageDeal);
 					System.out.println(damageDeal);
+					if(targets.size() > 1) {
+						result += "It dealt " + damageDeal + " damage!,";
+
+					}
+					else {
+						result = "It dealt " + damageDeal + " damage!";
+
+					}
 					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 					// show damageDeal
 				} else {
 					String show = "Miss";
 					// show Miss or Dodge
+					if(targets.size() > 1) {
+						result += "It missed!,";
+
+					}
+					else {
+						result = "It missed!";
+;
+
+					}
 					System.out.println(show);
 				}
 			}
@@ -102,6 +123,9 @@ public class DamageSkill extends BaseSkill {
 	public void playAnimation() {
 		// TODO Auto-generated method stub
 		
+	}
+	public String getResult() {
+		return result;
 	}
 	
 }

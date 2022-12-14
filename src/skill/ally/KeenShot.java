@@ -43,18 +43,19 @@ public class KeenShot extends DamageSkill implements TargetSelectable{
 			HBox animation = new HBox();
 			animation.setPrefWidth(1400);
 			animation.setPrefHeight(740);
-			animation.setAlignment(Pos.CENTER);
-			animation.setPadding(new Insets(200,0,50,0));
+			animation.setAlignment(Pos.BOTTOM_CENTER);
+			animation.setPadding(new Insets(150,0,25,0));
 			Image img = new Image(ClassLoader.getSystemResource("rangerSkill.gif").toString());
 			ImageView iv = new ImageView(img);
 			animation.setSpacing(100);
 			iv.setFitHeight(220);
-			iv.setFitWidth(170);
+			iv.setFitWidth(150);
 			animation.getChildren().add(iv);
 			animation.getChildren().add(new AttackedSprite(((Enemy)(e)).getClassName()));
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
+			GameLogic.currentStage.getBattlePane().showBattleText("RANGER used KEEN SHOT!");
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 				@Override
@@ -64,8 +65,15 @@ public class KeenShot extends DamageSkill implements TargetSelectable{
 					if(time == 75) {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
-					GameLogic.nextTurn();
+					}
+					if(time == 100) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.currentStage.getBattlePane().showBattleText(getResult());
+					}
+					if(time == 175) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
 
+						GameLogic.nextTurn();
 					}
 				};
 			

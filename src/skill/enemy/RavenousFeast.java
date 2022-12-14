@@ -58,9 +58,9 @@ public class RavenousFeast extends DamageSkill {
 		for(Chara e : targets) {
 			HBox animation = new HBox();
 			animation.setPrefWidth(1400);
-			animation.setPrefHeight(740);
+			animation.setMaxHeight(250);
 			animation.setAlignment(Pos.CENTER);
-			animation.setPadding(new Insets(200,0,50,0));
+			animation.setPadding(new Insets(150,0,25,0));
 			Image img = new Image(ClassLoader.getSystemResource("hemomancerAttack.gif").toString());
 			ImageView iv = new ImageView(img);
 			animation.setSpacing(-50);
@@ -71,7 +71,7 @@ public class RavenousFeast extends DamageSkill {
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
-			
+			GameLogic.currentStage.getBattlePane().showBattleText("HEMOMANCER USED RAVENOUS FEAST!");
 
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
@@ -84,6 +84,7 @@ public class RavenousFeast extends DamageSkill {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
 					}
 					if(time == 100) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.nextTurn();
 					}
 				};

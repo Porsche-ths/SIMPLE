@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -16,16 +17,20 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import logic.GameLogic;
 import skill.base.BaseSkill;
 import skill.base.TargetSelectable;
 
 public class BattlePane extends VBox{
 	private CharaPane charaPane;
-	private GridPane fightMenu,skillMenu;
+	private GridPane textMenu,skillMenu;
 	private BorderPane fightUI;
 	private StackPane fightButton;
+	private Text battleText;
 	
 	public BattlePane(CharaPane charaPane) {
 		this.charaPane = charaPane;
@@ -44,7 +49,7 @@ public class BattlePane extends VBox{
 		initializeSkillMenu();
 	}
 	private void initializeFightMenu() {
-		fightMenu = new GridPane();
+		textMenu = new GridPane();
 		//fightMenu.setBackground(new Background(new BackgroundFill(Color.AQUA,CornerRadii.EMPTY,Insets.EMPTY)));
 		fightButton = new StackPane();
 		//itemButton = new StackPane();
@@ -63,13 +68,10 @@ public class BattlePane extends VBox{
 
 		});
 		//itemButton.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("itemButton.png")),CornerRadii.EMPTY,Insets.EMPTY)));
-		fightMenu.setAlignment(Pos.CENTER);
-		fightMenu.add(fightButton, 0, 0);
-		//fightMenu.add(itemButton, 1, 0);
-		fightMenu.setHgap(50);
-		fightUI.setRight(fightMenu);
-		fightMenu.setPrefHeight(200);
-		fightMenu.setPrefWidth(700);
+		textMenu.setAlignment(Pos.CENTER);
+		textMenu.setHgap(50);
+		textMenu.setPrefHeight(200);
+		textMenu.setPrefWidth(700);
 		
 	}
 	public void initializeSkillMenu() {
@@ -83,12 +85,13 @@ public class BattlePane extends VBox{
 			boolean playable = false;
 			for (BaseSkill s: GameLogic.currentChara.getSkills()) {
 				StackPane skillButton = new StackPane();
-				skillButton.setMaxHeight(100);
-				skillButton.setMaxWidth(100);
+				skillButton.setAlignment(Pos.CENTER);
+				skillButton.setMaxHeight(75);
+				skillButton.setMaxWidth(75);
 				Image skill = new Image(ClassLoader.getSystemResource(s.getSkillName() + ".png").toString());
 				ImageView skillSquare = new ImageView(skill);
-				skillSquare.setFitHeight(100);
-				skillSquare.setFitWidth(100);
+				skillSquare.setFitHeight(75);
+				skillSquare.setFitWidth(75);
 				skillButton.getChildren().add(skillSquare);
 				s.setValid();
 				System.out.println("Skill is Vaild ? : " + s.isValid());
@@ -114,5 +117,31 @@ public class BattlePane extends VBox{
 			}
 		}
 		fightUI.setLeft(skillMenu);
+	}
+	public void showBattleText(String text) {
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 30);
+		battleText = new Text(text);
+		battleText.setFont(font);
+		battleText.setFill(Color.WHITE);
+		textMenu.add(battleText,0,0);
+		fightUI.setRight(textMenu);
+	}
+	public void removeBattleText() {
+		textMenu.getChildren().remove(battleText);
+		fightUI.getChildren().remove(textMenu);
+	}
+	public void disableSkillMenu() {
+		for(Node n : skillMenu.getChildren()) {
+			((StackPane)(n)).setDisable(true);
+			((StackPane)(n)).setVisible(false);
+
+		}
+	}
+	public void enableSkillMenu() {
+		for(Node n : skillMenu.getChildren()) {
+			((StackPane)(n)).setDisable(false);
+			((StackPane)(n)).setVisible(true);
+
+		}
 	}
 }

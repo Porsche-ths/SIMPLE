@@ -40,7 +40,7 @@ public class SonicBlow extends DamageSkill {
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
-			
+			GameLogic.currentStage.getBattlePane().showBattleText("EXECUTIONER used SONIC BLOW!");
 
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
@@ -53,6 +53,11 @@ public class SonicBlow extends DamageSkill {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
 					}
 					if(time == 100) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.currentStage.getBattlePane().showBattleText(getResult());
+					}
+					if(time == 175) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.nextTurn();
 					}
 				};

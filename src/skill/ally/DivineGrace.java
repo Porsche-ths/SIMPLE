@@ -58,6 +58,7 @@ public class DivineGrace extends HealSkill implements TargetSelectable {
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
+			GameLogic.currentStage.getBattlePane().showBattleText("PRIEST used DIVINE GRACE");
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 
@@ -68,6 +69,13 @@ public class DivineGrace extends HealSkill implements TargetSelectable {
 					if (time == 75) {
 						GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 						GameLogic.getCurrentStage().getBattlePane().getChildren().add(0, tmp);
+					}
+					if(time == 100) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.currentStage.getBattlePane().showBattleText(getResult());
+					}
+					if(time == 175) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.nextTurn();
 					}
 				};

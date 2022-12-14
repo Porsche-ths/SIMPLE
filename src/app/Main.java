@@ -1,5 +1,6 @@
 package app;
 
+import chara.base.Ally;
 import charaselect.gui.CharSelect;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,10 +21,8 @@ public class Main extends Application {
 		// TODO Auto-generated method stub
 		mainMenu = new MainMenu();
 		charSelect = new CharSelect();
-		mapMenu = new Map();
 		mainMenuScene = new Scene(mainMenu);
 		charSelectScene = new Scene(charSelect);	
-		mapMenuScene = new Scene(mapMenu);
 		stage = primaryStage;
 		stage.setScene(mainMenuScene);
 		stage.show();
@@ -38,12 +37,11 @@ public class Main extends Application {
 		stage.setScene(mainMenuScene);
 	}
 
-	public static void switchToMap() {
-		stage.setScene(mapMenuScene);
-	}
+	
 	
 	public static void switchToBattleStage() {
 		GameLogic.newGame();
+		
 	}
 
 	public static void main(String[] args) {

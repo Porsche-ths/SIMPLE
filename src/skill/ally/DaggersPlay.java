@@ -17,6 +17,7 @@ import logic.GameLogic;
 import skill.base.DamageSkill;
 import skill.base.TargetSelectable;
 import sprites.AttackedSprite;
+import sprites.CorpseSprite;
 
 public class DaggersPlay extends DamageSkill implements TargetSelectable {
 
@@ -63,25 +64,43 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 		animation.setSpacing(200);
 		for(Chara e : GameLogic.enemies) {
 			if (e.getRank().equals(logic.rank.second) || e.getRank().equals(logic.rank.third)) {
-			System.out.println("name = " +e.getName());
-			animation.getChildren().add(new AttackedSprite(((Enemy)(e)).getClassName()));
-			}
+				if (!((Enemy) (e)).isAlive()) {
+					animation.getChildren().add(new CorpseSprite(((Enemy) (e)).getClassName()));
+				} else {
+					animation.getChildren().add(new AttackedSprite(((Enemy) (e)).getClassName()));
+				}			}
 		}
 		CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 		GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 		GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
+		GameLogic.currentStage.getBattlePane().showBattleText("ROGUE used DAGGERS PLAY!");
+
 		AnimationTimer timer = new AnimationTimer() {
 			int time = 0;
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				time += 1;
+				String[] result = getResult().split(",");
 				if(time == 75) {
 				GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 				GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
-				GameLogic.nextTurn();
+				}
+				if(time == 100) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.currentStage.getBattlePane().showBattleText(result[0]);
+				}
+				if(time == 175 && result.length > 1) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.currentStage.getBattlePane().showBattleText(result[1]);
+				}
+				else if (time == 175 && result.length < 2) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
+					GameLogic.nextTurn();
 				}
 			};
+			
 		
 		};
 		timer.start();

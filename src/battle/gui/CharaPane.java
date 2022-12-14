@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import logic.GameLogic;
+import sprites.CorpseSprite;
 import sprites.IdleSprite;
 
 
@@ -66,10 +67,15 @@ public class CharaPane extends HBox {
 				@Override
 				public void handle(Event arg0) {
 					// TODO Auto-generated method stub
+					GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
+					disableCharaBox();
+
 					GameLogic.currentSkill.getTargets().add(a);
 					GameLogic.currentSkill.playAnimation();
 					GameLogic.currentSkill.cast();
 					GameLogic.currentChara.atTurnEnd();
+					charaBox.setDisable(true);
+
 				}
 				
 			});
@@ -85,11 +91,17 @@ public class CharaPane extends HBox {
 		for(Enemy a : opponents) {
 			VBox charaBox = new VBox();
 			ImageView idle = new ImageView();
+
 			if(a.isAlive()) {
 				 idle = new IdleSprite(a.getClassName());
+				charaBox.setAlignment(Pos.CENTER);
+
 			}
 			else {
-				idle = new IdleSprite(a.getClassName());
+				idle = new CorpseSprite(a.getClassName());
+				charaBox.setAlignment(Pos.BOTTOM_CENTER);
+
+				
 			}
 			StackPane hp = initializeHpBar(100, a);
 			
@@ -97,7 +109,6 @@ public class CharaPane extends HBox {
 			charaBox.setMaxHeight(200);
 			charaBox.setMaxWidth(150);
 			charaBox.getChildren().add(hp);
-			charaBox.setAlignment(Pos.CENTER);
 
 			charaBox.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -105,9 +116,12 @@ public class CharaPane extends HBox {
 				public void handle(Event arg0) {
 					// TODO Auto-generated method stub
 					GameLogic.currentSkill.getTargets().add(a);
+					GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
+					disableCharaBox();
 					GameLogic.currentSkill.playAnimation();
 					GameLogic.currentSkill.cast();
 					GameLogic.currentChara.atTurnEnd();
+
 				}
 				
 			});
@@ -156,6 +170,11 @@ public class CharaPane extends HBox {
 			StackPane s = (StackPane)(v.getChildren().get(1));
 			Rectangle r = (Rectangle)(s.getChildren().get(0));
 			r.setWidth((((double)c.getHp())/(double)(c.getMaxHp()))*defaultWidth);
+		}
+	}
+	private void disableCharaBox() {
+		for(Node n : this.getChildren()) {
+			n.setDisable(true);
 		}
 	}
 

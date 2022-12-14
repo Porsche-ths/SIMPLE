@@ -67,17 +67,54 @@ public class DivineComfort extends HealSkill implements TargetSelectable {
 		CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 		GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 		GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
+		GameLogic.currentStage.getBattlePane().showBattleText("PRIEST used DIVINE COMFORT!");
+
+
 		AnimationTimer timer = new AnimationTimer() {
 			int time = 0;
+			
 			@Override
 			public void handle(long arg0) {
 				// TODO Auto-generated method stub
 				time += 1;
+				String[] result = getResult().split(",");
 				if(time == 75) {
 				GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 				GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
-				GameLogic.nextTurn();
+				
 				}
+				if(time == 100) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.currentStage.getBattlePane().showBattleText(result[0]);
+				}
+				if(time == 175 && result.length > 1) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.currentStage.getBattlePane().showBattleText(result[1]);
+				}
+				else if (time == 250 && result.length < 2) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
+					GameLogic.nextTurn();
+				}
+				if(time == 250 && result.length > 2) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.currentStage.getBattlePane().showBattleText(result[2]);
+				}
+				else if (time == 325 && result.length < 3){
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
+					GameLogic.nextTurn();
+				}
+				if(time == 325 && result.length > 3) {
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.currentStage.getBattlePane().showBattleText(result[3]);
+				}
+				else if (time == 400 ){
+					GameLogic.currentStage.getBattlePane().removeBattleText();
+					GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
+					GameLogic.nextTurn();
+				}
+				
 			};
 		
 		};

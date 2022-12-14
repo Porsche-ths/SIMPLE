@@ -17,6 +17,7 @@ import logic.GameLogic;
 import skill.base.DamageSkill;
 import skill.base.TargetSelectable;
 import sprites.AttackedSprite;
+import sprites.CorpseSprite;
 
 public class StabInTheFace extends DamageSkill implements TargetSelectable {
 
@@ -50,10 +51,15 @@ public class StabInTheFace extends DamageSkill implements TargetSelectable {
 			iv.setFitHeight(220);
 			iv.setFitWidth(180);
 			animation.getChildren().add(iv);
-			animation.getChildren().add(new AttackedSprite(((Enemy)(e)).getClassName()));
+			if (!((Enemy) (e)).isAlive()) {
+				animation.getChildren().add(new CorpseSprite(((Enemy) (e)).getClassName()));
+			} else {
+				animation.getChildren().add(new AttackedSprite(((Enemy) (e)).getClassName()));
+			}
 			CharaPane tmp = GameLogic.currentStage.getStageCharaPane();
 			GameLogic.currentStage.getBattlePane().getChildren().remove(GameLogic.currentStage.getStageCharaPane());
 			GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
+			GameLogic.currentStage.getBattlePane().showBattleText("ROGUE used STAB IN THE FACE!");
 			AnimationTimer timer = new AnimationTimer() {
 				int time = 0;
 				@Override
@@ -63,8 +69,15 @@ public class StabInTheFace extends DamageSkill implements TargetSelectable {
 					if(time == 75) {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);
 					GameLogic.getCurrentStage().getBattlePane().getChildren().add(0,tmp);
-					GameLogic.nextTurn();
 
+					}
+					if(time == 100) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.currentStage.getBattlePane().showBattleText(getResult());
+					}
+					if(time == 175) {
+						GameLogic.currentStage.getBattlePane().removeBattleText();
+						GameLogic.nextTurn();
 					}
 				};
 			

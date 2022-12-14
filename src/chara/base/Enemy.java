@@ -27,6 +27,14 @@ public class Enemy extends Chara {
 				setDodge(0);
 				setProt(0);
 				setMaxHp(10);
+				GameLogic.getCurrentStage().getStageCharaPane().getChildren().clear();
+				GameLogic.getCurrentStage().getStageCharaPane().addCharToPane();
+				for(Chara e :GameLogic.team) {
+					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
+				}
+				for(Chara e :GameLogic.enemies) {
+					GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(e, 100);
+				}
 			}
 		} else {
 			if (getHp() == 0) {

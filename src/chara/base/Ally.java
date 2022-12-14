@@ -17,6 +17,7 @@ public class Ally extends Chara{
 		super(name, maxHp, accMod, dodge, crit, prot, minDmg, maxDmg, spd,  stunResist, bleedResist, decayResist, debuffResist);
 		this.setClassName(className);
 		this.setTargetPriority(targetPriority);
+		this.setDeathBlowResist(deathBlowResist);
 		// TODO Auto-generated constructor stub
 	}
 
