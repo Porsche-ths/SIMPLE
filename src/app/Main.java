@@ -23,6 +23,7 @@ public class Main extends Application {
 		// TODO Auto-generated method stub
 		AudioClip music = new AudioClip(ClassLoader.getSystemResource("soundtrack.mp3").toString());
 		music.setCycleCount(Timeline.INDEFINITE);
+
 		music.play();
 		mainMenu = new MainMenu();
 		charSelect = new CharSelect();

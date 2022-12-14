@@ -106,6 +106,24 @@ public class BattlePane extends VBox{
 							
 							GameLogic.currentSkill = s;
 							((TargetSelectable) s).selectTarget();
+							Image img = new Image(ClassLoader.getSystemResource("selected" +s.getSkillName() + ".png").toString());
+							ImageView selectedSkill = new ImageView(img);
+							selectedSkill.setFitHeight(75);
+							selectedSkill.setFitWidth(75);
+							skillButton.getChildren().add(selectedSkill);
+							AnimationTimer timer = new AnimationTimer() {
+
+								@Override
+								public void handle(long arg0) {
+									// TODO Auto-generated method stub
+									if(GameLogic.currentSkill!=s) {
+										skillButton.getChildren().remove(1);
+										stop();
+									}
+								}
+								
+							};
+							timer.start();
 						}
 	
 					});
