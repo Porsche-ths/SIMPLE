@@ -22,6 +22,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		AudioClip music = new AudioClip(ClassLoader.getSystemResource("soundtrack.mp3").toString());
+		music.setVolume(0.5);
 		music.setCycleCount(Timeline.INDEFINITE);
 
 		music.play();
