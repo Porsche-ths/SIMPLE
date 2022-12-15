@@ -45,29 +45,11 @@ public class BattlePane extends VBox{
 		fightUI.setBackground(new Background(new BackgroundFill(new ImagePattern(ui),CornerRadii.EMPTY,Insets.EMPTY)));
 
 		getChildren().add(fightUI);
-		initializeFightMenu();
+		initializeTextMenu();
 		initializeSkillMenu();
 	}
-	private void initializeFightMenu() {
+	private void initializeTextMenu() {
 		textMenu = new GridPane();
-		//fightMenu.setBackground(new Background(new BackgroundFill(Color.AQUA,CornerRadii.EMPTY,Insets.EMPTY)));
-		fightButton = new StackPane();
-		//itemButton = new StackPane();
-		fightButton.setPrefHeight(100);
-		fightButton.setPrefWidth(250);
-		//itemButton.setPrefHeight(100);
-		//itemButton.setPrefWidth(250);
-		fightButton.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("fightButton.png")),CornerRadii.EMPTY,Insets.EMPTY)));
-		fightButton.setOnMouseClicked(new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
-				GameLogic.nextTurn();
-			}
-
-		});
-		//itemButton.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("itemButton.png")),CornerRadii.EMPTY,Insets.EMPTY)));
 		textMenu.setAlignment(Pos.CENTER);
 		textMenu.setHgap(50);
 		textMenu.setPrefHeight(200);

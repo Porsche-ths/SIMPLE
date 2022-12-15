@@ -41,7 +41,7 @@ public class RavenousFeast extends DamageSkill {
 				// show damageDeal
 				
 				int selfHeal = (int) (damageDeal * 0.5);
-				healResult = "Also restore " + selfHeal + "HP!";
+				healResult = "Also restore " + selfHeal + " HP!";
 				user.setHp(user.getHp() + selfHeal);
 				System.out.println("Self Heal : " + selfHeal);
 				System.out.println("Self HP : " + user.getHp());

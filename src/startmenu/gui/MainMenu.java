@@ -26,7 +26,7 @@ public class MainMenu extends StackPane {
 		setPrefHeight(680);
 		setAlignment(Pos.CENTER);
 		
-		Image bg = new Image("startMenu.gif");
+		Image bg = new Image(ClassLoader.getSystemResource("startMenu.gif").toString());
 		ImageView bgv = new ImageView(bg);
 		bgv.setFitWidth(1400);
 		bgv.setFitHeight(680);
@@ -37,7 +37,7 @@ public class MainMenu extends StackPane {
 		startBorder.setMaxWidth(400);
 		startBorder.setMaxHeight(600);
 		
-		Image titleImg = new Image("titleText.png");
+		Image titleImg = new Image(ClassLoader.getSystemResource("titleText.png").toString());
 		titleText = new ImageView(titleImg);
 		
 		Text startText = new Text("START");

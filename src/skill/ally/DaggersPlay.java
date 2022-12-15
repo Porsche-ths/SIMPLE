@@ -76,6 +76,7 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 		GameLogic.currentStage.getBattlePane().getChildren().add(0, animation);
 		GameLogic.currentStage.getBattlePane().showBattleText("ROGUE used DAGGERS PLAY!");
 		Audio.rogueSkill1.stop();
+		Audio.rogueSkill1.setVolume(10);
 		Audio.rogueSkill1.play();
 
 		AnimationTimer timer = new AnimationTimer() {

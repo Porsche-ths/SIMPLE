@@ -14,7 +14,23 @@ public class BattleStage  {
 	private BattlePane battlePane ;
 	public BattleStage(int n) {
 		stageNumber = n;
-		Image bg = new Image("stageOneBg.png");
+		String stage = "";
+		if(GameLogic.stage == 1) {
+			stage = "stageOne.png";
+		}
+		if(GameLogic.stage == 2) {
+			stage = "stageTwo.png";
+		}
+		if(GameLogic.stage == 3) {
+			stage = "stageThree.png";
+		}
+		if(GameLogic.stage == 4) {
+			stage = "stageFour.png";
+		}
+		if(GameLogic.stage == 5) {
+			stage = "stageFive.png";
+		}
+		Image bg = new Image(ClassLoader.getSystemResource(stage).toString());
 		stageCharaPane = initializeCharaPane();
 		battlePane = new BattlePane(stageCharaPane);
 		battlePane.setBackground(new Background(new BackgroundFill(new ImagePattern(bg), CornerRadii.EMPTY,Insets.EMPTY)));
