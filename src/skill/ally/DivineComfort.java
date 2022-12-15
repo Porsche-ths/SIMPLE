@@ -23,7 +23,7 @@ import sprites.IdleSprite;
 public class DivineComfort extends HealSkill implements TargetSelectable {
 
 	public DivineComfort(Chara user) {
-		super("DIVINECOMFORT", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.second, logic.rank.third, logic.rank.fourth)), 1, 3);
+		super("DivineComfort", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.second, logic.rank.third, logic.rank.fourth)), 1, 3);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import sprites.CorpseSprite;
 public class KeenShot extends DamageSkill implements TargetSelectable{
 
 	public KeenShot(Chara user) {
-		super("KEENSHOT", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.third, logic.rank.fourth)), 0, 95, 5);
+		super("KeenShot", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.third, logic.rank.fourth)), 0, 95, 5);
 	}
 
 	@Override

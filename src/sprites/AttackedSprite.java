@@ -16,15 +16,15 @@ public class AttackedSprite extends ImageView {
 			setFitHeight(180);
 			setFitWidth(130);
 		}
-		if(name.equals("Crusader")) {
+		if(name.equals("crusader")) {
 			setFitHeight(180);
 			setFitWidth(130);
 		}
-		if(name.equals("Priest")) {
+		if(name.equals("priest")) {
 			setFitHeight(180);
 			setFitWidth(130);
 		}
-		if(name.equals("Rogue")) {
+		if(name.equals("rogue")) {
 			setFitHeight(180);
 			setFitWidth(100);
 		}
@@ -36,7 +36,7 @@ public class AttackedSprite extends ImageView {
 			setFitHeight(220);
 			setFitWidth(280);
 		}
-		if(name.equals("Ranger")) {
+		if(name.equals("ranger")) {
 			setFitHeight(180);
 			setFitWidth(130);
 		}

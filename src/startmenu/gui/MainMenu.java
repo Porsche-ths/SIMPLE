@@ -32,7 +32,7 @@ public class MainMenu extends StackPane {
 		bgv.setFitHeight(680);
 		getChildren().add(bgv);
 
-		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 60);
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.ttf"), 60);
 		StackPane startBorder = new StackPane();
 		startBorder.setMaxWidth(400);
 		startBorder.setMaxHeight(600);

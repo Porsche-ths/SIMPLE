@@ -71,6 +71,7 @@ public class BattlePane extends VBox{
 				skillButton.setMaxHeight(75);
 				skillButton.setMaxWidth(75);
 				Image skill = new Image(ClassLoader.getSystemResource(s.getSkillName() + ".png").toString());
+				System.out.println(s.getSkillName() + ".png");
 				ImageView skillSquare = new ImageView(skill);
 				skillSquare.setFitHeight(75);
 				skillSquare.setFitWidth(75);
@@ -156,7 +157,7 @@ public class BattlePane extends VBox{
 		fightUI.setLeft(skillMenu);
 	}
 	public void showBattleText(String text) {
-		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 30);
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.ttf"), 30);
 		battleText = new Text(text);
 		battleText.setFont(font);
 		battleText.setFill(Color.WHITE);

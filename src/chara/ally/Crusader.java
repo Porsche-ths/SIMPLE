@@ -7,7 +7,7 @@ import skill.ally.SwordBash;
 public class Crusader extends Ally {
 
 	public Crusader(String name) {
-		super(name, "Crusader", 10, 33, 0, 5, 3, 10, 6, 12, 1);
+		super(name, "crusader", 10, 33, 0, 5, 3, 10, 6, 12, 1);
 		getSkills().add(new SwordBash(this));
 		getSkills().add(new HolySmite(this));
 	}

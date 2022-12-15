@@ -58,8 +58,8 @@ public class GameLogic {
 	
 	public static void endGame() {
 
-		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 60);
-		Font font2 = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 80);
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.ttf"), 60);
+		Font font2 = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.ttf"), 80);
 		VBox screen = new VBox();
     	screen.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 
@@ -280,7 +280,7 @@ public class GameLogic {
     	s.setPrefWidth(1400);
     	s.setPrefHeight(680);
     	s.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
-		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.TTF"), 80);
+		Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("MINECRAFT_FONT.ttf"), 80);
 		s.setAlignment(Pos.CENTER);
 		Text t = new Text("STAGE " + i);
 		t.setFill(Color.WHITE);

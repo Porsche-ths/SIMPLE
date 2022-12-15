@@ -23,7 +23,7 @@ import sprites.CorpseSprite;
 public class StabInTheFace extends DamageSkill implements TargetSelectable {
 
 	public StabInTheFace(Chara user) {
-		super("STABINTHEFACE", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.first, logic.rank.second, logic.rank.third)), 0, 90, 10);
+		super("stabInTheFace", user, new ArrayList<logic.rank>(Arrays.asList(logic.rank.first, logic.rank.second, logic.rank.third)), 0, 90, 10);
 	}
 
 	@Override

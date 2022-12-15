@@ -12,19 +12,19 @@ public class IdleSprite extends ImageView{
 	}
 
 	private void setSizeByName(String name) {
-		if(name.equals("Crusader")) {
+		if(name.equals("crusader")) {
 			setFitHeight(200);
 			setFitWidth(100);
 		}
-		if(name.equals("Priest")) {
+		if(name.equals("priest")) {
 			setFitHeight(200);
 			setFitWidth(110);
 		}
-		if(name.equals("Ranger")) {
+		if(name.equals("ranger")) {
 			setFitHeight(200);
 			setFitWidth(110);
 		}
-		if(name.equals("Rogue")) {
+		if(name.equals("rogue")) {
 			setFitHeight(200);
 			setFitWidth(125);
 		}
