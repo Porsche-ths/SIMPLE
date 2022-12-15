@@ -149,7 +149,7 @@ public class CharaPane extends HBox {
 		return hpBar;
 	}
 	public void updateHpBar(Chara c, double defaultWidth) {
-		if (c.getHp() != 0) {
+		if (c instanceof Ally || c.getHp() != 0) {
 			int n = 0;
 	
 			switch(c.getRank()) {
