@@ -29,7 +29,6 @@ public class BattlePane extends VBox{
 	private CharaPane charaPane;
 	private GridPane textMenu,skillMenu;
 	private BorderPane fightUI;
-	private StackPane fightButton;
 	private Text battleText;
 	
 	public BattlePane(CharaPane charaPane) {
