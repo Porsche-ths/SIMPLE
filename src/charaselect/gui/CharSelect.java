@@ -33,7 +33,6 @@ public class CharSelect extends StackPane {
 	private StackPane crusaderBox,rangerBox,priestBox,rogueBox;
 	private ImageView resetButton,confirmButton,backButton;
 	private HBox buttonPanel;
-	//private StackPane selectedCrusader,selectedRanger,selectedPriest,selectedRogue;
 
 	public CharSelect() {
 		GameLogic.setTeam(new ArrayList<Ally>());
@@ -311,7 +310,6 @@ public class CharSelect extends StackPane {
 		buttonPanel.getChildren().add(resetButton);
 		
 	}
-	
 	private void addConfirmButton() {
 	
 		// fix image
@@ -376,8 +374,6 @@ public class CharSelect extends StackPane {
 									GameLogic.getTeam().get(0).setRank(rank.first); break;
 								}
 								Main.switchToBattleStage();
-
-								//Main.switchToMap();
 
 							}
 							

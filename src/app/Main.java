@@ -27,6 +27,7 @@ public class Main extends Application {
 		mainMenuScene = new Scene(mainMenu);
 		charSelectScene = new Scene(charSelect);	
 		stage = primaryStage;
+		stage.setTitle("SIMPLE DUNGEON");
 		stage.setScene(mainMenuScene);
 		stage.show();
 	}

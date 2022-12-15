@@ -33,7 +33,7 @@ public class DivineGrace extends HealSkill implements TargetSelectable {
 			n.setDisable(true);
 		}
 		for (Ally a: GameLogic.team) {
-			GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.team.indexOf(a)).setDisable(false);
+			GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.team.indexOf(a) + 4 - GameLogic.team.size()).setDisable(false);
 		}
 	}
 

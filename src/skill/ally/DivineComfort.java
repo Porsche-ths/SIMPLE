@@ -33,7 +33,7 @@ public class DivineComfort extends HealSkill implements TargetSelectable {
 			n.setDisable(true);
 		}
 		for (Ally a: GameLogic.team) {
-			GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.team.indexOf(a)).setDisable(false);
+			GameLogic.currentStage.getStageCharaPane().getChildren().get(GameLogic.team.indexOf(a) + 4 - GameLogic.team.size()).setDisable(false);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class DivineComfort extends HealSkill implements TargetSelectable {
 					if (result.length > 2) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.currentStage.getBattlePane().showBattleText(result[2]);
-					} else if (result.length == 1) {
+					} else if (result.length == 2) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
 						GameLogic.nextTurn();
@@ -118,7 +118,7 @@ public class DivineComfort extends HealSkill implements TargetSelectable {
 					if (result.length > 3) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.currentStage.getBattlePane().showBattleText(result[3]);
-					} else if (result.length == 1) {
+					} else if (result.length == 3) {
 						GameLogic.currentStage.getBattlePane().removeBattleText();
 						GameLogic.getCurrentStage().getBattlePane().enableSkillMenu();
 						GameLogic.nextTurn();
