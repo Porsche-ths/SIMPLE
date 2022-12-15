@@ -47,7 +47,7 @@ public class BattlePane extends VBox{
 		initializeTextMenu();
 		initializeSkillMenu();
 	}
-	private void initializeTextMenu() {
+	public void initializeTextMenu() {
 		textMenu = new GridPane();
 		textMenu.setAlignment(Pos.CENTER);
 		textMenu.setHgap(50);
