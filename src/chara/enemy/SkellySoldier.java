@@ -43,7 +43,7 @@ public class SkellySoldier extends Enemy {
 							if (targetList.get(j).getKey().equals(ally)) {
 								targetList.set(j, new Pair<Ally, Double>(targetList.get(j).getKey(), targetList.get(j).getValue() + ((double) ally.getTargetPriority())));
 							} else {
-								targetList.set(j, new Pair<Ally, Double>(targetList.get(j).getKey(), targetList.get(j).getValue() - (((double) ally.getTargetPriority())/(size-1))));
+								targetList.set(j, new Pair<Ally, Double>(targetList.get(j).getKey(), targetList.get(j).getValue() - (((double) ally.getTargetPriority())/((double) (size-1)))));
 							}
 						}
 					}
@@ -55,7 +55,7 @@ public class SkellySoldier extends Enemy {
 							if (targetList.get(j).getKey().equals(ally)) {
 								targetList.set(j, new Pair<Ally, Double>(targetList.get(j).getKey(), targetList.get(j).getValue() + chance));
 							} else {
-								targetList.set(j, new Pair<Ally, Double>(targetList.get(j).getKey(), targetList.get(j).getValue() - (chance/(size-1))));
+								targetList.set(j, new Pair<Ally, Double>(targetList.get(j).getKey(), targetList.get(j).getValue() - (chance/((double) (size-1)))));
 							}
 						}
 					}
@@ -64,12 +64,17 @@ public class SkellySoldier extends Enemy {
 						System.out.println(targetList.get(i).getKey() + " chance to be hit : " + targetList.get(i).getValue());
 					}
 					
-					int result = GameLogic.randomInt();
+					//int result = GameLogic.randomInt();
+					int result = 99;
 					System.out.println("result = " + result);
 					int check = 0;
 					for (int i = 0; i < size; i++) {
 						check += targetList.get(i).getValue();
-						if (result <= check) {
+						System.out.println("check" + i + " = " + check);
+						if (result < check) {
+							getSkills().get(0).getTargets().add(targetList.get(i).getKey());
+							break;
+						} else if (i == size - 1) {
 							getSkills().get(0).getTargets().add(targetList.get(i).getKey());
 							break;
 						}
