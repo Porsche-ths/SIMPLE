@@ -113,9 +113,7 @@ public class CharSelect extends StackPane {
 		rogueBox.getChildren().add(rogueSquare);
 		getChildren().add(selectableCharaBox);
 		setAlignment(selectableCharaBox,Pos.BOTTOM_CENTER);
-		
-		
-		
+
 	}
 	private void addSelectedCharaBox() {
 		selectedCharaBox = new GridPane() ;
@@ -129,7 +127,6 @@ public class CharSelect extends StackPane {
 		crusaderBox.setOnMouseClicked(new EventHandler <Event>() {
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				charaBoxHandler("crusader",new Crusader(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
@@ -137,7 +134,6 @@ public class CharSelect extends StackPane {
 		priestBox.setOnMouseClicked(new EventHandler <Event>() {
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				charaBoxHandler("priest",new Priest(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
@@ -145,7 +141,6 @@ public class CharSelect extends StackPane {
 		rangerBox.setOnMouseClicked(new EventHandler <Event>() {
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				charaBoxHandler("ranger",new Ranger(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
@@ -153,7 +148,6 @@ public class CharSelect extends StackPane {
 		rogueBox.setOnMouseClicked(new EventHandler <Event>() {
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				charaBoxHandler("rogue",new Rogue(Integer.toString(4 - GameLogic.getTeam().size())));
 			}
 			
@@ -211,17 +205,14 @@ public class CharSelect extends StackPane {
 			public void handle(Event arg0) {
 				Audio.click.stop();
 				Audio.click.play();
-				// TODO Auto-generated method stub
 				Thread t = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								backButton.setImage(activatedBack);
 							}
 							
@@ -229,14 +220,12 @@ public class CharSelect extends StackPane {
 						try {
 							Thread.sleep(250);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								backButton.setImage(inactivatedBack);
 								Main.switchToMainMenu();
 							}
@@ -266,17 +255,14 @@ public class CharSelect extends StackPane {
 			public void handle(Event arg0) {
 				Audio.click.stop();
 				Audio.click.play();
-				// TODO Auto-generated method stub
 				Thread t = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								resetButton.setImage(activatedReset);
 							}
 							
@@ -284,14 +270,12 @@ public class CharSelect extends StackPane {
 						try {
 							Thread.sleep(250);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								resetSelectedChara();
 								resetButton.setImage(inactivatedReset);
 
@@ -311,32 +295,25 @@ public class CharSelect extends StackPane {
 		
 	}
 	private void addConfirmButton() {
-	
-		// fix image
 		
 		Image inactivatedConfirm = new Image("inactivatedConfirm.png");
 		Image activatedConfirm = new Image("activatedConfirm.png");
-		
-		// fix image
 		
 		confirmButton = new ImageView(inactivatedConfirm);
 		confirmButton.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				Audio.click.stop();
 				Audio.click.play();
 				Thread t = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								confirmButton.setImage(activatedConfirm);
 							}
 							
@@ -344,14 +321,12 @@ public class CharSelect extends StackPane {
 						try {
 							Thread.sleep(250);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								confirmButton.setImage(inactivatedConfirm);
 								switch(GameLogic.getTeam().size()) {
 								case 4:

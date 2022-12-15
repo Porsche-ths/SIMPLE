@@ -70,20 +70,17 @@ public class BattlePane extends VBox{
 				skillButton.setMaxHeight(75);
 				skillButton.setMaxWidth(75);
 				Image skill = new Image(ClassLoader.getSystemResource(s.getSkillName() + ".png").toString());
-				System.out.println(s.getSkillName() + ".png");
 				ImageView skillSquare = new ImageView(skill);
 				skillSquare.setFitHeight(75);
 				skillSquare.setFitWidth(75);
 				skillButton.getChildren().add(skillSquare);
 				s.setValid();
-				System.out.println("Skill is Vaild ? : " + s.isValid());
 				if (s.isValid()) {
 					playable = true;
 					skillButton.setOnMouseClicked(new EventHandler<Event>() {
 	
 						@Override
 						public void handle(Event arg0) {
-							// TODO Auto-generated method stub
 							Audio.click.stop();
 							Audio.click.play();
 							GameLogic.currentSkill = s;
@@ -97,7 +94,6 @@ public class BattlePane extends VBox{
 
 								@Override
 								public void handle(long arg0) {
-									// TODO Auto-generated method stub
 									if(GameLogic.currentSkill!=s) {
 										skillButton.getChildren().remove(1);
 										stop();
@@ -115,7 +111,6 @@ public class BattlePane extends VBox{
 					skillButton.setOnMouseClicked(new EventHandler<Event>() {
 						@Override
 						public void handle(Event arg0) {
-							// TODO Auto-generated method stub
 							Audio.click.stop();
 							Audio.click.play();
 							showBattleText("Skill not available at this rank!");
@@ -125,7 +120,6 @@ public class BattlePane extends VBox{
 
 								@Override
 								public void handle(long arg0) {
-									// TODO Auto-generated method stub
 									time += 1;
 									if(time < 100) {
 										textMenu.setOpacity(textMenu.getOpacity() - 0.01);

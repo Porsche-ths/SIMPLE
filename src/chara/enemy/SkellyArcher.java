@@ -60,16 +60,10 @@ public class SkellyArcher extends Enemy {
 						}
 					}
 					
-					for (int i = 0; i < size; i++) {
-						System.out.println(targetList.get(i).getKey() + " chance to be hit : " + targetList.get(i).getValue());
-					}
-					
 					int result = GameLogic.randomInt();
-					System.out.println("result = " + result);
 					int check = 0;
 					for (int i = 0; i < size; i++) {
 						check += targetList.get(i).getValue();
-						System.out.println("check" + i + " = " + check);
 						if (result < check) {
 							getSkills().get(0).getTargets().add(targetList.get(i).getKey());
 							break;

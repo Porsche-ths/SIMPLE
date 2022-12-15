@@ -56,7 +56,6 @@ public class DarkBolt extends DamageSkill {
 				int time = 0;
 				@Override
 				public void handle(long arg0) {
-					// TODO Auto-generated method stub
 					time += 1;
 					if(time == 75) {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);

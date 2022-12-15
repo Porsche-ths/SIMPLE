@@ -28,7 +28,6 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 
 	@Override
 	public void selectTarget() {
-		// TODO Auto-generated method stub
 		for (Node n : GameLogic.currentStage.getStageCharaPane().getChildren()) {
 			n.setDisable(true);
 		}
@@ -42,7 +41,6 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 
 	@Override
 	public void playAnimation() {
-		// TODO Auto-generated method stub
 		for (Chara e : targets) {
 			HBox animation = new HBox();
 			animation.setPrefWidth(1400);
@@ -71,7 +69,6 @@ public class SwordBash extends DamageSkill implements TargetSelectable {
 
 				@Override
 				public void handle(long arg0) {
-					// TODO Auto-generated method stub
 					time += 1;
 					if (time == 75) {
 						GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);

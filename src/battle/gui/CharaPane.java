@@ -48,7 +48,6 @@ public class CharaPane extends HBox {
 				blankIdle.setFitHeight(120);
 				blankIdle.setFitWidth(140);
 				getChildren().add(blankIdle);
-
 			}
 		}
 		for(Ally a : team) {

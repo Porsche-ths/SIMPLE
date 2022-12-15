@@ -50,17 +50,11 @@ public class DarkLord extends Enemy {
 				}
 			}
 			
-			for (int i = 0; i < size; i++) {
-				System.out.println(targetList.get(i).getKey() + " chance to be hit : " + targetList.get(i).getValue());
-			}
-			
 			int result = GameLogic.randomInt();
-			System.out.println("result = " + result);
 			int check = 0;
 			for (int i = 0; i < size; i++) {
 				check += targetList.get(i).getValue();
 				if (result < check) {
-					System.out.println("check" + i + " = " + check);
 					getSkills().get(0).getTargets().add(targetList.get(i).getKey());
 					break;
 				} else if (i == size - 1) {

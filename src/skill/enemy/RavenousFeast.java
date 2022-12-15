@@ -30,33 +30,22 @@ public class RavenousFeast extends DamageSkill {
 	public void cast() {
 		healResult = "";
 		for (Chara each: targets) {
-			System.out.println("Target Name : " + each.getName());
-			System.out.println("Target Before: " + each.getHp());
 			if (isHit(each)) {
 				
 				int damageDeal = computeDamage(each);
 				((Ally) each).setHp(each.getHp() - damageDeal);
-				System.out.println("Damage : " + damageDeal);
 				result = "It dealt "+ damageDeal + " damage!";
-				// show damageDeal
 				
 				int selfHeal = (int) (damageDeal * 0.5);
 				healResult = "Also restore " + selfHeal + " HP!";
 				user.setHp(user.getHp() + selfHeal);
-				System.out.println("Self Heal : " + selfHeal);
-				System.out.println("Self HP : " + user.getHp());
-				// show selfDeal
 				GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(user,100);
 				if(each.getHp()!=0) {
 				GameLogic.getCurrentStage().getStageCharaPane().updateHpBar(each,100);
 				}
 			} else {
-				String show = "Dodge";
-				// show Dodge
 				result = "You dodged!";
-				System.out.println(show);
 			}
-			System.out.println("Target After: " + each.getHp());
 		}
 		targets.clear();
 	}
@@ -85,7 +74,6 @@ public class RavenousFeast extends DamageSkill {
 				int time = 0;
 				@Override
 				public void handle(long arg0) {
-					// TODO Auto-generated method stub
 					time += 1;
 					if(time == 75) {
 					GameLogic.getCurrentStage().getBattlePane().getChildren().remove(animation);

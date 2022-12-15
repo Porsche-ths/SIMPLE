@@ -28,7 +28,6 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 
 	@Override
 	public void selectTarget() {
-		// TODO Auto-generated method stub
 		for (Node n: GameLogic.currentStage.getStageCharaPane().getChildren()) {
 			n.setDisable(true);
 		}
@@ -51,7 +50,6 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 	}
 	@Override
 	public void playAnimation() {
-		// TODO Auto-generated method stub
 		HBox animation = new HBox();
 		animation.setPrefWidth(1400);
 		animation.setPrefHeight(740);
@@ -83,7 +81,6 @@ public class DaggersPlay extends DamageSkill implements TargetSelectable {
 			int time = 0;
 			@Override
 			public void handle(long arg0) {
-				// TODO Auto-generated method stub
 				time += 1;
 				String[] result = getResult().split(",");
 				if(time == 75) {

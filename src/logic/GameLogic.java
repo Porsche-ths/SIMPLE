@@ -85,7 +85,6 @@ public class GameLogic {
 
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				team = new ArrayList<Ally>();
 				Main.charSelect.resetSelectedChara();
 				Main.switchToMainMenu();
@@ -96,7 +95,6 @@ public class GameLogic {
 
 			@Override
 			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
 				Platform.exit();
 			}
 			
@@ -130,7 +128,6 @@ public class GameLogic {
 			int time = 0;
 			@Override
 			public void handle(long arg0) {
-				// TODO Auto-generated method stub
 				time += 1;
 				if(time == 100) {
 					enemies = villains.get(i-1);
@@ -164,9 +161,6 @@ public class GameLogic {
 			} else {
 				isStageCleared = false;
 				stage++;
-				System.out.println("=============================================");
-				System.out.println("Begin Stage " + stage);
-				System.out.println("=============================================");
 				beginStage(stage);
 			}
 		} else {
@@ -179,8 +173,6 @@ public class GameLogic {
 				GameLogic.getCurrentStage().getBattlePane().disableSkillMenu();
 
 			}
-			System.out.println("-----------------------------------------\n");
-			System.out.println("Current Turn : " + currentChara.getName());
 			currentChara.beginTurn();
 		}
 		

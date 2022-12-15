@@ -17,7 +17,6 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		AudioClip music = new AudioClip(ClassLoader.getSystemResource("soundtrack.mp3").toString());
 		music.setVolume(0.5);
 		music.setCycleCount(Timeline.INDEFINITE);
@@ -25,7 +24,7 @@ public class Main extends Application {
 		mainMenu = new MainMenu();
 		charSelect = new CharSelect();
 		mainMenuScene = new Scene(mainMenu);
-		charSelectScene = new Scene(charSelect);	
+		charSelectScene = new Scene(charSelect);
 		stage = primaryStage;
 		stage.setTitle("SIMPLE DUNGEON");
 		stage.setScene(mainMenuScene);
